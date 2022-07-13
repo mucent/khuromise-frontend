@@ -3,9 +3,15 @@ import logo from "./logo.png";
 
 const HeaderBlock = styled.div`
   width: 100%;
-  height: 40px;
+  height: 60px;
   border-bottom: 1px solid #bcbcbc;
   margin: 0;
+`;
+
+const ItemBox = styled.div`
+  width: 1000px;
+  height: 100%;
+  margin: 0 auto;
 
   display: flex;
   justify-content: space-between;
@@ -14,7 +20,7 @@ const HeaderBlock = styled.div`
 
 const Logo = styled.img`
   width: 150px;
-  height: 40px;
+  height: 50px;
 `;
 
 const ButtonBox = styled.div`
@@ -34,11 +40,13 @@ const LogRegButton = styled.button`
 const Header = () => {
   return (
     <HeaderBlock>
-      <Logo src={logo} />
-      <ButtonBox>
-        <LogRegButton>로그인</LogRegButton>
-        <LogRegButton>회원가입</LogRegButton>
-      </ButtonBox>
+      <ItemBox>
+        <Logo src={logo} />
+        <ButtonBox>
+          <LogRegButton>로그인</LogRegButton>
+          <LogRegButton>회원가입</LogRegButton>
+        </ButtonBox>
+      </ItemBox>
     </HeaderBlock>
   );
 };
