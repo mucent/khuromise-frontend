@@ -1,18 +1,21 @@
 import { createGlobalStyle } from "styled-components";
 import Header from "./components/Header/Header";
+import PostListTemplate from "./components/PostList/PostListTemplate";
 
-const GlobalStyleBox = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
+  background-color: red;
   margin: 0;
-  font-family: ;
 `;
 
 function App() {
   return (
     <>
-      <GlobalStyleBox />
+      <GlobalStyle />
       <Header />
+      <PostListTemplate />
     </>
   );
 }
