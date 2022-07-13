@@ -16,6 +16,8 @@ const PostListItemBlock = styled.div`
 const LeftBox = styled.div`
   width: 70%;
   height: 100%;
+  margin-left: 10px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,6 +27,8 @@ const LeftBox = styled.div`
 const RightBox = styled.div`
   width: 30%;
   height: 100%;
+  margin-right: 10px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -36,21 +40,18 @@ const Title = styled.div`
   height: 40%;
   font-size: 20px;
   font-weight: bold;
-  margin-left: 10px;
 `;
 
 const Date = styled.div`
   width: 100%;
   height: 20%;
   font-size: 16px;
-  margin-left: 10px;
 `;
 
 const Place = styled.div`
   width: 100%;
   height: 20%;
   font-size: 16px;
-  margin-left: 10px;
 `;
 
 const Participant = styled.div`
