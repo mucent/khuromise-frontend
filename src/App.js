@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { createGlobalStyle } from "styled-components";
 import Header from "./components/Header/Header";
 import PurposeList from "./components/createpost/PurposeList";
 import Time from "./components/createpost/Time";
@@ -7,24 +8,28 @@ import Peoplenum from "./components/createpost/Peoplenum";
 import Gender from "./components/createpost/Gender"
 import PostTitle from "./components/createpost/PostTitle";
 import PostContents from "./components/createpost/PostContents";
+import Login from "./components/LoginRegister/Login";
+import PostListTemplate from "./components/PostList/PostListTemplate";
+import TestBar from "./components/TestBar";
 
-const GlobalStyleBox = styled.div`
+const GlobalStyle = createGlobalStyle`
   display: flex;
-  flex-direction: column;
-`;    
+  flex-direction: row;
+  justify-content: center;
+  background-color: red;
+  margin: 0;
+`;
 
 function App() {
-  const onToggle = () => {
-
-  }
-
   return (
-    <>
-      <div classname='Header'>
-        <GlobalStyleBox>
-          <Header />
-        </GlobalStyleBox>
-      </div>
+    <BrowserRouter>
+      <GlobalStyle />
+      <Header />
+      <TestBar />
+      <Routes>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/post" element={<PostListTemplate />}></Route>
+      </Routes>
       <div classname='CreatePost'>
         <div>
           <PurposeList />
@@ -48,9 +53,7 @@ function App() {
           <PostContents />
         </div>
       </div>
-      
-    </>
-    
+    </BrowserRouter>
   );
 }
 
