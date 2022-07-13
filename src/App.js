@@ -5,7 +5,7 @@ import PurposeList from "./components/createpost/PurposeList";
 import Time from "./components/createpost/Time";
 import Place from "./components/createpost/Place";
 import Peoplenum from "./components/createpost/Peoplenum";
-import Gender from "./components/createpost/Gender"
+import Gender from "./components/createpost/Gender";
 import PostTitle from "./components/createpost/PostTitle";
 import PostContents from "./components/createpost/PostContents";
 import Login from "./components/LoginRegister/Login";
@@ -30,7 +30,7 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/post" element={<PostListTemplate />}></Route>
       </Routes>
-      <div classname='CreatePost'>
+      <div classname="CreatePost">
         <div>
           <PurposeList />
         </div>
@@ -38,7 +38,7 @@ function App() {
           <Time />
         </div>
         <div>
-          <Place /> 
+          <Place />
         </div>
         <div>
           <Peoplenum />
