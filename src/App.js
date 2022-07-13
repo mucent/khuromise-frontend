@@ -15,14 +15,12 @@ const GlobalStyle = createGlobalStyle`
 function App() {
   return (
     <BrowserRouter>
-      <div>
-        <GlobalStyle />
-        <Header />
-        <TestBar />
-        <Routes>
-          <Route path="/post" element={<PostListTemplate />}></Route>
-        </Routes>
-      </div>
+      <GlobalStyle />
+      <Header />
+      <TestBar />
+      <Routes>
+        <Route path="/post" element={<PostListTemplate />}></Route>
+      </Routes>
     </BrowserRouter>
   );
 }
