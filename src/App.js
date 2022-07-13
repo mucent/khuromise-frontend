@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import Header from "./components/Header/Header";
+import Login from "./components/LoginRegister/Login";
 import PostListTemplate from "./components/PostList/PostListTemplate";
 import TestBar from "./components/TestBar";
 
@@ -19,6 +20,7 @@ function App() {
       <Header />
       <TestBar />
       <Routes>
+        <Route path="/login" element={<Login />}></Route>
         <Route path="/post" element={<PostListTemplate />}></Route>
       </Routes>
     </BrowserRouter>
