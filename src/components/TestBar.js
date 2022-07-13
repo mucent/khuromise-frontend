@@ -23,6 +23,9 @@ const TestBar = () => {
       <li>
         <Link to="/post">PostList</Link>
       </li>
+      <li>
+        <Link to="/createpost">CreatePost</Link>
+      </li>
     </TestBarBlock>
   );
 };

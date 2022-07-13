@@ -1,13 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import Header from "./components/Header/Header";
-import PurposeList from "./components/createpost/PurposeList";
-import Time from "./components/createpost/Time";
-import Place from "./components/createpost/Place";
-import Peoplenum from "./components/createpost/Peoplenum";
-import Gender from "./components/createpost/Gender";
-import PostTitle from "./components/createpost/PostTitle";
-import PostContents from "./components/createpost/PostContents";
+import CreatePost from "./components/createpost/CreatePost";
 import Login from "./components/LoginRegister/Login";
 import PostListTemplate from "./components/PostList/PostListTemplate";
 import TestBar from "./components/TestBar";
@@ -29,30 +23,8 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/post" element={<PostListTemplate />}></Route>
+        <Route path="/createpost" element={<CreatePost />}></Route>
       </Routes>
-      <div classname="CreatePost">
-        <div>
-          <PurposeList />
-        </div>
-        <div>
-          <Time />
-        </div>
-        <div>
-          <Place />
-        </div>
-        <div>
-          <Peoplenum />
-        </div>
-        <div>
-          <Gender />
-        </div>
-        <div>
-          <PostTitle />
-        </div>
-        <div>
-          <PostContents />
-        </div>
-      </div>
     </BrowserRouter>
   );
 }
