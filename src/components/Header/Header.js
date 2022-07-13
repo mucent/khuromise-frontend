@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import logo from "./logo.png";
+import { Link } from "react-router-dom";
 
 const HeaderBlock = styled.div`
   width: 100%;
@@ -35,16 +36,28 @@ const LogRegButton = styled.button`
   width: 70px;
   height: 30px;
   margin-right: 5px;
+  border: 1px solid black;
+  border-radius: 6px;
+  font-size: 16px;
+
+  text-align: center;
+  line-height: 30px;
 `;
 
 const Header = () => {
   return (
     <HeaderBlock>
       <ItemBox>
-        <Logo src={logo} />
+        <Link to="/">
+          <Logo src={logo} />
+        </Link>
         <ButtonBox>
-          <LogRegButton>로그인</LogRegButton>
-          <LogRegButton>회원가입</LogRegButton>
+          <Link to="/login">
+            <LogRegButton>로그인</LogRegButton>
+          </Link>
+          <Link to="/register">
+            <LogRegButton>회원가입</LogRegButton>
+          </Link>
         </ButtonBox>
       </ItemBox>
     </HeaderBlock>
