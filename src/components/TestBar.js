@@ -5,6 +5,8 @@ const TestBarBlock = styled.div`
   width: 100%;
   height: 50px;
 
+  border-bottom: 1px solid #bcbcbc;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,6 +24,12 @@ const TestBar = () => {
       </li>
       <li>
         <Link to="/post">PostList</Link>
+      </li>
+      <li>
+        <Link to="/post/1">Post</Link>
+      </li>
+      <li>
+        <Link to="/createpost">CreatePost</Link>
       </li>
     </TestBarBlock>
   );

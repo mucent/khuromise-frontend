@@ -2,7 +2,7 @@ import styled from "styled-components";
 import PostListBody from "./PostListBody";
 import PostListHeader from "./PostListHeader";
 
-const PostListTemplateBlock = styled.div`
+const PostListBlock = styled.div`
   width: 800px;
   height: auto;
   margin: 0 auto;
@@ -14,13 +14,13 @@ const PostListTemplateBlock = styled.div`
   align-items: center;
 `;
 
-const PostListTemplate = () => {
+const PostList = () => {
   return (
-    <PostListTemplateBlock>
+    <PostListBlock>
       <PostListHeader />
       <PostListBody />
-    </PostListTemplateBlock>
+    </PostListBlock>
   );
 };
 
-export default PostListTemplate;
+export default PostList;
