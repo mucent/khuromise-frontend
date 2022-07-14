@@ -4,7 +4,7 @@ import logo from "./../Header/logo.png";
 const LoginTemplate = styled.div`
   width: 300px;
   height: 300px;
-  margin: 100px auto;
+  margin: 190px auto;
   border: 1px solid #bcbcbc;
 
   display: flex;

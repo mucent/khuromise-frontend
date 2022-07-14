@@ -34,6 +34,46 @@ const PostListBody = () => {
         participant="1 / 2"
         written_time="1일 전"
       />
+      <PostListItem
+        title="영통역 근처 밥"
+        date="2022년 7월 15일 (금) 12:30"
+        place="영통역"
+        gender="여자만"
+        participant="1 / 2"
+        written_time="1일 전"
+      />
+      <PostListItem
+        title="영통역 근처 밥"
+        date="2022년 7월 15일 (금) 12:30"
+        place="영통역"
+        gender="여자만"
+        participant="1 / 2"
+        written_time="1일 전"
+      />
+      <PostListItem
+        title="영통역 근처 밥"
+        date="2022년 7월 15일 (금) 12:30"
+        place="영통역"
+        gender="여자만"
+        participant="1 / 2"
+        written_time="1일 전"
+      />
+      <PostListItem
+        title="영통역 근처 밥"
+        date="2022년 7월 15일 (금) 12:30"
+        place="영통역"
+        gender="여자만"
+        participant="1 / 2"
+        written_time="1일 전"
+      />
+      <PostListItem
+        title="영통역 근처 밥"
+        date="2022년 7월 15일 (금) 12:30"
+        place="영통역"
+        gender="여자만"
+        participant="1 / 2"
+        written_time="1일 전"
+      />
     </PostListBodyBlock>
   );
 };

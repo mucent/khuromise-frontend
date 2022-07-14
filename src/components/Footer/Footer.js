@@ -6,7 +6,7 @@ const FooterBlock = styled.div`
   border-top: 1px solid #bcbcbc;
 
   .box {
-    width: 80%;
+    width: 60%;
     height: 100%;
     margin: 0 auto;
 
@@ -42,7 +42,7 @@ const Footer = () => {
         <div className="title">KHUromise</div>
         <div className="club">경희대학교 컴퓨터공학부 HACKER</div>
         <div className="content">
-          사이트 제작: 강경현, 박예림, 변시윤, 권승원, 양동균, 이천국
+          사이트 제작: 강경현, 권승원, 박예림, 변시윤, 양동균, 이천국
         </div>
       </div>
     </FooterBlock>
