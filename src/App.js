@@ -11,6 +11,7 @@ import PostContents from "./components/createpost/PostContents";
 import Login from "./components/LoginRegister/Login";
 import PostListTemplate from "./components/PostList/PostListTemplate";
 import TestBar from "./components/TestBar";
+import Footer from "./components/Footer/Footer";
 
 const GlobalStyle = createGlobalStyle`
   display: flex;
@@ -53,6 +54,7 @@ function App() {
           <PostContents />
         </div>
       </div>
+      <Footer />
     </BrowserRouter>
   );
 }
