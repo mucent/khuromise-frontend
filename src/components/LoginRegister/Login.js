@@ -1,12 +1,10 @@
 import styled from "styled-components";
 import logo from "./../Header/logo.png";
-import { Link } from "react-router-dom";
 
 const LoginTemplate = styled.div`
   width: 300px;
   height: 300px;
-  margin: 0 auto;
-  margin-top: 50px;
+  margin: 100px auto;
   border: 1px solid #bcbcbc;
 
   display: flex;
