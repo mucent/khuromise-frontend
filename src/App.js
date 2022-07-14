@@ -3,8 +3,9 @@ import { createGlobalStyle } from "styled-components";
 import Header from "./components/Header/Header";
 import CreatePost from "./components/createpost/CreatePost";
 import Login from "./components/LoginRegister/Login";
-import PostListTemplate from "./components/PostList/PostListTemplate";
+import PostList from "./components/PostList/PostList";
 import TestBar from "./components/TestBar";
+import Post from "./components/Post/Post";
 
 const GlobalStyle = createGlobalStyle`
   display: flex;
@@ -22,7 +23,8 @@ function App() {
       <TestBar />
       <Routes>
         <Route path="/login" element={<Login />}></Route>
-        <Route path="/post" element={<PostListTemplate />}></Route>
+        <Route path="/post" element={<PostList />}></Route>
+        <Route path="/post/1" element={<Post />}></Route>
         <Route path="/createpost" element={<CreatePost />}></Route>
       </Routes>
     </BrowserRouter>
