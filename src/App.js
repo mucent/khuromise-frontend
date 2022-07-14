@@ -6,6 +6,7 @@ import Login from "./components/LoginRegister/Login";
 import PostList from "./components/PostList/PostList";
 import TestBar from "./components/TestBar";
 import Post from "./components/Post/Post";
+import Footer from "./components/Footer/Footer";
 
 const GlobalStyle = createGlobalStyle`
   display: flex;
@@ -27,6 +28,7 @@ function App() {
         <Route path="/post/1" element={<Post />}></Route>
         <Route path="/createpost" element={<CreatePost />}></Route>
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
