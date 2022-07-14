@@ -9,17 +9,38 @@ const PostHeaderBlock = styled.div`
   height: auto;
   border: 1px solid #bcbcbc;
   margin: 10px auto;
+`;
+
+const UpperBox = styled.div`
+  width: 100%;
+  height: 80px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   h1 {
     margin: 0;
-    margin-left: 20px;
-    margin-top: 15px;
+    margin: 10px 20px;
+    margin-bottom: 0;
+    padding: 20px;
     font-size: 30px;
-    line-height: 50px;
+    line-height: 30px;
+  }
+
+  button {
+    width: 70px;
+    height: 40px;
+    font-size: 16px;
+    text-align: center;
+    line-height: 30px;
+    margin-right: 40px;
+    border: 1px solid #bcbcbc;
+    border-radius: 5px;
   }
 `;
 
-const Box = styled.div`
+const UnderBox = styled.div`
   margin: 10px auto;
   width: 600px;
   height: 50px;
@@ -48,8 +69,11 @@ const Img = styled.img`
 const PostHeader = () => {
   return (
     <PostHeaderBlock>
-      <h1>정건 밥 먹을 사람</h1>
-      <Box>
+      <UpperBox>
+        <h1>정건 밥 먹을 사람</h1>
+        <button>신청하기</button>
+      </UpperBox>
+      <UnderBox>
         <div className="item">
           <Img src={clock} />
           2022년 7월 13일 (수) 18:00
@@ -64,7 +88,7 @@ const PostHeader = () => {
         <div className="item">
           <Img src={people} />1 / 6
         </div>
-      </Box>
+      </UnderBox>
     </PostHeaderBlock>
   );
 };
