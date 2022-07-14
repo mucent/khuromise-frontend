@@ -5,8 +5,7 @@ import PostHeader from "./PostHeader";
 const PostBlock = styled.div`
   width: 800px;
   height: auto;
-  margin: 0 auto;
-  margin-top: 10px;
+  margin: 10px auto;
   border: 1px solid #bcbcbc;
 `;
 
