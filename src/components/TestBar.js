@@ -1,5 +1,7 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { CategoryContext } from "../context/PostContext";
 
 const TestBarBlock = styled.div`
   width: 100%;
@@ -17,17 +19,18 @@ const TestBarBlock = styled.div`
 `;
 
 const TestBar = () => {
+  const categories = useContext(CategoryContext);
+
   return (
     <TestBarBlock>
       <li>
         <Link to="/">Home</Link>
       </li>
-      <li>
-        <Link to="/post">PostList</Link>
-      </li>
-      <li>
-        <Link to="/post/1">Post</Link>
-      </li>
+      {categories.map((category) => (
+        <li key={category.id}>
+          <Link to={`/${category.category}`}>{category.category}</Link>
+        </li>
+      ))}
       <li>
         <Link to="/createpost">CreatePost</Link>
       </li>

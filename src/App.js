@@ -7,6 +7,7 @@ import PostList from "./components/PostList/PostList";
 import TestBar from "./components/TestBar";
 import Post from "./components/Post/Post";
 import Footer from "./components/Footer/Footer";
+import { PostContextProvider } from "./context/PostContext";
 
 const GlobalStyle = createGlobalStyle`
   display: flex;
@@ -14,22 +15,30 @@ const GlobalStyle = createGlobalStyle`
   justify-content: center;
   background-color: red;
   margin: 0;
+  a {
+    text-decoration: none;
+  }
+  a:link, a:visited, a:hover, a:active {
+    color: black;
+  }
 `;
 
 function App() {
   return (
-    <BrowserRouter>
-      <GlobalStyle />
-      <Header />
-      <TestBar />
-      <Routes>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/post" element={<PostList />}></Route>
-        <Route path="/post/1" element={<Post />}></Route>
-        <Route path="/createpost" element={<CreatePost />}></Route>
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+    <PostContextProvider>
+      <BrowserRouter>
+        <GlobalStyle />
+        <Header />
+        <TestBar />
+        <Routes>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/:category" element={<PostList />}></Route>
+          <Route path="/post/:id" element={<Post />}></Route>
+          <Route path="/createpost" element={<CreatePost />}></Route>
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </PostContextProvider>
   );
 }
 
