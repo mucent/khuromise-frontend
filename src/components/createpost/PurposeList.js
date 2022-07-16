@@ -1,7 +1,25 @@
-import React, {useState, purposeef} from 'react';
+import React, {useState} from 'react';
+import styled from "styled-components";
+
+const PurposeBox = styled.div`
+  width: 18%;
+  height : 30px;
+  margin : auto;
+  display : inline-block;
+  border: 1px solid #bcbcbc;
+  position : relative;
+  font-size: 15px;
+  text-align : center;
+  line-height : 30px;
+`;
+
+const PurposeBarBox = styled.div`
+  display : flex;
+  justify-content : center; 
+`;
+
 
 function PurposeList() {
-  
   const [purposes, setPur] = useState([
     {
       id : 1,
@@ -40,26 +58,27 @@ function PurposeList() {
   
   function Purpose({ purpose, onToggle }) {
     return (
-      <span>
-        <b
-          style = {{
-            cursor:'pointer',
-            color: purpose.active ? 'red' : 'black'
-          }}
-          onClick = {()=> onToggle(purpose.id)}
-        >
+      <b
+        style = {{
+          cursor:'pointer',
+          color: purpose.active ? 'red' : 'black'
+        }}
+        onClick = {()=> onToggle(purpose.id)}
+      >
+      
         {purpose.purname}
-        </b>
-      </span>
+      </b>
     );
   }
 
   return (
-    <div>
-        {purposes.map(purpose => (
+    <PurposeBarBox>
+      {purposes.map(purpose => (
+        <PurposeBox>
           <Purpose purpose={purpose} key={purpose.id} onToggle={onToggle}/>
-        ))}
-    </div>
+        </PurposeBox>
+      ))}
+    </PurposeBarBox>
   );
 }
 
