@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
 import PurposeList from "./PurposeList";
 import Time from "./Time";
@@ -8,6 +8,7 @@ import GenderList from "./GenderList";
 import PostTitle from "./PostTitle";
 import PostContents from "./PostContents";
 import Line from "./Line";
+import PostSend from './PostSend';
 
 /* const PurposeListBox = styled.div`
   
@@ -104,6 +105,13 @@ const CreatePostBox = styled.div`
 
 
 function CreatePost() {
+
+  const [titlevalue, setTitleValue] = useState('');
+  const [contentvalue, setContentsValue] = useState('');
+
+  console.log(titlevalue);
+  console.log(contentvalue);
+
   return (
     <CreatePostBox>
       <div className="CreatePost">
@@ -113,9 +121,16 @@ function CreatePost() {
         <div className="GenderBox"><GenderList /></div>
         <div className="LineBox"><Line /></div>
         <div className="PlaceBox"><Place /></div>
-        <div className="PostTitleBox"><PostTitle /></div>
-        <div className="PostContentsBox"><PostContents /></div> 
-        <div className="SendBox">SendBox</div>
+        <div className="PostTitleBox">
+          <PostTitle setTitleValue={setTitleValue}/>
+        </div>
+        <div className="PostContentsBox">
+          <PostContents setContentsValue={setContentsValue}/>
+        </div> 
+        <div className="SendBox"><PostSend
+          titlevalue={titlevalue} 
+          contentvalue = {contentvalue}/>
+        </div>
       </div>
     </CreatePostBox>
     

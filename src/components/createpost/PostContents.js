@@ -8,7 +8,14 @@ const PostBox = styled.div`
   justify-content : center;
 `;
 
-function PostContents() {
+function PostContents(props) {
+
+  const [postcontents, setPostContents] = useState('');
+
+  const onChange = (e) => {
+    setPostContents(e.target.value);
+    props.setContentsValue(e.target.value);
+  };
 
   const [hei, setHei] = useState("375");
 
@@ -28,8 +35,10 @@ function PostContents() {
           height : hei+'px',
           minHeight : '350px'
         }}
+        onChange={onChange}
         onKeyDown = {size}
         onKeyUp = {size}
+        value = {postcontents}
       >
       </textarea>
     </PostBox>

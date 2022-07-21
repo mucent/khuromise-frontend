@@ -26,23 +26,35 @@ const TotalTitleBox = styled.div`
   
 `;
 
-function PostTitle() {
+function PostTitle(props) {
+
+  const [posttitle, setPostTitle] = useState('');
+
+  const onChange = (e) => {
+    setPostTitle(e.target.value);
+    props.setTitleValue(e.target.value);
+  };
+
   return (
-    <TotalTitleBox>
-      <TitleBox>
-        제목
-      </TitleBox>
-      <TitleWritingBox>
-        <input style={{
-          width : '80%',
-          height : '18px',
-          border : '0px solid #bcbcbc',
-          position : 'relative',
-          top : '8%'
-        }}/>
-      </TitleWritingBox>
-    </TotalTitleBox>
-  );
+    <div>
+      <TotalTitleBox>
+        <TitleBox>
+          제목
+        </TitleBox>
+        <TitleWritingBox>
+          <input style={{
+            width : '80%',
+            height : '18px',
+            border : '0px solid #bcbcbc',
+            position : 'relative',
+            top : '8%'
+          }}
+            onChange={onChange}
+            value={posttitle}/>
+        </TitleWritingBox>
+      </TotalTitleBox>
+    </div>
+    )
 }
 
 export default PostTitle;

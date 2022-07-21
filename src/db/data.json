@@ -1,0 +1,32 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "name": "익명",
+      "userGender": "w",
+      "date": "2022.07.19.",
+      "noon": "오후",
+      "hour": 12,
+      "minute": 30,
+      "purpose": "meal",
+      "gender": "w",
+      "peopleNum": 3,
+      "title": "중상 점심 드실 여자분",
+      "content": "있나요"
+    },
+    {
+      "id": 2,
+      "name": "익명",
+      "userGender": "w",
+      "date": "2022.07.19.",
+      "noon": "오후",
+      "hour": 1,
+      "minute": 30,
+      "purpose": "meal",
+      "gender": "w",
+      "peopleNum": 3,
+      "title": "중상 밥 먹을 사람",
+      "content": "있나요"
+    }
+  ]
+}
