@@ -80,7 +80,7 @@ function PurposeList(props) {
   return (
     <PurposeBarBox>
       {purposes.map(purpose => (
-        <PurposeBox>
+        <PurposeBox key={purpose.id}>
           <Purpose purpose={purpose} key={purpose.id} onToggle={onToggle}/>
         </PurposeBox>
       ))}

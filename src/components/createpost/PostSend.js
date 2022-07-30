@@ -31,9 +31,10 @@ function PostSend({ titlevalue , contentvalue, noonvalue, hourvalue, minutevalue
         "noon" : noonvalue,
         "hour" : hourvalue,
         "minute" : minutevalue,
-        "purpose" : purposevalue,
+        "category" : purposevalue,
         "gender" : gendervalue,
-        "peopleNum" : peoplenumvalue,
+        "currentPeople" : "1",
+        "maxPeople" : peoplenumvalue,
         "title" : titlevalue,
         "content" : contentvalue
       }),

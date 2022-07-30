@@ -68,7 +68,7 @@ function GenderList(props) {
   return (
     <GenderBarBox>
       {currentgender.map(gender => (
-        <GenderBox>
+        <GenderBox key={gender.id}>
           <Gender gender={gender} key={gender.id} onToggle={onToggle}/>
         </GenderBox>
       ))}

@@ -8,9 +8,10 @@
       "noon": "오후",
       "hour": "08",
       "minute": "00",
-      "purpose": "식사",
+      "category": "식사",
       "gender": "w",
-      "peopleNum": "3",
+      "currentPeople": "1",
+      "maxPeople": "3",
       "title": "asfs",
       "content": "dfsdafsafsad"
     },
@@ -22,9 +23,10 @@
       "noon": "오후",
       "hour": "03",
       "minute": "00",
-      "purpose": "식사",
+      "category": "식사",
       "gender": "w",
-      "peopleNum": "5",
+      "currentPeople": "1",
+      "maxPeople": "5",
       "title": "asfd",
       "content": "sadfsadfasdfsad"
     },
@@ -36,9 +38,10 @@
       "noon": "오전",
       "hour": "1",
       "minute": "00",
-      "purpose": "공부",
+      "category": "공부",
       "gender": "w",
-      "peopleNum": "2",
+      "currentPeople": "1",
+      "maxPeople": "2",
       "title": "제목없음",
       "content": "내용없음"
     },
@@ -46,15 +49,24 @@
       "id": 4,
       "name": "익명",
       "userGender": "w",
-      "date": "2022-08-18",
+      "date": "2022-08-03",
       "noon": "오후",
       "hour": "1",
       "minute": "00",
-      "purpose": "식사",
+      "category": "식사",
       "gender": "남자만",
-      "peopleNum": "2",
-      "title": "safsadf",
-      "content": "wqfdsafwadszxc"
+      "currentPeople": "1",
+      "maxPeople": "3",
+      "title": "sdfasdf",
+      "content": "sdafasdfdsafsdf"
+    }
+  ],
+  "users": [
+    {
+      "id": "",
+      "pw": "",
+      "name": "",
+      "gender": ""
     }
   ]
 }
