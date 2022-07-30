@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const PostListItemBlock = styled.div`
   width: 100%;
@@ -40,6 +41,11 @@ const Title = styled.div`
   height: 40%;
   font-size: 20px;
   font-weight: bold;
+  border: none;
+  background-color: white;
+
+  display: flex;
+  justify-content: flex-start;
 `;
 
 const Date = styled.div`
@@ -84,24 +90,31 @@ const GenderBox = styled.div`
 `;
 
 const PostListItem = ({
+  id,
+  category,
   title,
   date,
   place,
   gender,
-  participant,
-  written_time,
+  currentPeople,
+  maxPeople,
+  writtenTime,
 }) => {
   return (
     <PostListItemBlock>
       <LeftBox>
-        <Title>{title}</Title>
+        <Link to={`/${category}/${id}`}>
+          <Title>{title}</Title>
+        </Link>
         <Date>{date}</Date>
         <Place>{place}</Place>
       </LeftBox>
       <GenderBox>{gender}</GenderBox>
       <RightBox>
-        <Participant>{participant}</Participant>
-        <WrittenTime>{written_time}</WrittenTime>
+        <Participant>
+          {currentPeople} / {maxPeople}
+        </Participant>
+        <WrittenTime>{writtenTime}</WrittenTime>
       </RightBox>
     </PostListItemBlock>
   );
