@@ -28,11 +28,10 @@ const TotalTitleBox = styled.div`
 
 function PostTitle(props) {
 
-  const [posttitle, setPostTitle] = useState('');
+  const titleRef = useRef(null);
 
   const onChange = (e) => {
-    setPostTitle(e.target.value);
-    props.setTitleValue(e.target.value);
+    props.setTitleValue(titleRef.current.value);
   };
 
   return (
@@ -48,9 +47,10 @@ function PostTitle(props) {
             border : '0px solid #bcbcbc',
             position : 'relative',
             top : '8%'
-          }}
+            }}
+            ref={titleRef}
             onChange={onChange}
-            value={posttitle}/>
+            />
         </TitleWritingBox>
       </TotalTitleBox>
     </div>

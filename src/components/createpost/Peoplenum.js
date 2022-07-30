@@ -18,18 +18,26 @@ const PeopleBox2 = styled.div`
 
 
 
-function Peoplenum() {
+function Peoplenum(props) {
+
+  const peopleNumRef = useRef(null);
+
+  const onChange = () => {
+    props.setPeopleNumValue(peopleNumRef.current.value);
+  }
+
   return (
     <PeopleBox1>
       <PeopleBox2>
-        <div>
-          인원수 : 
-          <input style={{
-            width : '50%',
-            height : '17px',
-          }}/>
-          <button>설정</button>
-        </div>
+        인원수 : 
+        <input ref={peopleNumRef} onChange={onChange}
+          style={{
+            width : '30%',
+            height : '17px'
+          }}
+          type = 'number'
+          placeholder = '숫자를 입력하세요'
+        />
       </PeopleBox2>
     </PeopleBox1>
   );

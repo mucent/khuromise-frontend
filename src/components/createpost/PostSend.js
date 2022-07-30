@@ -1,14 +1,19 @@
 import React, {useState, useRef} from 'react';
 import styled from 'styled-components';
-import useFetch from '../../hooks/useFetch';
+import { useNavigate } from 'react-router-dom';
+// import useFetch from '../../hooks/useFetch';
 
 const PostBox = styled.div`
-  
+  width : 90%;
+  height : 100%;
+  display : flex;
+  justify-content : center;
+  line-height : 29px;
 `;
 
-function PostSend({ titlevalue , contentvalue }) {
+function PostSend({ titlevalue , contentvalue, noonvalue, hourvalue, minutevalue, peoplenumvalue, datevalue, purposevalue, gendervalue }) {
 
-  const posts = useFetch("http://localhost:3002/posts")
+  const navigate = useNavigate();
 
   function onSubmit(e) {
     e.preventDefault();
@@ -19,29 +24,44 @@ function PostSend({ titlevalue , contentvalue }) {
         "Content-Type" : "application/json; charset=UTF-8"
       },
       body : JSON.stringify({
-        "id" : 3,
+        "id" : 4,
         "name" : "익명",
         "userGender" : "w",
-        "date" : "2022.07.19.",
-        "hour" : 13,
-        "minute" : 30,
-        "purpose" : "meal",
-        "gender" : "w",
-        "peopleNum" : 3,
+        "date" : datevalue,
+        "noon" : noonvalue,
+        "hour" : hourvalue,
+        "minute" : minutevalue,
+        "purpose" : purposevalue,
+        "gender" : gendervalue,
+        "peopleNum" : peoplenumvalue,
         "title" : titlevalue,
         "content" : contentvalue
       }),
     }).then(res =>{
       if (res.ok){
-        alert("생성이 완료되었습니다");
+        alert("등록이 완료되었습니다");
+        navigate(`/post`);
       }
     });
   }
   
   return(
-      <form onSubmit = {onSubmit}>
-        <button>등록</button>
+    <PostBox>
+      <form style = {{
+          width : '100%',
+          display : 'flex',
+          justifyContent : 'center'}} 
+        onSubmit = {onSubmit}
+      >
+        <button style={{
+          width : '80%',
+          lineHeight : '20px'
+        }}
+        >
+          등록
+        </button>
       </form>
+    </PostBox>
   );
 }
 export default PostSend;

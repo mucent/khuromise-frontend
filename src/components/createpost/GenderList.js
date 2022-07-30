@@ -19,7 +19,7 @@ const GenderBarBox = styled.div`
 `;
 
 
-function GenderList() {
+function GenderList(props) {
   const [currentgender, setGender] = useState([
     {
       id : 1,
@@ -43,6 +43,12 @@ function GenderList() {
         gender.id === id ? { ...gender, active: true } : { ...gender, active: false }
         )
     );
+    function isTrue(gender) {
+      if (gender.id === id) {
+        return true;
+      }
+    }
+    props.setGenderValue(currentgender.find(isTrue).gendertype)
   }
   
   function Gender({ gender, onToggle }) {
@@ -54,8 +60,7 @@ function GenderList() {
         }}
         onClick = {()=> onToggle(gender.id)}
       >
-      
-        {gender.gendertype}
+      {gender.gendertype}
       </b>
     );
   }

@@ -18,18 +18,35 @@ const TimeInputBox = styled.div`
   justify-content : center;
 `;
 
-function Time() {
-
+function Time(props) {
+  
   const dateRef = useRef(null);
   const noonRef = useRef(null);
   const hourRef = useRef(null);
   const minuteRef = useRef(null);
+
+  const onChange1 = () => {
+    props.setNoonValue(noonRef.current.value);
+  };
+
+  const onChange2 = () => {
+    props.setHourValue(hourRef.current.value);
+  };
+
+  const onChange3 = () => {
+    props.setMinuteValue(minuteRef.current.value);
+  };
+
+  const onChange4 = () => {
+    props.setDateValue(dateRef.current.value);
+  };
 
   return (
     <TimeBox>
       <DateInputBox>
         <input
           ref={dateRef}
+          onChange={onChange4}
           type='date'
           style={{
             width : '90%',
@@ -39,13 +56,13 @@ function Time() {
             padding : '3px'}}/>
       </DateInputBox>
       <TimeInputBox>
-        <select ref={noonRef}>
+        <select ref={noonRef} onChange={onChange1}>
           <option>오전</option>
           <option>오후</option>
         </select>
       </TimeInputBox>
       <TimeInputBox>
-        <select ref={hourRef}>
+        <select ref={hourRef} onChange={onChange2}>
           <option>01</option>
           <option>02</option>
           <option>03</option>
@@ -61,7 +78,7 @@ function Time() {
         </select>
       </TimeInputBox>
       <TimeInputBox>
-        <select ref={minuteRef}>
+        <select ref={minuteRef} onChange={onChange3}>
           <option>00</option>
           <option>05</option>
           <option>10</option>

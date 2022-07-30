@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import styled from 'styled-components';
 
 const PostBox = styled.div`
@@ -10,11 +10,10 @@ const PostBox = styled.div`
 
 function PostContents(props) {
 
-  const [postcontents, setPostContents] = useState('');
+  const contentsRef = useRef(null);
 
   const onChange = (e) => {
-    setPostContents(e.target.value);
-    props.setContentsValue(e.target.value);
+    props.setContentsValue(contentsRef.current.value);
   };
 
   const [hei, setHei] = useState("375");
@@ -38,7 +37,7 @@ function PostContents(props) {
         onChange={onChange}
         onKeyDown = {size}
         onKeyUp = {size}
-        value = {postcontents}
+        ref = {contentsRef}
       >
       </textarea>
     </PostBox>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import styled from "styled-components";
 
 const PurposeBox = styled.div`
@@ -19,7 +19,7 @@ const PurposeBarBox = styled.div`
 `;
 
 
-function PurposeList() {
+function PurposeList(props) {
   const [purposes, setPur] = useState([
     {
       id : 1,
@@ -52,11 +52,18 @@ function PurposeList() {
     setPur(
       purposes.map(purpose => 
         purpose.id === id ? { ...purpose, active: true } : { ...purpose, active: false }
-        )
+      )
     );
+    function isTrue(purpose) {
+      if (purpose.id === id) {
+        return true;
+      }
+    }
+    props.setPurposeValue(purposes.find(isTrue).purname)
   }
   
   function Purpose({ purpose, onToggle }) {
+    
     return (
       <b
         style = {{
@@ -65,8 +72,7 @@ function PurposeList() {
         }}
         onClick = {()=> onToggle(purpose.id)}
       >
-      
-        {purpose.purname}
+      {purpose.purname}
       </b>
     );
   }

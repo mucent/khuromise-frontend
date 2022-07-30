@@ -96,29 +96,68 @@ const CreatePostBox = styled.div`
 
   .SendBox {
     grid-area : SendBox;
-    padding : 10px;
     border : 1px solid #bcbcbc;
+    display : flex;
+    justify-content : center;
   }
   
 `;
 
-
-
 function CreatePost() {
 
-  const [titlevalue, setTitleValue] = useState('');
-  const [contentvalue, setContentsValue] = useState('');
+  const today = new Date();
+  const todayYear = today.getFullYear();
+  const todayDate = today.getDate();
+  const todayMonth = today.getMonth()+1;
 
+  const exactMonth = (todayMonth) => {
+    if (todayMonth >= 10) {
+      return todayMonth;
+    }
+    else {
+      return '0'+todayMonth;
+    }
+  }
+  
+  const [titlevalue, setTitleValue] = useState('제목없음');
+  const [contentvalue, setContentsValue] = useState('내용없음');
+  const [noonvalue, setNoonValue] = useState('오전');
+  const [hourvalue, setHourValue] = useState('1');
+  const [minutevalue, setMinuteValue] = useState('00');
+  const [peoplenumvalue, setPeopleNumValue] = useState('2');
+  const [datevalue, setDateValue] = useState(todayYear+'-'+exactMonth(todayMonth)+'-'+todayDate);
+  const [purposevalue, setPurposeValue] = useState('식사');
+  const [gendervalue, setGenderValue] = useState('남자만');
+
+  /*
   console.log(titlevalue);
   console.log(contentvalue);
+  console.log(datevalue);
+  console.log(noonvalue);
+  console.log(hourvalue);
+  console.log(minutevalue);
+  console.log(peoplenumvalue);
+  console.log(exactMonth(todayMonth));
+  */
 
   return (
     <CreatePostBox>
       <div className="CreatePost">
-        <div className="PurposeListBox"><PurposeList /></div>
-        <div className="PromTimeBox"><Time /></div>
-        <div className="PeopleNumBox"><Peoplenum /></div>
-        <div className="GenderBox"><GenderList /></div>
+        <div className="PurposeListBox">
+          <PurposeList setPurposeValue = {setPurposeValue} />
+        </div>
+        <div className="PromTimeBox">
+          <Time setNoonValue={setNoonValue}
+            setHourValue={setHourValue}
+            setMinuteValue={setMinuteValue}
+            setDateValue={setDateValue} />
+        </div>
+        <div className="PeopleNumBox">
+          <Peoplenum setPeopleNumValue={setPeopleNumValue}/>
+        </div>
+        <div className="GenderBox">
+          <GenderList setGenderValue={setGenderValue} />
+        </div>
         <div className="LineBox"><Line /></div>
         <div className="PlaceBox"><Place /></div>
         <div className="PostTitleBox">
@@ -127,9 +166,17 @@ function CreatePost() {
         <div className="PostContentsBox">
           <PostContents setContentsValue={setContentsValue}/>
         </div> 
-        <div className="SendBox"><PostSend
-          titlevalue={titlevalue} 
-          contentvalue = {contentvalue}/>
+        <div className="SendBox">
+          <PostSend
+            titlevalue={titlevalue} 
+            contentvalue = {contentvalue}
+            noonvalue = {noonvalue}
+            hourvalue = {hourvalue}
+            minutevalue = {minutevalue}
+            peoplenumvalue = {peoplenumvalue}
+            datevalue = {datevalue}
+            purposevalue = {purposevalue} 
+            gendervalue = {gendervalue} />
         </div>
       </div>
     </CreatePostBox>
