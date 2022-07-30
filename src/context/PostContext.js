@@ -25,7 +25,7 @@ const posts = [
     gender: "남녀무관",
     currentPeople: "6",
     maxPeople: "6",
-    written_time: "1일 전",
+    writtenTime: "1일 전",
     content: "1번 게시글",
   },
   {
@@ -37,7 +37,7 @@ const posts = [
     gender: "남자만",
     currentPeople: "5",
     maxPeople: "8",
-    written_time: "2시간 전",
+    writtenTime: "2시간 전",
     content: "2번 게시글",
   },
   {
@@ -49,7 +49,7 @@ const posts = [
     gender: "여자만",
     currentPeople: "1",
     maxPeople: "2",
-    written_time: "1시간 전",
+    writtenTime: "1시간 전",
     content: "3번 게시글",
   },
   {
@@ -61,7 +61,7 @@ const posts = [
     gender: "여자만",
     currentPeople: "0",
     maxPeople: "1",
-    written_time: "1시간 전",
+    writtenTime: "1시간 전",
     content: "4번 게시글",
   },
   {
@@ -73,7 +73,7 @@ const posts = [
     gender: "남녀무관",
     currentPeople: "0",
     maxPeople: "3",
-    written_time: "10분 전",
+    writtenTime: "10분 전",
     content: "5번 게시글",
   },
   {
@@ -85,7 +85,7 @@ const posts = [
     gender: "남자만",
     currentPeople: "1",
     maxPeople: "2",
-    written_time: "10분 전",
+    writtenTime: "10분 전",
     content: "6번 게시글",
   },
   {
@@ -97,7 +97,7 @@ const posts = [
     gender: "남녀무관",
     currentPeople: "0",
     maxPeople: "4",
-    written_time: "10분 전",
+    writtenTime: "10분 전",
     content: "7번 게시글",
   },
   {
@@ -109,7 +109,7 @@ const posts = [
     gender: "남자만",
     currentPeople: "1",
     maxPeople: "2",
-    written_time: "10분 전",
+    writtenTime: "10분 전",
     content: "8번 게시글",
   },
   {
@@ -121,7 +121,7 @@ const posts = [
     gender: "남자만",
     currentPeople: "1",
     maxPeople: "2",
-    written_time: "10분 전",
+    writtenTime: "10분 전",
     content: "9번 게시글",
   },
   {
@@ -133,7 +133,7 @@ const posts = [
     gender: "남자만",
     currentPeople: "1",
     maxPeople: "2",
-    written_time: "10분 전",
+    writtenTime: "10분 전",
     content: "10번 게시글",
   },
 ];

@@ -98,7 +98,7 @@ const PostListItem = ({
   gender,
   currentPeople,
   maxPeople,
-  written_time,
+  writtenTime,
 }) => {
   return (
     <PostListItemBlock>
@@ -114,7 +114,7 @@ const PostListItem = ({
         <Participant>
           {currentPeople} / {maxPeople}
         </Participant>
-        <WrittenTime>{written_time}</WrittenTime>
+        <WrittenTime>{writtenTime}</WrittenTime>
       </RightBox>
     </PostListItemBlock>
   );

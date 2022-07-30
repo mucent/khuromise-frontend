@@ -60,7 +60,7 @@ const PostList = () => {
               gender={post.gender}
               currentPeople={post.currentPeople}
               maxPeople={post.maxPeople}
-              written_time={post.written_time}
+              writtenTime={post.writtenTime}
             />
           ))}
       </PostListBody>
