@@ -99,12 +99,27 @@ const Post = () => {
   const posts = useContext(PostContext);
   const contents = posts.filter((post) => post.id === id);
 
+  const apply = () => {
+    // 조건 추가하기 => 성별이 조건에 만족한다면 진행
+    if (window.confirm("신청하시겠습니까?")) {
+      if (contents[0].currentPeople < contents[0].maxPeople) {
+        // 대충 fetch 해서 method: 'PUT'하는 내용
+        // currentPeople +1
+        alert("신청이 완료되었습니다.");
+        window.location.reload();
+      } else {
+        alert("모집 인원이 가득 찼습니다.");
+        window.location.reload();
+      }
+    }
+  };
+
   return (
     <PostBlock>
       <PostHeader>
         <UpperBox>
           <h1>{contents[0].title}</h1>
-          <button>신청하기</button>
+          <button onClick={apply}>신청하기</button>
         </UpperBox>
         <UnderBox>
           <div className="item">
@@ -120,7 +135,7 @@ const Post = () => {
           </div>
           <div className="item">
             <Img src={people} />
-            {contents[0].current_people} / {contents[0].max_people}
+            {contents[0].currentPeople} / {contents[0].maxPeople}
           </div>
         </UnderBox>
       </PostHeader>

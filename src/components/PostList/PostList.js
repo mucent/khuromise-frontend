@@ -58,8 +58,8 @@ const PostList = () => {
               date={post.date}
               place={post.place}
               gender={post.gender}
-              current_people={post.current_people}
-              max_people={post.max_people}
+              currentPeople={post.currentPeople}
+              maxPeople={post.maxPeople}
               written_time={post.written_time}
             />
           ))}

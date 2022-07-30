@@ -91,18 +91,19 @@ const GenderBox = styled.div`
 
 const PostListItem = ({
   id,
+  category,
   title,
   date,
   place,
   gender,
-  current_people,
-  max_people,
+  currentPeople,
+  maxPeople,
   written_time,
 }) => {
   return (
     <PostListItemBlock>
       <LeftBox>
-        <Link to={`/post/${id}`}>
+        <Link to={`/${category}/${id}`}>
           <Title>{title}</Title>
         </Link>
         <Date>{date}</Date>
@@ -111,7 +112,7 @@ const PostListItem = ({
       <GenderBox>{gender}</GenderBox>
       <RightBox>
         <Participant>
-          {current_people} / {max_people}
+          {currentPeople} / {maxPeople}
         </Participant>
         <WrittenTime>{written_time}</WrittenTime>
       </RightBox>

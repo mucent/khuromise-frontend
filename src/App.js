@@ -10,6 +10,10 @@ import Footer from "./components/Footer/Footer";
 import { PostContextProvider } from "./context/PostContext";
 
 const GlobalStyle = createGlobalStyle`
+  :root {
+    --main-color: #bcbcbc;
+  }
+
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -33,7 +37,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/:category" element={<PostList />}></Route>
-          <Route path="/post/:id" element={<Post />}></Route>
+          <Route path="/:category/:id" element={<Post />}></Route>
           <Route path="/createpost" element={<CreatePost />}></Route>
         </Routes>
         <Footer />
