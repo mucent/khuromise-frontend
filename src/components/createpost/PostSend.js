@@ -1,7 +1,7 @@
-import React, {useState, useRef} from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-// import useFetch from '../../hooks/useFetch';
+import { NextIdContext } from '../../context/Context';
 
 const PostBox = styled.div`
   width : 90%;
@@ -13,6 +13,7 @@ const PostBox = styled.div`
 
 function PostSend({ titlevalue , contentvalue, noonvalue, hourvalue, minutevalue, peoplenumvalue, datevalue, purposevalue, gendervalue }) {
 
+  const nextId = useContext(NextIdContext);
   const navigate = useNavigate();
 
   function onSubmit(e) {
@@ -24,7 +25,7 @@ function PostSend({ titlevalue , contentvalue, noonvalue, hourvalue, minutevalue
         "Content-Type" : "application/json; charset=UTF-8"
       },
       body : JSON.stringify({
-        "id" : 4,
+        "id" : nextId.current,
         "name" : "익명",
         "userGender" : "w",
         "date" : datevalue,
@@ -44,6 +45,8 @@ function PostSend({ titlevalue , contentvalue, noonvalue, hourvalue, minutevalue
         navigate(`/post`);
       }
     });
+
+    nextId.current += 1;
   }
   
   return(

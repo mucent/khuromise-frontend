@@ -1,64 +1,19 @@
 {
   "posts": [
     {
-      "id": 1,
-      "name": "익명",
-      "userGender": "w",
-      "date": "2022-07-23",
-      "noon": "오후",
-      "hour": "08",
-      "minute": "00",
-      "category": "식사",
-      "gender": "w",
-      "currentPeople": "1",
-      "maxPeople": "3",
-      "title": "asfs",
-      "content": "dfsdafsafsad"
-    },
-    {
       "id": 2,
       "name": "익명",
       "userGender": "w",
-      "date": "2022-07-21",
+      "date": "2022-08-04",
       "noon": "오후",
-      "hour": "03",
-      "minute": "00",
-      "category": "식사",
-      "gender": "w",
-      "currentPeople": "1",
-      "maxPeople": "5",
-      "title": "asfd",
-      "content": "sadfsadfasdfsad"
-    },
-    {
-      "id": 3,
-      "name": "익명",
-      "userGender": "w",
-      "date": "2022-07-21",
-      "noon": "오전",
-      "hour": "1",
+      "hour": "05",
       "minute": "00",
       "category": "공부",
-      "gender": "w",
+      "gender": "성별무관",
       "currentPeople": "1",
-      "maxPeople": "2",
-      "title": "제목없음",
-      "content": "내용없음"
-    },
-    {
-      "id": 4,
-      "name": "익명",
-      "userGender": "w",
-      "date": "2022-08-03",
-      "noon": "오후",
-      "hour": "1",
-      "minute": "00",
-      "category": "식사",
-      "gender": "남자만",
-      "currentPeople": "1",
-      "maxPeople": "3",
-      "title": "sdfasdf",
-      "content": "sdafasdfdsafsdf"
+      "maxPeople": "5",
+      "title": "정건 공부하자",
+      "content": "공부공부"
     }
   ],
   "users": [

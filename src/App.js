@@ -8,6 +8,7 @@ import TestBar from "./components/TestBar";
 import Post from "./components/Post/Post";
 import Footer from "./components/Footer/Footer";
 import { PostContextProvider } from "./context/PostContext";
+import { ContextProvider } from "./context/Context";
 
 const GlobalStyle = createGlobalStyle`
   :root {
@@ -30,18 +31,20 @@ const GlobalStyle = createGlobalStyle`
 function App() {
   return (
     <PostContextProvider>
-      <BrowserRouter>
-        <GlobalStyle />
-        <Header />
-        <TestBar />
-        <Routes>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/:category" element={<PostList />}></Route>
-          <Route path="/:category/:id" element={<Post />}></Route>
-          <Route path="/createpost" element={<CreatePost />}></Route>
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+      <ContextProvider>
+        <BrowserRouter>
+          <GlobalStyle />
+          <Header />
+          <TestBar />
+          <Routes>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/:category" element={<PostList />}></Route>
+            <Route path="/:category/:id" element={<Post />}></Route>
+            <Route path="/createpost" element={<CreatePost />}></Route>
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </ContextProvider>
     </PostContextProvider>
   );
 }
