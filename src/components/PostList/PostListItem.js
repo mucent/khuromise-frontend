@@ -14,7 +14,7 @@ const PostListItemBlock = styled.div`
 `;
 
 const LeftBox = styled.div`
-  width: 70%;
+  width: 85%;
   height: 100%;
   margin-left: 10px;
 
@@ -25,7 +25,7 @@ const LeftBox = styled.div`
 `;
 
 const RightBox = styled.div`
-  width: 30%;
+  width: 8%;
   height: 100%;
   margin-right: 10px;
 
@@ -73,7 +73,24 @@ const WrittenTime = styled.div`
   justify-content: flex-end;
 `;
 
-const PostListItem = ({ title, date, place, participant, written_time }) => {
+const GenderBox = styled.div`
+  width: 7%;
+  height: 100%;
+  font-size: 13px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const PostListItem = ({
+  title,
+  date,
+  place,
+  gender,
+  participant,
+  written_time,
+}) => {
   return (
     <PostListItemBlock>
       <LeftBox>
@@ -81,6 +98,7 @@ const PostListItem = ({ title, date, place, participant, written_time }) => {
         <Date>{date}</Date>
         <Place>{place}</Place>
       </LeftBox>
+      <GenderBox>{gender}</GenderBox>
       <RightBox>
         <Participant>{participant}</Participant>
         <WrittenTime>{written_time}</WrittenTime>
