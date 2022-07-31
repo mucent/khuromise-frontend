@@ -96,19 +96,32 @@ const PostBody = styled.div`
 const Post = () => {
   const { id } = useParams();
   const posts = useFetch(`http://localhost:3002/posts?id=${id}`);
-
   const post = { ...posts[0] };
   const date = { ...post.date };
+  const currentPeople = post.currentPeople;
+
   // reload 시 undefined 가 잠시 나타나는 오류 해결 필요
 
   const applyClick = () => {
     // 조건 추가하기 => 성별이 조건에 만족한다면 진행
     if (window.confirm("신청하시겠습니까?")) {
       if (post.currentPeople < post.maxPeople) {
-        // 대충 fetch 해서 method: 'PUT'하는 내용
-        // currentPeople +1
-        alert("신청이 완료되었습니다.");
-        window.location.reload();
+        fetch(`http://localhost:3002/posts/${post.id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ...post,
+            currentPeople: Number(currentPeople) + 1,
+          }),
+        }).then((res) => {
+          if (res.ok) {
+            alert("신청이 완료되었습니다.");
+            window.location.reload();
+            console.log(post.currentPeople);
+          }
+        });
       } else {
         alert("모집 인원이 가득 찼습니다.");
         window.location.reload();
