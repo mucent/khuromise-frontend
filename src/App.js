@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
+import Main from "./components/Main/Main";
 import Header from "./components/Header/Header";
 import CreatePost from "./components/createpost/CreatePost";
 import Login from "./components/LoginRegister/Login";
@@ -37,6 +38,7 @@ function App() {
           <Header />
           <TestBar />
           <Routes>
+            <Route path="/" exact={true} element={<Main />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/:category" element={<PostList />}></Route>
             <Route path="/:category/:id" element={<Post />}></Route>

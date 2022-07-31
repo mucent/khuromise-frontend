@@ -39,14 +39,13 @@ function PostSend({ titlevalue , contentvalue, noonvalue, hourvalue, minutevalue
         "title" : titlevalue,
         "content" : contentvalue
       }),
-    }).then(res =>{
+    })
+    .then(res =>{
       if (res.ok){
         alert("등록이 완료되었습니다");
         navigate(`/post`);
       }
-    });
-
-    nextId.current += 1;
+    })
   }
   
   return(
