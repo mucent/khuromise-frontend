@@ -98,7 +98,7 @@ const Post = () => {
   const posts = useFetch(`http://localhost:3002/posts?id=${id}`);
   const post = { ...posts[0] };
   const date = { ...post.date };
-  const currentPeople = post.currentPeople;
+  const currentPeople = Number(post.currentPeople);
 
   // reload 시 undefined 가 잠시 나타나는 오류 해결 필요
 
@@ -113,13 +113,12 @@ const Post = () => {
           },
           body: JSON.stringify({
             ...post,
-            currentPeople: Number(currentPeople) + 1,
+            currentPeople: currentPeople + 1,
           }),
         }).then((res) => {
           if (res.ok) {
             alert("신청이 완료되었습니다.");
             window.location.reload();
-            console.log(post.currentPeople);
           }
         });
       } else {
