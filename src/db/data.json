@@ -1,7 +1,29 @@
 {
-  "posts": [
+  "categories": [
     {
       "id": 1,
+      "category": "식사"
+    },
+    {
+      "id": 2,
+      "category": "운동"
+    },
+    {
+      "id": 3,
+      "category": "게임"
+    },
+    {
+      "id": 4,
+      "category": "공부"
+    },
+    {
+      "id": 5,
+      "category": "기타"
+    }
+  ],
+  "posts": [
+    {
+      "id": "1",
       "name": "익명",
       "userGender": "w",
       "date": "2022-07-23",
@@ -9,14 +31,15 @@
       "hour": "08",
       "minute": "00",
       "category": "식사",
-      "gender": "w",
+      "gender": "여자만",
       "currentPeople": "1",
       "maxPeople": "3",
-      "title": "asfs",
-      "content": "dfsdafsafsad"
+      "title": "제목1",
+      "content": "내용1",
+      "place": "중상"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "익명",
       "userGender": "w",
       "date": "2022-07-21",
@@ -24,14 +47,15 @@
       "hour": "03",
       "minute": "00",
       "category": "식사",
-      "gender": "w",
+      "gender": "여자만",
       "currentPeople": "1",
       "maxPeople": "5",
-      "title": "asfd",
-      "content": "sadfsadfasdfsad"
+      "title": "제목2",
+      "content": "내용2",
+      "place": "정건"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "익명",
       "userGender": "w",
       "date": "2022-07-21",
@@ -39,26 +63,28 @@
       "hour": "1",
       "minute": "00",
       "category": "공부",
-      "gender": "w",
+      "gender": "남녀무관",
       "currentPeople": "1",
       "maxPeople": "2",
-      "title": "제목없음",
-      "content": "내용없음"
+      "title": "제목3",
+      "content": "내용3",
+      "place": "마을"
     },
     {
       "id": 4,
       "name": "익명",
       "userGender": "w",
-      "date": "2022-08-03",
+      "date": "2022-08-31",
       "noon": "오후",
-      "hour": "1",
-      "minute": "00",
-      "category": "식사",
-      "gender": "남자만",
+      "hour": "07",
+      "minute": "30",
+      "category": "운동",
+      "gender": "성별무관",
       "currentPeople": "1",
-      "maxPeople": "3",
-      "title": "sdfasdf",
-      "content": "sdafasdfdsafsdf"
+      "maxPeople": "2",
+      "title": "운동제목",
+      "content": "운동내용",
+      "place": "운동장"
     }
   ],
   "users": [

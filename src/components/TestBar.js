@@ -1,7 +1,6 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { CategoryContext } from "../context/PostContext";
+import useFetch from "../hooks/useFetch";
 
 const TestBarBlock = styled.div`
   width: 100%;
@@ -19,8 +18,7 @@ const TestBarBlock = styled.div`
 `;
 
 const TestBar = () => {
-  const categories = useContext(CategoryContext);
-
+  const categories = useFetch(`http://localhost:3002/categories`);
   return (
     <TestBarBlock>
       <li>

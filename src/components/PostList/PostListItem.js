@@ -94,19 +94,24 @@ const PostListItem = ({
   category,
   title,
   date,
+  noon,
+  hour,
+  minute,
   place,
   gender,
   currentPeople,
   maxPeople,
   writtenTime,
 }) => {
+  const _date = { date }.date.split("-");
+
   return (
     <PostListItemBlock>
       <LeftBox>
         <Link to={`/${category}/${id}`}>
           <Title>{title}</Title>
         </Link>
-        <Date>{date}</Date>
+        <Date>{`${_date[0]}년 ${_date[1]}월 ${_date[2]}일 ${noon} ${hour}:${minute}`}</Date>
         <Place>{place}</Place>
       </LeftBox>
       <GenderBox>{gender}</GenderBox>
