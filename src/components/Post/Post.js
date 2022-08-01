@@ -4,7 +4,9 @@ import clock from "./clock-outline.png";
 import people from "./account-group.png";
 import male from "./gender-male.png";
 import female from "./gender-female.png";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import EmptyPage from "../EmptyPage";
 
 const PostBlock = styled.div`
   width: 800px;
@@ -93,17 +95,41 @@ const PostBody = styled.div`
   }
 `;
 
+const Buttons = styled.div`
+  width: 97%;
+  height: 25px;
+  margin: 10px auto;
+  text-align: end;
+
+  button {
+    width: 40px;
+    height: 25px;
+    font-size: 13px;
+    text-align: center;
+    line-height: 20px;
+    margin-right: 5px;
+    border: 1px solid #bcbcbc;
+    border-radius: 5px;
+  }
+`;
+
 const Post = () => {
   const { id } = useParams();
   const posts = useFetch(`http://localhost:3002/posts?id=${id}`);
   const post = { ...posts[0] };
   const date = String(post.date);
   const currentPeople = Number(post.currentPeople);
+  const [_post, set_Post] = useState(post);
+  const navigate = useNavigate();
+  // const [canLoad, setCanLoad] = useState(false);
+  // console.log(post);
+  // console.log(canLoad);
+  // useEffect(() => {
+  //   post && setCanLoad(true);
+  // }, [post]);
 
-  // reload 시 undefined 가 잠시 나타나는 오류 해결 필요
-
+  // 조건 추가하기 => 성별이 조건에 만족한다면 진행
   const applyClick = () => {
-    // 조건 추가하기 => 성별이 조건에 만족한다면 진행
     if (window.confirm("신청하시겠습니까?")) {
       if (post.currentPeople < post.maxPeople) {
         fetch(`http://localhost:3002/posts/${post.id}`, {
@@ -127,41 +153,69 @@ const Post = () => {
       }
     }
   };
+
+  // 조건 추가하기 => 글쓴이만 수정 OR 삭제 가능
+  const delClick = () => {
+    if (window.confirm("정말로 삭제하시겠습니까?")) {
+      fetch(`http://localhost:3002/posts/${post.id}`, {
+        method: "DELETE",
+      }).then((res) => {
+        set_Post({ id: 0 });
+      });
+      alert("삭제가 완료되었습니다.");
+      navigate(`/${post.category}`);
+    }
+  };
+
+  if (post.id === 0) {
+    return null;
+  }
+  // 페이지 로드 시 emptyPage 뜨는 문제 해결 필요
   return (
-    <PostBlock>
-      <PostHeader>
-        <UpperBox>
-          <h1>{post.title}</h1>
-          <button onClick={applyClick}>신청하기</button>
-        </UpperBox>
-        <UnderBox>
-          <div className="item">
-            <Img src={clock} />
-            {post.date
-              ? `${date.slice(0, 4)}년
-              ${date.slice(5, 7)}월
-              ${date.slice(8, 10)}일
-              ${post.noon} ${post.hour}:${post.minute}`
-              : ""}
-          </div>
-          <div className="item">
-            <div>
-              <Img src={male} />
-              <Img src={female} />
-            </div>
-            {post.gender}
-          </div>
-          <div className="item">
-            <Img src={people} />
-            {post.currentPeople} / {post.maxPeople}
-          </div>
-        </UnderBox>
-      </PostHeader>
-      <PostBody>
-        <div className="map"></div>
-        <div className="content">{post.content}</div>
-      </PostBody>
-    </PostBlock>
+    <>
+      {post.id ? (
+        <PostBlock>
+          <PostHeader>
+            <UpperBox>
+              <h1>{post.title}</h1>
+              <button onClick={applyClick}>신청하기</button>
+            </UpperBox>
+            <UnderBox>
+              <div className="item">
+                <Img src={clock} />
+                {post.date
+                  ? `${date.slice(0, 4)}년 ${date.slice(5, 7)}월
+                  ${date.slice(8, 10)}일 ${post.noon}
+                  ${post.hour}:${post.minute}`
+                  : ""}
+              </div>
+              <div className="item">
+                <div>
+                  <Img src={male} />
+                  <Img src={female} />
+                </div>
+                {post.gender}
+              </div>
+              <div className="item">
+                <Img src={people} />
+                {post.currentPeople} / {post.maxPeople}
+              </div>
+            </UnderBox>
+          </PostHeader>
+          <PostBody>
+            <div className="map"></div>
+            <div className="content">{post.content}</div>
+          </PostBody>
+          {/* 작성자만 수정 OR 삭제 가능 */}
+          <Buttons>
+            <button>수정</button>
+            <button onClick={delClick}>삭제</button>
+          </Buttons>
+        </PostBlock>
+      ) : (
+        <EmptyPage />
+      )}
+    </>
   );
 };
 
