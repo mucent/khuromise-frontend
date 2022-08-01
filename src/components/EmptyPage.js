@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const EmptyPageBlock = styled.div`
@@ -8,7 +8,7 @@ const EmptyPageBlock = styled.div`
   .box {
     width: 300px;
     height: auto;
-    margin: 190px auto;
+    margin: 250px auto;
 
     display: flex;
     flex-direction: column;
