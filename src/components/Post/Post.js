@@ -97,7 +97,7 @@ const Post = () => {
   const { id } = useParams();
   const posts = useFetch(`http://localhost:3002/posts?id=${id}`);
   const post = { ...posts[0] };
-  const date = { ...post.date };
+  const date = String(post.date);
   const currentPeople = Number(post.currentPeople);
 
   // reload 시 undefined 가 잠시 나타나는 오류 해결 필요
@@ -137,7 +137,12 @@ const Post = () => {
         <UnderBox>
           <div className="item">
             <Img src={clock} />
-            {`${date[0]}${date[1]}${date[2]}${date[3]}년 ${date[5]}${date[6]}월 ${date[8]}${date[9]}일 ${post.noon} ${post.hour}:${post.minute}`}
+            {post.date
+              ? `${date.slice(0, 4)}년
+              ${date.slice(5, 7)}월
+              ${date.slice(8, 10)}일
+              ${post.noon} ${post.hour}:${post.minute}`
+              : ""}
           </div>
           <div className="item">
             <div>
