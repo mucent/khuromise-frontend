@@ -121,12 +121,6 @@ const Post = () => {
   const currentPeople = Number(post.currentPeople);
   const [_post, set_Post] = useState(post);
   const navigate = useNavigate();
-  // const [canLoad, setCanLoad] = useState(false);
-  // console.log(post);
-  // console.log(canLoad);
-  // useEffect(() => {
-  //   post && setCanLoad(true);
-  // }, [post]);
 
   // 조건 추가하기 => 성별이 조건에 만족한다면 진행
   const applyClick = () => {
@@ -170,7 +164,7 @@ const Post = () => {
   if (post.id === 0) {
     return null;
   }
-  // 페이지 로드 시 emptyPage 뜨는 문제 해결 필요
+
   return (
     <>
       {post.id ? (
