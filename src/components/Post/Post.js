@@ -5,7 +5,7 @@ import people from "./account-group.png";
 import male from "./gender-male.png";
 import female from "./gender-female.png";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import EmptyPage from "../EmptyPage";
 
 const PostBlock = styled.div`
