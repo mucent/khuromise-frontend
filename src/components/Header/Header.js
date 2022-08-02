@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import logo from "./logo.png";
+import icon from "./icon.png";
 import { Link } from "react-router-dom";
 
 const HeaderBlock = styled.div`
@@ -49,7 +49,7 @@ const Header = () => {
     <HeaderBlock>
       <ItemBox>
         <Link to="/">
-          <Logo src={logo} />
+          <Logo src={icon} />
         </Link>
         <ButtonBox>
           <Link to="/login">

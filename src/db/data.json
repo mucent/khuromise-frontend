@@ -2,47 +2,82 @@
   "categories": [
     {
       "id": 1,
-      "category": "식사"
+      "category": "식사",
+      "active": true
     },
     {
       "id": 2,
-      "category": "운동"
+      "category": "운동",
+      "active": false
     },
     {
       "id": 3,
-      "category": "게임"
+      "category": "게임",
+      "active": false
     },
     {
       "id": 4,
-      "category": "공부"
+      "category": "공부",
+      "active": false
     },
     {
       "id": 5,
-      "category": "기타"
+      "category": "기타",
+      "active": false
     }
   ],
   "posts": [
     {
-      "id": "1",
+      "id": 1,
       "name": "익명",
-      "userGender": "w",
-      "date": "2022-07-23",
+      "writerGender": "w",
+      "date": "2022-08-05",
       "noon": "오후",
-      "hour": "08",
+      "hour": "05",
+      "minute": "00",
+      "category": "운동",
+      "gender": "남자만",
+      "currentPeople": 2,
+      "maxPeople": "8",
+      "title": "제목수정",
+      "content": "내용수정"
+    },
+    {
+      "id": 2,
+      "name": "익명",
+      "writerGender": "w",
+      "date": "2022-08-05",
+      "noon": "오전",
+      "hour": "05",
       "minute": "00",
       "category": "식사",
-      "gender": "여자만",
-      "currentPeople": 3,
-      "maxPeople": "3",
-      "title": "제목1",
-      "content": "내용1",
-      "place": "중상"
+      "gender": "남자만",
+      "currentPeople": 1,
+      "maxPeople": "2",
+      "title": "제목없음",
+      "content": "내용없음"
+    },
+    {
+      "id": 3,
+      "name": "익명",
+      "writerGender": "w",
+      "date": "2022-08-02",
+      "noon": "오전",
+      "hour": "1",
+      "minute": "00",
+      "category": "식사",
+      "gender": "남자만",
+      "currentPeople": 1,
+      "maxPeople": "2",
+      "title": "제목없음",
+      "content": "내용없음"
     }
   ],
   "users": [
     {
       "id": "",
-      "pw": "",
+      "userId": "",
+      "userPw": "",
       "name": "",
       "gender": ""
     }

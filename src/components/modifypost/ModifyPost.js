@@ -1,14 +1,16 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
-import PurposeList from "./PurposeList";
-import Time from "./Time";
-import Place from "./Place";
-import Peoplenum from "./Peoplenum";
-import GenderList from "./GenderList";
-import PostTitle from "./PostTitle";
-import PostContents from "./PostContents";
-import Line from "./Line";
-import PostSend from './PostSend';
+import ModPurposeList from "./ModPurposeList";
+import ModTime from "./ModTime";
+import Place from "./ModPlace";
+import ModPeoplenum from "./ModPeoplenum";
+import ModGenderList from "./ModGenderList";
+import ModTitle from "./ModTitle";
+import ModContents from "./ModContents";
+import Line from "./ModLine";
+import ModSend from './ModSend';
+import useFetch from '../../hooks/useFetch';
+import { useParams } from 'react-router-dom';
 
 /* const PurposeListBox = styled.div`
   
@@ -104,42 +106,25 @@ const CreatePostBox = styled.div`
   
 `;
 
-function CreatePost() {
+function ModifyPost() {
+
+  const { id } = useParams();
 
   const today = new Date();
-  const todayYear = today.getFullYear();
-  const todayDate = today.getDate();
-  const todayMonth = today.getMonth()+1;
-
-  const exactMonth = (todayMonth) => {
-    if (todayMonth >= 10) {
-      return todayMonth;
-    }
-    else {
-      return '0'+todayMonth;
-    }
-  }
   
-  const exactDate = (todayDate) => {
-    if (todayDate >= 10) {
-      return todayDate;
-    }
-    else {
-      return '0'+todayDate;
-    }
-  }
+  const fetch = useFetch(`http://localhost:3002/posts?id=${id}`);
+  const mypost = {...fetch[0]};
 
-  const [titlevalue, setTitleValue] = useState('제목없음');
-  const [contentvalue, setContentsValue] = useState('내용없음');
-  const [noonvalue, setNoonValue] = useState('오전');
-  const [hourvalue, setHourValue] = useState('1');
-  const [minutevalue, setMinuteValue] = useState('00');
-  const [peoplenumvalue, setPeopleNumValue] = useState('2');
-  const [datevalue, setDateValue] = useState(todayYear+'-'+exactMonth(todayMonth)+'-'+exactDate(todayDate));
-  const [purposevalue, setPurposeValue] = useState('식사');
-  const [gendervalue, setGenderValue] = useState('남자만');
+  const [titlevalue, setTitleValue] = useState();
+  const [contentvalue, setContentsValue] = useState();
+  const [noonvalue, setNoonValue] = useState();
+  const [hourvalue, setHourValue] = useState();
+  const [minutevalue, setMinuteValue] = useState();
+  const [peoplenumvalue, setPeopleNumValue] = useState();
+  const [datevalue, setDateValue] = useState();
+  const [purposevalue, setPurposeValue] = useState(mypost.category);
+  const [gendervalue, setGenderValue] = useState(mypost.gender);
 
-  /*
   console.log(titlevalue);
   console.log(contentvalue);
   console.log(datevalue);
@@ -147,37 +132,38 @@ function CreatePost() {
   console.log(hourvalue);
   console.log(minutevalue);
   console.log(peoplenumvalue);
-  console.log(exactMonth(todayMonth));
-  */
+  console.log(purposevalue);
+  console.log(gendervalue);
 
   return (
     <CreatePostBox>
       <div className="CreatePost">
         <div className="PurposeListBox">
-          <PurposeList setPurposeValue = {setPurposeValue} />
+          <ModPurposeList setPurposeValue = {setPurposeValue} mypost = {mypost} />
         </div>
         <div className="PromTimeBox">
-          <Time setNoonValue={setNoonValue}
+          <ModTime setNoonValue={setNoonValue}
             setHourValue={setHourValue}
             setMinuteValue={setMinuteValue}
-            setDateValue={setDateValue} />
+            setDateValue={setDateValue} 
+            mypost = {mypost}/>
         </div>
         <div className="PeopleNumBox">
-          <Peoplenum setPeopleNumValue={setPeopleNumValue}/>
+          <ModPeoplenum setPeopleNumValue={setPeopleNumValue} mypost={mypost} />
         </div>
         <div className="GenderBox">
-          <GenderList setGenderValue={setGenderValue} />
+          <ModGenderList setGenderValue={setGenderValue} mypost = {mypost} />
         </div>
         <div className="LineBox"><Line /></div>
         <div className="PlaceBox"><Place /></div>
         <div className="PostTitleBox">
-          <PostTitle setTitleValue={setTitleValue}/>
+          <ModTitle setTitleValue={setTitleValue} mypost = {mypost} />
         </div>
         <div className="PostContentsBox">
-          <PostContents setContentsValue={setContentsValue}/>
+          <ModContents setContentsValue={setContentsValue} mypost = {mypost}/>
         </div> 
         <div className="SendBox">
-          <PostSend
+          <ModSend
             titlevalue={titlevalue} 
             contentvalue = {contentvalue}
             noonvalue = {noonvalue}
@@ -194,4 +180,4 @@ function CreatePost() {
   );
 }
 
-export default CreatePost;
+export default ModifyPost;

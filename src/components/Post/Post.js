@@ -202,7 +202,7 @@ const Post = () => {
           </PostBody>
           {/* 작성자만 수정 OR 삭제 가능 */}
           <Buttons>
-            <button>수정</button>
+            <button onClick={() => navigate(`/${post.category}/${post.id}/modifypost`)}>수정</button>
             <button onClick={delClick}>삭제</button>
           </Buttons>
         </PostBlock>

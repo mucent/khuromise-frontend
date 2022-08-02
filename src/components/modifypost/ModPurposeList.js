@@ -1,5 +1,6 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import styled from "styled-components";
+import useFetch from '../../hooks/useFetch';
 
 const PurposeBox = styled.div`
   width: 18%;
@@ -19,8 +20,9 @@ const PurposeBarBox = styled.div`
 `;
 
 
-function PurposeList(props) {
-  const [purposes, setPur] = useState([
+function ModPurposeList(props) {
+
+  const pur = [
     {
       id : 1,
       purname : '식사',
@@ -46,8 +48,19 @@ function PurposeList(props) {
       purname : '기타',
       active : false
     }
-  ]);
+  ];
   
+  
+  
+  const [purposes, setPur] = useState([]);
+  const mypost = props.mypost;
+
+  useEffect(() => {
+    setPur(pur.map(purpose => (
+      purpose.purname === mypost.category ? {...purpose, active : true} : {...purpose, active : false})))
+    props.setPurposeValue(mypost.category);
+    },[mypost]);
+
   const onToggle = id => {
     setPur(
       purposes.map(purpose => 
@@ -62,6 +75,7 @@ function PurposeList(props) {
     props.setPurposeValue(purposes.find(isTrue).purname);
   }
   
+
   function Purpose({ purpose, onToggle }) {
     
     return (
@@ -88,4 +102,4 @@ function PurposeList(props) {
   );
 }
 
-export default PurposeList;
+export default ModPurposeList;

@@ -10,6 +10,7 @@ import Post from "./components/Post/Post";
 import Footer from "./components/Footer/Footer";
 import { PostContextProvider } from "./context/PostContext";
 import { ContextProvider } from "./context/Context";
+import ModifyPost from "./components/modifypost/ModifyPost";
 
 const GlobalStyle = createGlobalStyle`
   :root {
@@ -43,6 +44,7 @@ function App() {
             <Route path="/:category" element={<PostList />}></Route>
             <Route path="/:category/:id" element={<Post />}></Route>
             <Route path="/createpost" element={<CreatePost />}></Route>
+            <Route path="/:category/:id/modifypost" element={<ModifyPost />}></Route>
           </Routes>
           <Footer />
         </BrowserRouter>

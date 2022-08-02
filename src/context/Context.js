@@ -4,10 +4,10 @@ import useCurrentId from '../hooks/useCurrentId';
 export const NextIdContext = createContext();
 
 export const ContextProvider = ({ children }) => {
-  const currentId = useCurrentId();
-  const nextId = useRef(currentId + 1);
+  const currentPostId = useCurrentId(`http://localhost:3002/posts`);
+  const nextPostId = currentPostId+1;
   return (
-    <NextIdContext.Provider value={nextId}>
+    <NextIdContext.Provider value={nextPostId}>
       {children}
     </NextIdContext.Provider>
   );
