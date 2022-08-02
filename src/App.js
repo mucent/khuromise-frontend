@@ -10,6 +10,7 @@ import Post from "./components/Post/Post";
 import Footer from "./components/Footer/Footer";
 import { PostContextProvider } from "./context/PostContext";
 import { ContextProvider } from "./context/Context";
+import Register from "./components/LoginRegister/Register";
 
 const GlobalStyle = createGlobalStyle`
   :root {
@@ -40,6 +41,7 @@ function App() {
           <Routes>
             <Route path="/" exact={true} element={<Main />}></Route>
             <Route path="/login" element={<Login />}></Route>
+            <Route path="/register" element={<Register />}></Route>
             <Route path="/:category" element={<PostList />}></Route>
             <Route path="/:category/:id" element={<Post />}></Route>
             <Route path="/createpost" element={<CreatePost />}></Route>
