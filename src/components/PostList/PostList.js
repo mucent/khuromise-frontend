@@ -1,8 +1,7 @@
-import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { PostContext } from "../../context/PostContext";
 import PostListItem from "./PostListItem";
+import useFetch from "../../hooks/useFetch";
 
 const PostListBlock = styled.div`
   width: 800px;
@@ -37,8 +36,8 @@ const PostListBody = styled.div`
 `;
 
 const PostList = () => {
-  const posts = useContext(PostContext);
   const { category } = useParams();
+  const posts = useFetch(`http://localhost:3002/posts?category=${category}`);
 
   return (
     <PostListBlock>
@@ -47,7 +46,6 @@ const PostList = () => {
       </PostListHead>
       <PostListBody>
         {posts
-          .filter((post) => post.category === category)
           .sort((a, b) => b.id - a.id)
           .map((post) => (
             <PostListItem
@@ -56,6 +54,9 @@ const PostList = () => {
               category={post.category}
               title={post.title}
               date={post.date}
+              noon={post.noon}
+              hour={post.hour}
+              minute={post.minute}
               place={post.place}
               gender={post.gender}
               currentPeople={post.currentPeople}

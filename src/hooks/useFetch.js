@@ -1,19 +1,15 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from "react";
 
-function useFetch(url) {
-  const [data, setData] = useState();
-  
+const useFetch = (url) => {
+  const [data, setData] = useState([]);
+
   useEffect(() => {
     fetch(url)
-      .then(res => {
-        return res.json();
-      })
-      .then(data => {
-        setData(data);
-      });
+      .then((res) => res.json())
+      .then((res) => setData(res));
   }, [url]);
 
   return data;
-}
+};
 
 export default useFetch;

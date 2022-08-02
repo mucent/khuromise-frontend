@@ -1,10 +1,9 @@
 import styled from "styled-components";
+import useFetch from "../../hooks/useFetch";
 import clock from "./clock-outline.png";
 import people from "./account-group.png";
 import male from "./gender-male.png";
 import female from "./gender-female.png";
-import { useContext } from "react";
-import { PostContext } from "../../context/PostContext";
 import { useParams } from "react-router-dom";
 
 const PostBlock = styled.div`
@@ -96,13 +95,16 @@ const PostBody = styled.div`
 
 const Post = () => {
   const { id } = useParams();
-  const posts = useContext(PostContext);
-  const contents = posts.filter((post) => post.id === id);
+  const posts = useFetch(`http://localhost:3002/posts?id=${id}`);
 
-  const apply = () => {
+  const post = { ...posts[0] };
+  const date = { ...post.date };
+  // reload 시 undefined 가 잠시 나타나는 오류 해결 필요
+
+  const applyClick = () => {
     // 조건 추가하기 => 성별이 조건에 만족한다면 진행
     if (window.confirm("신청하시겠습니까?")) {
-      if (contents[0].currentPeople < contents[0].maxPeople) {
+      if (post.currentPeople < post.maxPeople) {
         // 대충 fetch 해서 method: 'PUT'하는 내용
         // currentPeople +1
         alert("신청이 완료되었습니다.");
@@ -113,35 +115,34 @@ const Post = () => {
       }
     }
   };
-
   return (
     <PostBlock>
       <PostHeader>
         <UpperBox>
-          <h1>{contents[0].title}</h1>
-          <button onClick={apply}>신청하기</button>
+          <h1>{post.title}</h1>
+          <button onClick={applyClick}>신청하기</button>
         </UpperBox>
         <UnderBox>
           <div className="item">
             <Img src={clock} />
-            {contents[0].date}
+            {`${date[0]}${date[1]}${date[2]}${date[3]}년 ${date[5]}${date[6]}월 ${date[8]}${date[9]}일 ${post.noon} ${post.hour}:${post.minute}`}
           </div>
           <div className="item">
             <div>
               <Img src={male} />
               <Img src={female} />
             </div>
-            {contents[0].gender}
+            {post.gender}
           </div>
           <div className="item">
             <Img src={people} />
-            {contents[0].currentPeople} / {contents[0].maxPeople}
+            {post.currentPeople} / {post.maxPeople}
           </div>
         </UnderBox>
       </PostHeader>
       <PostBody>
         <div className="map"></div>
-        <div className="content">{contents[0].content}</div>
+        <div className="content">{post.content}</div>
       </PostBody>
     </PostBlock>
   );
