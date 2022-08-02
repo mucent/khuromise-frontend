@@ -103,7 +103,7 @@ const PostListItem = ({
   maxPeople,
   writtenTime,
 }) => {
-  const _date = { date }.date.split("-");
+  const _date = date.split("-");
 
   return (
     <PostListItemBlock>

@@ -32,7 +32,7 @@
       "minute": "00",
       "category": "식사",
       "gender": "여자만",
-      "currentPeople": "1",
+      "currentPeople": 3,
       "maxPeople": "3",
       "title": "제목1",
       "content": "내용1",
