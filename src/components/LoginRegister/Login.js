@@ -1,5 +1,9 @@
 import styled from "styled-components";
 import logo from "./../Header/logo.png";
+import { useState, useContext } from "react";
+import useFetch from "../../hooks/useFetch";
+import { LoginIdContenxt } from "../../context/Context";
+import { useNavigate } from "react-router-dom";
 
 const LoginTemplate = styled.div`
   width: 300px;
@@ -65,15 +69,74 @@ const BottomBox = styled.div`
 `;
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  // users 정보 호출
+  const fetchinfo = useFetch(`http://localhost:3002/users`);
+  const userInfo = [...fetchinfo];
+  //console.log(userInfo);
+
+  // 입력값 상태 관리
+  const [inputId, setUserId] = useState("");
+  const [inputPw, setUserPw] = useState("");
+
+  const onIdChange = (e) => {
+   setUserId(e.target.value);
+  }
+
+  const onPwChange = (e) => {
+    setUserPw(e.target.value);
+  }
+
+  // nextId 정보 불러오기
+  const nextId = useContext(LoginIdContenxt);
+  console.log(nextId);
+  
+  // 로그인 정보 전달 함수
+  function onSubmit(e) {
+    e.preventDefault();
+    
+    fetch("http://localhost:3002/onLogin", {
+      method : "POST",
+      headers : {
+        "Content-Type" : "application/json; charset=UTF-8"
+      },
+      body : JSON.stringify({
+        id : nextId,
+        inputId : inputId,
+        inputPw : inputPw
+      }),
+    })
+    .then(res => {
+      console.log(res);
+      /* for (const info of userInfo) {
+        if (info.userId !== inputId) {
+          return alert("아이디가 일치하지 않습니다.");
+        }
+        else if (info.userPw !== inputPw) {
+          return alert("비밀번호가 일치하지 않습니다.");
+        }
+        else {
+          return sessionStorage.setItem('user_ID', inputId);
+        }
+      }*/
+    })
+    .catch(
+      alert("오류가 발생했습니다.\n다시 시도해 주세요.")
+    )
+  }
+  
   return (
     <LoginTemplate>
       <Logo src={logo} />
       <LoginBox>
-        <div className="input_box">
-          <input className="id" type="text" placeholder="ID"></input>
-          <input className="pw" type="text" placeholder="Password"></input>
-        </div>
-        <button className="login_btn">로그인</button>
+          <div className="input_box">
+            <input className="id" type="text" placeholder="ID" value={inputId} onChange={onIdChange}></input>
+            <input className="pw" type="password" placeholder="Password" value={inputPw} onChange={onPwChange}></input>
+          </div>
+        <form>
+          <button className="login_btn">로그인</button>
+        </form>
       </LoginBox>
       <BottomBox>
         <button>아이디/비밀번호 찾기</button>

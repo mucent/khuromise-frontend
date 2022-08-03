@@ -52,7 +52,7 @@
       "minute": "00",
       "category": "게임",
       "gender": "성별무관",
-      "currentPeople": 1,
+      "currentPeople": 2,
       "maxPeople": "10",
       "title": "새벽롤",
       "content": "내전 ㄲㄲ"
@@ -78,10 +78,10 @@
       "writerGender": "w",
       "date": "2022-08-07",
       "noon": "오후",
-      "hour": "07",
-      "minute": "00",
+      "hour": "01",
+      "minute": "25",
       "category": "식사",
-      "gender": "성별무관",
+      "gender": "여자만",
       "currentPeople": "1",
       "maxPeople": "8",
       "title": "여자들끼리 찐한 저녁모임",
@@ -131,15 +131,50 @@
       "maxPeople": "5",
       "title": "리액트 도움 좀요",
       "content": "컴공과 환영"
+    },
+    {
+      "id": 9,
+      "name": "익명",
+      "writerGender": "w",
+      "date": "2022-08-03",
+      "noon": "오전",
+      "hour": "1",
+      "minute": "00",
+      "category": "식사",
+      "gender": "남자만",
+      "currentPeople": "1",
+      "maxPeople": "2",
+      "title": "제목없음",
+      "content": "내용없음"
     }
   ],
   "users": [
     {
-      "id": "",
-      "userId": "",
-      "userPw": "",
-      "name": "",
-      "gender": ""
+      "id": 1,
+      "userId": "sy030404",
+      "userPw": "password**",
+      "name": "변시윤",
+      "gender": "w"
+    },
+    {
+      "id": 2,
+      "userId": "abcd1234",
+      "userPw": "efgh5678",
+      "name": "홍길동",
+      "gender": "m",
+      "isLogin": "false"
+    }
+  ],
+  "onLogin": [
+    {
+      "id": 1,
+      "inputId": "sy030404",
+      "inputPw": "password**"
+    },
+    {
+      "id": 2,
+      "inputId": "sfsdafsdaf",
+      "inputPw": "fsdfsdafdsafds"
     }
   ]
 }
