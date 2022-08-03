@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import styled from 'styled-components';
 
 const TitleBox = styled.div`
@@ -26,11 +26,19 @@ const TotalTitleBox = styled.div`
   
 `;
 
-function PostTitle(props) {
+function ModTitle(props) {
+  const posttitle = props.mypost.title;
+  const [title, setTitle] = useState('');
 
-  const titleRef = useRef(null);
+  useEffect(() => {
+    setTitle(posttitle);
+    props.setTitleValue(posttitle);
+  }, [posttitle]);
+
+  const titleRef = useRef();
 
   const onChange = (e) => {
+    setTitle(e.target.value);
     props.setTitleValue(titleRef.current.value);
   };
 
@@ -50,6 +58,7 @@ function PostTitle(props) {
             }}
             ref={titleRef}
             onChange={onChange}
+            value={title || ''}
             />
         </TitleWritingBox>
       </TotalTitleBox>
@@ -57,4 +66,4 @@ function PostTitle(props) {
     )
 }
 
-export default PostTitle;
+export default ModTitle;

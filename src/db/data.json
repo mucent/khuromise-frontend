@@ -2,73 +2,150 @@
   "categories": [
     {
       "id": 1,
-      "category": "식사"
+      "category": "식사",
+      "active": true
     },
     {
       "id": 2,
-      "category": "운동"
+      "category": "운동",
+      "active": false
     },
     {
       "id": 3,
-      "category": "게임"
+      "category": "게임",
+      "active": false
     },
     {
       "id": 4,
-      "category": "공부"
+      "category": "공부",
+      "active": false
     },
     {
       "id": 5,
-      "category": "기타"
+      "category": "기타",
+      "active": false
     }
   ],
   "posts": [
     {
-      "id": "1",
+      "id": 1,
       "name": "익명",
-      "userGender": "w",
-      "date": "2022-07-23",
+      "writerGender": "w",
+      "date": "2022-08-07",
       "noon": "오후",
-      "hour": "08",
-      "minute": "00",
-      "category": "식사",
-      "gender": "여자만",
-      "currentPeople": 3,
-      "maxPeople": "3",
-      "title": "제목1",
-      "content": "내용1",
-      "place": "중상"
-    },
-    {
-      "id": "2",
-      "name": "익명",
-      "userGender": "w",
-      "date": "2022-07-23",
-      "noon": "오후",
-      "hour": "08",
-      "minute": "00",
-      "category": "식사",
-      "gender": "여자만",
-      "currentPeople": 3,
-      "maxPeople": "3",
-      "title": "제목1",
-      "content": "내용1",
-      "place": "중상"
-    },
-    {
-      "id": "4",
-      "name": "익명",
-      "userGender": "w",
-      "date": "2022-07-23",
-      "noon": "오후",
-      "hour": "08",
+      "hour": "04",
       "minute": "00",
       "category": "운동",
+      "gender": "성별무관",
+      "currentPeople": 2,
+      "maxPeople": "2",
+      "title": "헬린이 운동 좀 알려줘",
+      "content": "ㅠㅠㅠ 기구 사용법 모르겠어"
+    },
+    {
+      "id": 2,
+      "name": "익명",
+      "writerGender": "w",
+      "date": "2022-08-06",
+      "noon": "오전",
+      "hour": "02",
+      "minute": "00",
+      "category": "게임",
+      "gender": "성별무관",
+      "currentPeople": 2,
+      "maxPeople": "10",
+      "title": "새벽롤",
+      "content": "내전 ㄲㄲ"
+    },
+    {
+      "id": 4,
+      "name": "익명",
+      "writerGender": "w",
+      "date": "2022-08-04",
+      "noon": "오후",
+      "hour": "1",
+      "minute": "00",
+      "category": "공부",
+      "gender": "성별무관",
+      "currentPeople": 1,
+      "maxPeople": "5",
+      "title": "칸나에서 스터디해요",
+      "content": "코딩 공부 같이 할 사람이면 더 좋음"
+    },
+    {
+      "id": 5,
+      "name": "익명",
+      "writerGender": "w",
+      "date": "2022-08-07",
+      "noon": "오후",
+      "hour": "01",
+      "minute": "25",
+      "category": "식사",
       "gender": "여자만",
-      "currentPeople": 3,
-      "maxPeople": "3",
-      "title": "제목1",
-      "content": "내용1",
-      "place": "중상"
+      "currentPeople": 1,
+      "maxPeople": "8",
+      "title": "여자들끼리 찐한 저녁모임",
+      "content": "메인메뉴 이슬\n사이드메뉴 오뎅탕"
+    },
+    {
+      "id": 6,
+      "name": "익명",
+      "writerGender": "w",
+      "date": "2022-08-03",
+      "noon": "오전",
+      "hour": "1",
+      "minute": "00",
+      "category": "기타",
+      "gender": "성별무관",
+      "currentPeople": 1,
+      "maxPeople": "2",
+      "title": "제목없음",
+      "content": "내용없음"
+    },
+    {
+      "id": 7,
+      "name": "익명",
+      "writerGender": "w",
+      "date": "2022-08-16",
+      "noon": "오후",
+      "hour": "05",
+      "minute": "00",
+      "category": "기타",
+      "gender": "성별무관",
+      "currentPeople": 1,
+      "maxPeople": "5",
+      "title": "버스킹 할 사람 모집",
+      "content": "8월 16일 오후 5시입니다"
+    },
+    {
+      "id": 8,
+      "name": "익명",
+      "writerGender": "w",
+      "date": "2022-08-08",
+      "noon": "오전",
+      "hour": "11",
+      "minute": "00",
+      "category": "공부",
+      "gender": "성별무관",
+      "currentPeople": 1,
+      "maxPeople": "5",
+      "title": "리액트 도움 좀요",
+      "content": "컴공과 환영"
+    },
+    {
+      "id": 9,
+      "name": "익명",
+      "writerGender": "w",
+      "date": "2022-08-03",
+      "noon": "오전",
+      "hour": "1",
+      "minute": "00",
+      "category": "식사",
+      "gender": "남자만",
+      "currentPeople": 1,
+      "maxPeople": "2",
+      "title": "제목없음",
+      "content": "내용없음"
     }
   ],
   "users": [

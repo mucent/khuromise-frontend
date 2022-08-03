@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from "styled-components";
 
 const PurposeBox = styled.div`
@@ -19,8 +19,9 @@ const PurposeBarBox = styled.div`
 `;
 
 
-function PurposeList(props) {
-  const [purposes, setPur] = useState([
+function ModPurposeList(props) {
+
+  const pur = [
     {
       id : 1,
       purname : '식사',
@@ -46,8 +47,19 @@ function PurposeList(props) {
       purname : '기타',
       active : false
     }
-  ]);
+  ];
   
+  
+  
+  const [purposes, setPur] = useState([]);
+  const category = props.mypost.category;
+
+  useEffect(() => {
+    setPur(pur.map(purpose => (
+      purpose.purname === category ? {...purpose, active : true} : {...purpose, active : false})))
+    props.setPurposeValue(category);
+    },[category]);
+
   const onToggle = id => {
     setPur(
       purposes.map(purpose => 
@@ -62,6 +74,7 @@ function PurposeList(props) {
     props.setPurposeValue(purposes.find(isTrue).purname);
   }
   
+
   function Purpose({ purpose, onToggle }) {
     
     return (
@@ -88,4 +101,4 @@ function PurposeList(props) {
   );
 }
 
-export default PurposeList;
+export default ModPurposeList;

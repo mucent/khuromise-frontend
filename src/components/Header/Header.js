@@ -1,5 +1,6 @@
+import React from 'react';
 import styled from "styled-components";
-import logo from "./logo.png";
+import icon from "./icon.png";
 import { Link } from "react-router-dom";
 
 const HeaderBlock = styled.div`
@@ -45,17 +46,22 @@ const LogRegButton = styled.button`
 `;
 
 const Header = () => {
+
+  const onClick = () => {
+    window.location.load();
+  }
+
   return (
     <HeaderBlock>
       <ItemBox>
-        <Link to="/">
-          <Logo src={logo} />
+        <Link to="/" onClick={onClick}>
+          <Logo src={icon} />
         </Link>
         <ButtonBox>
-          <Link to="/login">
-            <LogRegButton>로그인</LogRegButton>
+          <Link to="/login" onClick={onClick}>
+            <LogRegButton >로그인</LogRegButton>
           </Link>
-          <Link to="/register">
+          <Link to="/register" onClick={onClick}>
             <LogRegButton>회원가입</LogRegButton>
           </Link>
         </ButtonBox>
@@ -64,4 +70,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default React.memo(Header);
