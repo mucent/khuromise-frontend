@@ -6,6 +6,7 @@ const PostListItemBlock = styled.div`
   height: auto;
   margin: 10px auto;
   border-bottom: 1px solid #bcbcbc;
+  min-width: 200px;
 
   display: flex;
   justify-content: space-between;
@@ -61,7 +62,7 @@ const Place = styled.div`
 `;
 
 const Participant = styled.div`
-  width: 70px;
+  width: 100%;
   height: 70px;
   font-size: 20px;
 
@@ -71,7 +72,7 @@ const Participant = styled.div`
 `;
 
 const GenderBox = styled.div`
-  width: 70px;
+  width: 10%;
   height: 70px;
   font-size: 15px;
 

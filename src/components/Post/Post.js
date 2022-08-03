@@ -8,18 +8,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import EmptyPage from "../EmptyPage";
 
-const PostBox = styled.div`
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 10px;
-`;
-
 const PostBlock = styled.div`
   width: 100%;
   height: auto;
   margin: 10px auto;
   border: 1px solid #bcbcbc;
   border-radius: 20px;
+  max-width: 800px;
+  min-width: 520px;
 `;
 
 const PostHeader = styled.div`
@@ -60,7 +56,7 @@ const UpperBox = styled.div`
 
 const UnderBox = styled.div`
   margin: 10px auto;
-  width: 600px;
+  width: 80%;
   height: 50px;
 
   display: flex;
@@ -176,52 +172,50 @@ const Post = () => {
   return (
     <>
       {post.id ? (
-        <PostBox>
-          <PostBlock>
-            <PostHeader>
-              <UpperBox>
-                <h1>{post.title}</h1>
-                <button onClick={applyClick}>신청하기</button>
-              </UpperBox>
-              <UnderBox>
-                <div className="item">
-                  <Img src={clock} />
-                  {post.date
-                    ? `${date.slice(0, 4)}년 ${date.slice(5, 7)}월
+        <PostBlock>
+          <PostHeader>
+            <UpperBox>
+              <h1>{post.title}</h1>
+              <button onClick={applyClick}>신청하기</button>
+            </UpperBox>
+            <UnderBox>
+              <div className="item">
+                <Img src={clock} />
+                {post.date
+                  ? `${date.slice(0, 4)}년 ${date.slice(5, 7)}월
                   ${date.slice(8, 10)}일 ${post.noon}
                   ${post.hour}:${post.minute}`
-                    : ""}
+                  : ""}
+              </div>
+              <div className="item">
+                <div>
+                  <Img src={male} />
+                  <Img src={female} />
                 </div>
-                <div className="item">
-                  <div>
-                    <Img src={male} />
-                    <Img src={female} />
-                  </div>
-                  {post.gender}
-                </div>
-                <div className="item">
-                  <Img src={people} />
-                  {post.currentPeople} / {post.maxPeople}
-                </div>
-              </UnderBox>
-            </PostHeader>
-            <PostBody>
-              <div className="map"></div>
-              <div className="content">{post.content}</div>
-            </PostBody>
-            {/* 작성자만 수정 OR 삭제 가능 */}
-            <Buttons>
-              <button
-                onClick={() =>
-                  navigate(`/${post.category}/${post.id}/modifypost`)
-                }
-              >
-                수정
-              </button>
-              <button onClick={delClick}>삭제</button>
-            </Buttons>
-          </PostBlock>
-        </PostBox>
+                {post.gender}
+              </div>
+              <div className="item">
+                <Img src={people} />
+                {post.currentPeople} / {post.maxPeople}
+              </div>
+            </UnderBox>
+          </PostHeader>
+          <PostBody>
+            <div className="map"></div>
+            <div className="content">{post.content}</div>
+          </PostBody>
+          {/* 작성자만 수정 OR 삭제 가능 */}
+          <Buttons>
+            <button
+              onClick={() =>
+                navigate(`/${post.category}/${post.id}/modifypost`)
+              }
+            >
+              수정
+            </button>
+            <button onClick={delClick}>삭제</button>
+          </Buttons>
+        </PostBlock>
       ) : (
         <EmptyPage />
       )}

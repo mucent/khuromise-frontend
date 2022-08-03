@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 import icon from "./icon.png";
 import { Link } from "react-router-dom";
@@ -7,13 +7,16 @@ const HeaderBlock = styled.div`
   width: 100%;
   height: 60px;
   border-bottom: 1px solid #bcbcbc;
-  margin: 0;
+  margin: 0 auto;
+
+  min-width: 520px;
 `;
 
 const ItemBox = styled.div`
-  width: 1000px;
+  width: 90%;
   height: 100%;
   margin: 0 auto;
+  max-width: 1000px;
 
   display: flex;
   justify-content: space-between;
@@ -46,10 +49,9 @@ const LogRegButton = styled.button`
 `;
 
 const Header = () => {
-
   const onClick = () => {
     window.location.load();
-  }
+  };
 
   return (
     <HeaderBlock>
@@ -59,7 +61,7 @@ const Header = () => {
         </Link>
         <ButtonBox>
           <Link to="/login" onClick={onClick}>
-            <LogRegButton >로그인</LogRegButton>
+            <LogRegButton>로그인</LogRegButton>
           </Link>
           <Link to="/register" onClick={onClick}>
             <LogRegButton>회원가입</LogRegButton>
