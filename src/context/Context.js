@@ -1,14 +1,22 @@
-import React, { createContext, useRef } from 'react';
+import React, { createContext } from 'react';
 import useCurrentId from '../hooks/useCurrentId';
 
-export const NextIdContext = createContext();
+export const NextPostIdContext = createContext();
+export const LoginIdContenxt = createContext();
 
 export const ContextProvider = ({ children }) => {
-  const currentId = useCurrentId();
-  const nextId = useRef(currentId + 1);
+   
+  const currentPostId = useCurrentId(`http://localhost:3002/posts`);
+  const nextPostId = currentPostId+1;
+
+  const currentLoginId = useCurrentId(`http://localhost:3002/onLogin`);
+  const nextLoginId = currentLoginId+1;
+
   return (
-    <NextIdContext.Provider value={nextId}>
-      {children}
-    </NextIdContext.Provider>
+    <NextPostIdContext.Provider value={nextPostId}>
+      <LoginIdContenxt.Provider value={nextLoginId}>
+        {children}
+      </LoginIdContenxt.Provider>
+    </NextPostIdContext.Provider>
   );
 };

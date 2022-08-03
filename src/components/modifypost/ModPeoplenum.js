@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import styled from 'styled-components';
 
 const PeopleBox1 = styled.div`
@@ -18,11 +18,20 @@ const PeopleBox2 = styled.div`
 
 
 
-function Peoplenum(props) {
+function ModPeoplenum(props) {
 
   const peopleNumRef = useRef(null);
+  const peoplenumprop = props.mypost.maxPeople;
+  const [ppnum, setPpNum] = useState();
 
-  const onChange = () => {
+  useEffect(() => {
+    setPpNum(peoplenumprop);
+    props.setPeopleNumValue(peoplenumprop);
+  },[peoplenumprop]);
+
+
+  const onChange = (e) => {
+    setPpNum(e.target.value);
     props.setPeopleNumValue(peopleNumRef.current.value);
   }
 
@@ -37,10 +46,11 @@ function Peoplenum(props) {
           }}
           type = 'number'
           placeholder = '숫자를 입력하세요'
+          value= {ppnum || ''}
         />
       </PeopleBox2>
     </PeopleBox1>
   );
 }
 
-export default Peoplenum;
+export default ModPeoplenum;
