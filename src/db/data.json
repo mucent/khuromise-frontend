@@ -85,7 +85,8 @@
       "currentPeople": 1,
       "maxPeople": "8",
       "title": "여자들끼리 찐한 저녁모임",
-      "content": "메인메뉴 이슬\n사이드메뉴 오뎅탕"
+      "content": "메인메뉴 이슬\n사이드메뉴 오뎅탕",
+      "place": "중상"
     },
     {
       "id": 6,
@@ -145,7 +146,8 @@
       "currentPeople": 1,
       "maxPeople": "2",
       "title": "제목없음",
-      "content": "내용없음"
+      "content": "내용없음",
+      "place": "없음"
     }
   ],
   "users": [

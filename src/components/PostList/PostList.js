@@ -4,11 +4,18 @@ import PostListItem from "./PostListItem";
 import useFetch from "../../hooks/useFetch";
 import EmptyPage from "../EmptyPage";
 
+const PostListBox = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 10px;
+`;
+
 const PostListBlock = styled.div`
-  width: 800px;
+  width: 100%;
   height: auto;
   margin: 10px auto;
   border: 1px solid #bcbcbc;
+  border-radius: 20px;
 
   display: flex;
   flex-direction: column;
@@ -16,9 +23,9 @@ const PostListBlock = styled.div`
 `;
 
 const PostListHead = styled.div`
-  width: 97%;
+  width: 95%;
   height: 50px;
-  border: 1px solid #bcbcbc;
+  border-bottom: 1px solid #bcbcbc;
   margin: 10px auto;
 
   h1 {
@@ -31,7 +38,7 @@ const PostListHead = styled.div`
 `;
 
 const PostListBody = styled.div`
-  width: 97%;
+  width: 95%;
   height: auto;
   margin: 5px auto;
 `;
@@ -49,32 +56,34 @@ const PostList = () => {
   return (
     <>
       {posts[0] ? (
-        <PostListBlock>
-          <PostListHead>
-            <h1>{posts[0].category}</h1>
-          </PostListHead>
-          <PostListBody>
-            {posts
-              .sort((a, b) => b.id - a.id)
-              .map((post) => (
-                <PostListItem
-                  key={post.id}
-                  id={post.id}
-                  category={post.category}
-                  title={post.title}
-                  date={post.date}
-                  noon={post.noon}
-                  hour={post.hour}
-                  minute={post.minute}
-                  place={post.place}
-                  gender={post.gender}
-                  currentPeople={post.currentPeople}
-                  maxPeople={post.maxPeople}
-                  writtenTime={post.writtenTime}
-                />
-              ))}
-          </PostListBody>
-        </PostListBlock>
+        <PostListBox>
+          <PostListBlock>
+            <PostListHead>
+              <h1>{posts[0].category}</h1>
+            </PostListHead>
+            <PostListBody>
+              {posts
+                .sort((a, b) => b.id - a.id)
+                .map((post) => (
+                  <PostListItem
+                    key={post.id}
+                    id={post.id}
+                    category={post.category}
+                    title={post.title}
+                    date={post.date}
+                    noon={post.noon}
+                    hour={post.hour}
+                    minute={post.minute}
+                    place={post.place}
+                    gender={post.gender}
+                    currentPeople={post.currentPeople}
+                    maxPeople={post.maxPeople}
+                    writtenTime={post.writtenTime}
+                  />
+                ))}
+            </PostListBody>
+          </PostListBlock>
+        </PostListBox>
       ) : (
         <EmptyPage />
       )}
