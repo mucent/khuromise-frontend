@@ -37,14 +37,58 @@
       "title": "제목1",
       "content": "내용1",
       "place": "중상"
+    },
+    {
+      "id": "2",
+      "name": "익명",
+      "userGender": "w",
+      "date": "2022-07-23",
+      "noon": "오후",
+      "hour": "08",
+      "minute": "00",
+      "category": "식사",
+      "gender": "여자만",
+      "currentPeople": 3,
+      "maxPeople": "3",
+      "title": "제목1",
+      "content": "내용1",
+      "place": "중상"
+    },
+    {
+      "id": "4",
+      "name": "익명",
+      "userGender": "w",
+      "date": "2022-07-23",
+      "noon": "오후",
+      "hour": "08",
+      "minute": "00",
+      "category": "운동",
+      "gender": "여자만",
+      "currentPeople": 3,
+      "maxPeople": "3",
+      "title": "제목1",
+      "content": "내용1",
+      "place": "중상"
     }
   ],
   "users": [
     {
-      "id": "",
-      "pw": "",
-      "name": "",
-      "gender": ""
+      "id":"1",
+      "userId": "id1",
+      "userPw":"pw1",
+      "userName":"name1",
+      "userGender": "male",
+      "userBirthDay":"2022-08-02",
+      "userEmail":"email1@khu.ac.kr"
+    },
+    {
+      "id":"2",
+      "userId": "id2",
+      "userPw":"pw2",
+      "userName":"name2",
+      "userGender": "male",
+      "userBirthDay":"2022-08-02",
+      "userEmail":"email2@khu.ac.kr"
     }
   ]
 }
