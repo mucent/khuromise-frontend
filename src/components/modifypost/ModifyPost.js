@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
 import ModPurposeList from "./ModPurposeList";
 import ModTime from "./ModTime";
@@ -110,7 +110,7 @@ function ModifyPost() {
 
   const { id } = useParams();
 
-  const today = new Date();
+  //const today = new Date();
   
   const fetch = useFetch(`http://localhost:3002/posts?id=${id}`);
   const mypost = {...fetch[0]};

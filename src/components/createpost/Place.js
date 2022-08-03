@@ -1,7 +1,7 @@
-import React, {useState, useRef} from 'react';
+import React from 'react';
 
 function Place() {
-    return 'place';
+    return <div>place</div>
 }
 
 export default Place;
