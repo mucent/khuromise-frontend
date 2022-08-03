@@ -67,7 +67,7 @@
       "minute": "00",
       "category": "공부",
       "gender": "성별무관",
-      "currentPeople": "1",
+      "currentPeople": 1,
       "maxPeople": "5",
       "title": "칸나에서 스터디해요",
       "content": "코딩 공부 같이 할 사람이면 더 좋음"
@@ -82,7 +82,7 @@
       "minute": "25",
       "category": "식사",
       "gender": "여자만",
-      "currentPeople": "1",
+      "currentPeople": 1,
       "maxPeople": "8",
       "title": "여자들끼리 찐한 저녁모임",
       "content": "메인메뉴 이슬\n사이드메뉴 오뎅탕"
@@ -97,7 +97,7 @@
       "minute": "00",
       "category": "기타",
       "gender": "성별무관",
-      "currentPeople": "1",
+      "currentPeople": 1,
       "maxPeople": "2",
       "title": "제목없음",
       "content": "내용없음"
@@ -112,7 +112,7 @@
       "minute": "00",
       "category": "기타",
       "gender": "성별무관",
-      "currentPeople": "1",
+      "currentPeople": 1,
       "maxPeople": "5",
       "title": "버스킹 할 사람 모집",
       "content": "8월 16일 오후 5시입니다"
@@ -127,7 +127,7 @@
       "minute": "00",
       "category": "공부",
       "gender": "성별무관",
-      "currentPeople": "1",
+      "currentPeople": 1,
       "maxPeople": "5",
       "title": "리액트 도움 좀요",
       "content": "컴공과 환영"
@@ -142,7 +142,7 @@
       "minute": "00",
       "category": "식사",
       "gender": "남자만",
-      "currentPeople": "1",
+      "currentPeople": 1,
       "maxPeople": "2",
       "title": "제목없음",
       "content": "내용없음"
@@ -153,28 +153,10 @@
       "id": 1,
       "userId": "sy030404",
       "userPw": "password**",
-      "name": "변시윤",
-      "gender": "w"
-    },
-    {
-      "id": 2,
-      "userId": "abcd1234",
-      "userPw": "efgh5678",
-      "name": "홍길동",
-      "gender": "m",
-      "isLogin": "false"
-    }
-  ],
-  "onLogin": [
-    {
-      "id": 1,
-      "inputId": "sy030404",
-      "inputPw": "password**"
-    },
-    {
-      "id": 2,
-      "inputId": "sfsdafsdaf",
-      "inputPw": "fsdfsdafdsafds"
+      "userName": "변시윤",
+      "userGender": "w",
+      "userBirthday" : "2003-04-04",
+      "userEmail" : "siyun22@khu.ac.kr"
     }
   ]
 }
