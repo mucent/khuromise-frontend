@@ -2,7 +2,7 @@ import styled from "styled-components";
 import logo from "./../Header/logo.png";
 import { useState, useContext } from "react";
 import useFetch from "../../hooks/useFetch";
-import { LoginIdContenxt } from "../../context/Context";
+import { LoginIdContext } from "../../context/Context";
 import { useNavigate } from "react-router-dom";
 
 const LoginTemplate = styled.div`
@@ -89,42 +89,10 @@ const Login = () => {
   }
 
   // nextId 정보 불러오기
-  const nextId = useContext(LoginIdContenxt);
+  const nextId = useContext(LoginIdContext);
   console.log(nextId);
   
   // 로그인 정보 전달 함수
-  function onSubmit(e) {
-    e.preventDefault();
-    
-    fetch("http://localhost:3002/onLogin", {
-      method : "POST",
-      headers : {
-        "Content-Type" : "application/json; charset=UTF-8"
-      },
-      body : JSON.stringify({
-        id : nextId,
-        inputId : inputId,
-        inputPw : inputPw
-      }),
-    })
-    .then(res => {
-      console.log(res);
-      /* for (const info of userInfo) {
-        if (info.userId !== inputId) {
-          return alert("아이디가 일치하지 않습니다.");
-        }
-        else if (info.userPw !== inputPw) {
-          return alert("비밀번호가 일치하지 않습니다.");
-        }
-        else {
-          return sessionStorage.setItem('user_ID', inputId);
-        }
-      }*/
-    })
-    .catch(
-      alert("오류가 발생했습니다.\n다시 시도해 주세요.")
-    )
-  }
   
   return (
     <LoginTemplate>
