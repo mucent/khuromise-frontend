@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
-import Main from "./components/Main/Main";
 import Header from "./components/Header/Header";
 import CreatePost from "./components/createpost/CreatePost";
 import Login from "./components/LoginRegister/Login";
@@ -11,6 +10,7 @@ import Footer from "./components/Footer/Footer";
 import { PostContextProvider } from "./context/PostContext";
 import { ContextProvider } from "./context/Context";
 import Register from "./components/LoginRegister/Register";
+import Mainpage from "./components/Main/Mainpage";
 
 const GlobalStyle = createGlobalStyle`
   :root {
@@ -39,7 +39,7 @@ function App() {
           <Header />
           <TestBar />
           <Routes>
-            <Route path="/" exact={true} element={<Main />}></Route>
+            <Route path="/" exact={true} element={<Mainpage />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/register" element={<Register />}></Route>
             <Route path="/:category" element={<PostList />}></Route>
