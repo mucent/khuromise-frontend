@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from "styled-components";
 
 const GenderBox = styled.div`
@@ -40,13 +40,13 @@ function ModGenderList(props) {
   ];
 
   const [currentgender, setGender] = useState([]);
-  const { mypost } = props;
+  const gender = props.mypost.gender;
   
   useEffect(() => {
     setGender(gen.map(gend => (
-      gend.gendertype === mypost.gender ? {...gend, active : true} : {...gend, active : false})))
-    props.setGenderValue(mypost.gender);
-  },[mypost]);
+      gend.gendertype === gender ? {...gend, active : true} : {...gend, active : false})))
+    props.setGenderValue(gender);
+  },[gender]);
 
 
   const onToggle = (id) => {

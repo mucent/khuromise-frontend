@@ -1,7 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { NextIdContext } from '../../context/Context';
 import { useParams } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
 

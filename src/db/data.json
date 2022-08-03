@@ -32,15 +32,15 @@
       "name": "익명",
       "writerGender": "w",
       "date": "2022-08-05",
-      "noon": "오후",
-      "hour": "05",
+      "noon": "오전",
+      "hour": "08",
       "minute": "00",
-      "category": "운동",
-      "gender": "남자만",
+      "category": "게임",
+      "gender": "여자만",
       "currentPeople": 2,
-      "maxPeople": "8",
-      "title": "제목수정",
-      "content": "내용수정"
+      "maxPeople": "4",
+      "title": "제목수정dsfadsafds",
+      "content": "내용수정fdsafdsaf"
     },
     {
       "id": 2,

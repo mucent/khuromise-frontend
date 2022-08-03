@@ -21,42 +21,48 @@ const TimeInputBox = styled.div`
 function ModTime(props) {
 
   const { mypost } = props;
+  const { date, noon, hour, minute} = mypost;
   
-  const dateRef = useRef(null);
-  const noonRef = useRef(null);
-  const hourRef = useRef(null);
-  const minuteRef = useRef(null);
+  const dateRef = useRef();
+  const noonRef = useRef();
+  const hourRef = useRef();
+  const minuteRef = useRef();
 
   const [dateState, setDate] = useState('');
   const [noonState, setNoon] = useState('');
   const [hourState, setHour] = useState('');
   const [minuteState, setMinute] = useState('');
-
+  
   useEffect(() => {
-    setDate(mypost.date);
-    setNoon(mypost.noon);
-    setHour(mypost.hour);
-    setMinute(mypost.minute);
-    props.setNoonValue(mypost.date);
+    setDate(date);
+    setNoon(noon);
+    setHour(hour);
+    setMinute(minute);
+    props.setDateValue(date);
+    props.setNoonValue(noon);
     props.setHourValue(mypost.hour);
     props.setMinuteValue(mypost.minute);
-    props.setDateValue(mypost.date);
-  },[mypost]);
+  },[date, noon, hour, minute]);
+  
   
 
-  const onChange1 = () => {
+  const onChange1 = (e) => {
+    setNoon(e.target.value);
     props.setNoonValue(noonRef.current.value);
   };
 
-  const onChange2 = () => {
+  const onChange2 = (e) => {
+    setHour(e.target.value);
     props.setHourValue(hourRef.current.value);
   };
 
-  const onChange3 = () => {
+  const onChange3 = (e) => {
+    setMinute(e.target.value);
     props.setMinuteValue(minuteRef.current.value);
   };
 
-  const onChange4 = () => {
+  const onChange4 = (e) => {
+    setDate(e.target.value);
     props.setDateValue(dateRef.current.value);
   };
 
@@ -73,16 +79,16 @@ function ModTime(props) {
             fontSize : '15px',
             borderStyle : 'double',
             padding : '3px'}}
-            value = {props.mypost.date || ''} />
+            value = {dateState || ''} />
       </DateInputBox>
       <TimeInputBox>
-        <select ref={noonRef} onChange={onChange1} value={props.mypost.noon}>
+        <select ref={noonRef} onChange={onChange1} value={noonState}>
           <option value='오전'>오전</option>
           <option value='오후'>오후</option>
         </select>
       </TimeInputBox>
       <TimeInputBox>
-        <select ref={hourRef} onChange={onChange2} value={props.mypost.hour}>
+        <select ref={hourRef} onChange={onChange2} value={hourState}>
           <option value='01'>01</option>
           <option value='02'>02</option>
           <option value='03'>03</option>
@@ -98,7 +104,7 @@ function ModTime(props) {
         </select>
       </TimeInputBox>
       <TimeInputBox>
-        <select ref={minuteRef} onChange={onChange3} value={props.mypost.minute}>
+        <select ref={minuteRef} onChange={onChange3} value={minuteState}>
           <option value='00'>00</option>
           <option value='05'>05</option>
           <option value='10'>10</option>
