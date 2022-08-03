@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { NextIdContext } from '../../context/Context';
+import { NextPostIdContext } from '../../context/Context';
 
 const PostBox = styled.div`
   width : 90%;
@@ -13,7 +13,8 @@ const PostBox = styled.div`
 
 function PostSend({ titlevalue , contentvalue, noonvalue, hourvalue, minutevalue, peoplenumvalue, datevalue, purposevalue, gendervalue }) {
 
-  const nextId = useContext(NextIdContext);
+  const nextId = useContext(NextPostIdContext);
+  console.log(nextId);
   const navigate = useNavigate();
 
   function onSubmit(e) {

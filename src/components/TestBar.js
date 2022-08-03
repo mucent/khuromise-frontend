@@ -22,17 +22,21 @@ const TestBarBlock = styled.div`
 const TestBar = () => {
   const categories = useFetch(`http://localhost:3002/categories`);
 
+  const onClick = () => {
+    window.location.reload();
+  }
+
   return (
     <TestBarBlock>
-      <li>
+      <li onClick={onClick}>
         <Link to="/">Home</Link>
       </li>
       {categories.map((category) => (
-        <li key={category.id}>
+        <li onClick={onClick} key={category.id}>
           <Link to={`/${category.category}`}>{category.category}</Link>
         </li>
       ))}
-      <li>
+      <li onClick={onClick}>
         <Link to="/createpost">CreatePost</Link>
       </li>
     </TestBarBlock>
