@@ -17,12 +17,10 @@ const GlobalStyle = createGlobalStyle`
   :root {
     --main-color: #bcbcbc;
   }
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  background-color: red;
-  margin: 0;
+  body{
+    margin: 0;
+    background: white;
+  }
   a {
     text-decoration: none;
   }
