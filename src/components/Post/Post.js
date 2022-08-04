@@ -9,16 +9,19 @@ import { useState } from "react";
 import EmptyPage from "../EmptyPage";
 
 const PostBlock = styled.div`
-  width: 800px;
+  width: 100%;
   height: auto;
   margin: 10px auto;
   border: 1px solid #bcbcbc;
+  border-radius: 20px;
+  max-width: 800px;
+  min-width: 520px;
 `;
 
 const PostHeader = styled.div`
-  width: 97%;
+  width: 95%;
   height: auto;
-  border: 1px solid #bcbcbc;
+  border-bottom: 1px solid #bcbcbc;
   margin: 10px auto;
 `;
 
@@ -53,7 +56,7 @@ const UpperBox = styled.div`
 
 const UnderBox = styled.div`
   margin: 10px auto;
-  width: 600px;
+  width: 80%;
   height: 50px;
 
   display: flex;
@@ -78,7 +81,7 @@ const Img = styled.img`
 `;
 
 const PostBody = styled.div`
-  width: 97%;
+  width: 95%;
   height: auto;
   margin: 10px auto;
 
@@ -89,14 +92,15 @@ const PostBody = styled.div`
   }
 
   .content {
-    border: 1px solid #bcbcbc;
+    border-top: 1px solid #bcbcbc;
+    border-bottom: 1px solid #bcbcbc;
     font-size: 15px;
     padding: 25px;
   }
 `;
 
 const Buttons = styled.div`
-  width: 97%;
+  width: 95%;
   height: 25px;
   margin: 10px auto;
   text-align: end;
@@ -202,7 +206,13 @@ const Post = () => {
           </PostBody>
           {/* 작성자만 수정 OR 삭제 가능 */}
           <Buttons>
-            <button onClick={() => navigate(`/${post.category}/${post.id}/modifypost`)}>수정</button>
+            <button
+              onClick={() =>
+                navigate(`/${post.category}/${post.id}/modifypost`)
+              }
+            >
+              수정
+            </button>
             <button onClick={delClick}>삭제</button>
           </Buttons>
         </PostBlock>

@@ -6,6 +6,7 @@ const PostListItemBlock = styled.div`
   height: auto;
   margin: 10px auto;
   border-bottom: 1px solid #bcbcbc;
+  min-width: 200px;
 
   display: flex;
   justify-content: space-between;
@@ -15,8 +16,8 @@ const PostListItemBlock = styled.div`
 `;
 
 const LeftBox = styled.div`
-  width: 85%;
-  height: 100%;
+  width: 80%;
+  height: 70px;
   margin-left: 10px;
 
   display: flex;
@@ -26,8 +27,8 @@ const LeftBox = styled.div`
 `;
 
 const RightBox = styled.div`
-  width: 8%;
-  height: 100%;
+  width: 10%;
+  height: 70px;
   margin-right: 10px;
 
   display: flex;
@@ -38,7 +39,7 @@ const RightBox = styled.div`
 
 const Title = styled.div`
   width: 100%;
-  height: 40%;
+  height: 25px;
   font-size: 20px;
   font-weight: bold;
   border: none;
@@ -50,42 +51,33 @@ const Title = styled.div`
 
 const Date = styled.div`
   width: 100%;
-  height: 20%;
+  height: 17px;
   font-size: 16px;
 `;
 
 const Place = styled.div`
   width: 100%;
-  height: 20%;
+  height: 17px;
   font-size: 16px;
 `;
 
 const Participant = styled.div`
   width: 100%;
-  height: 30%;
+  height: 70px;
   font-size: 20px;
 
   display: flex;
   justify-content: flex-end;
-`;
-
-const WrittenTime = styled.div`
-  width: 100%;
-  height: 3 0%;
-  font-size: 14px;
-  color: #bcbcbc;
-
-  display: flex;
-  justify-content: flex-end;
+  align-items: center;
 `;
 
 const GenderBox = styled.div`
-  width: 7%;
-  height: 100%;
-  font-size: 13px;
+  width: 10%;
+  height: 70px;
+  font-size: 15px;
 
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 `;
 
@@ -101,7 +93,6 @@ const PostListItem = ({
   gender,
   currentPeople,
   maxPeople,
-  writtenTime,
 }) => {
   const _date = date.split("-");
 
@@ -119,7 +110,6 @@ const PostListItem = ({
         <Participant>
           {currentPeople} / {maxPeople}
         </Participant>
-        <WrittenTime>{writtenTime}</WrittenTime>
       </RightBox>
     </PostListItemBlock>
   );
