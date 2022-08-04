@@ -17,7 +17,19 @@ function ModSend({ titlevalue , contentvalue, noonvalue, hourvalue, minutevalue,
   const { id } = useParams();
   const post = useFetch(`http://localhost:3002/posts/${id}`);
   const navigate = useNavigate();
+  let gender = '';
 
+  if (gendervalue === "남자만") {
+    gender = 'm'
+  }
+  else if (gendervalue === "여자만") {
+    gender = 'w'
+  }
+  else {
+    gender = 'b'
+  }
+
+  console.log(gender);
   function onSubmit(e) {
     e.preventDefault();
 
@@ -33,7 +45,8 @@ function ModSend({ titlevalue , contentvalue, noonvalue, hourvalue, minutevalue,
         hour : hourvalue,
         minute : minutevalue,
         category : purposevalue,
-        gender : gendervalue,
+        genderDisplay : gendervalue,
+        genderCheck : gender,
         maxPeople : peoplenumvalue,
         title : titlevalue,
         content : contentvalue

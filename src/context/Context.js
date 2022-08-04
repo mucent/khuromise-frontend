@@ -3,6 +3,7 @@ import useCurrentId from '../hooks/useCurrentId';
 
 export const NextPostIdContext = createContext();
 export const LoginIdContext = createContext();
+export const IsLoginContext = createContext();
 
 export const ContextProvider = ({ children }) => {
    
@@ -12,11 +13,15 @@ export const ContextProvider = ({ children }) => {
   const currentLoginId = useCurrentId(`http://localhost:3002/users`);
   const nextLoginId = currentLoginId+1;
 
+  const [isLogin, setIsLogin] = useState(false);
+
   return (
-    <NextPostIdContext.Provider value={nextPostId}>
-      <LoginIdContext.Provider value={nextLoginId}>
-        {children}
-      </LoginIdContext.Provider>
-    </NextPostIdContext.Provider>
+    <IsLoginContext.Provider value={{isLogin, setIsLogin}}>
+      <NextPostIdContext.Provider value={nextPostId}>
+        <LoginIdContext.Provider value={nextLoginId}>
+          {children}
+        </LoginIdContext.Provider>
+      </NextPostIdContext.Provider>
+    </IsLoginContext.Provider>
   );
 };

@@ -36,9 +36,6 @@ const TestBar = () => {
           <Link to={`/${category.category}`}>{category.category}</Link>
         </li>
       ))}
-      <li onClick={onClick}>
-        <Link to="/createpost">CreatePost</Link>
-      </li>
     </TestBarBlock>
   );
 };

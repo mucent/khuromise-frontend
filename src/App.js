@@ -32,8 +32,8 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
-  // const { loginUser } = useContext(LoginUserContext) || {};
-  // const { isLogin, setIsLogin } = useContext(IsLoginContext) || {};
+  // const { isLogin } = useContext(IsLoginContext) || {};
+  // const { setIsLogin } = useContext(IsLoginContext) || {};
 
   const [isLogin, setIsLogin] = useState(false);
 

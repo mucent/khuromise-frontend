@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const PostListItemBlock = styled.div`
   width: 100%;
@@ -44,6 +44,7 @@ const Title = styled.div`
   font-weight: bold;
   border: none;
   background-color: white;
+  cursor : pointer;
 
   display: flex;
   justify-content: flex-start;
@@ -90,22 +91,32 @@ const PostListItem = ({
   hour,
   minute,
   place,
-  gender,
+  genderDisplay,
   currentPeople,
   maxPeople,
+  isLogin
 }) => {
   const _date = date.split("-");
+
+  const navigate = useNavigate();
+  const onClick = () => {
+    if (isLogin === true) {
+      navigate(`/${category}/${id}`);
+    }
+    else {
+      alert("로그인 후 이용 가능합니다.");
+      navigate(`/login`);
+    }
+  }
 
   return (
     <PostListItemBlock>
       <LeftBox>
-        <Link to={`/${category}/${id}`}>
-          <Title>{title}</Title>
-        </Link>
+        <Title onClick={onClick}>{title}</Title>
         <Date>{`${_date[0]}년 ${_date[1]}월 ${_date[2]}일 ${noon} ${hour}:${minute}`}</Date>
         <Place>{place}</Place>
       </LeftBox>
-      <GenderBox>{gender}</GenderBox>
+      <GenderBox>{genderDisplay}</GenderBox>
       <RightBox>
         <Participant>
           {currentPeople} / {maxPeople}

@@ -117,37 +117,55 @@ const Buttons = styled.div`
   }
 `;
 
-const Post = () => {
+const Post = (props) => {
   const { id } = useParams();
   const posts = useFetch(`http://localhost:3002/posts?id=${id}`);
+  const users = useFetch(`http://localhost:3002/users`);
+  console.log(users);
   const post = { ...posts[0] };
   const date = String(post.date);
   const currentPeople = Number(post.currentPeople);
   const [_post, set_Post] = useState(post);
   const navigate = useNavigate();
+  const { isLogin } = props;
 
   // 조건 추가하기 => 성별이 조건에 만족한다면 진행
-  const applyClick = () => {
-    if (window.confirm("신청하시겠습니까?")) {
-      if (post.currentPeople < post.maxPeople) {
+
+
+ const findUsers = [...users]
+ const findUser = findUsers.find((user)=>user.userId === sessionStorage.getItem('LoginUserInfo')) || {};
+ console.log(findUser);
+ console.log(post.writerId);
+ /* 
+ */
+
+const applyClick = () => {
+  if (window.confirm("신청하시겠습니까?")) {
+    if (post.currentPeople < post.maxPeople) {
+      if (post.genderCheck !== findUser.userGender || findUser.userId === post.writerId) {
+        alert("신청이 불가능합니다.");
+      }
+      else {
         fetch(`http://localhost:3002/posts/${post.id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            ...post,
-            currentPeople: currentPeople + 1,
-          }),
-        }).then((res) => {
-          if (res.ok) {
-            alert("신청이 완료되었습니다.");
-            window.location.reload();
-          }
-        });
-      } else {
-        alert("모집 인원이 가득 찼습니다.");
-        window.location.reload();
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              ...post,
+              currentPeople: currentPeople + 1,
+            }),
+          }).then((res) => {
+            if (res.ok) {
+              alert("신청이 완료되었습니다.");
+              window.location.reload();
+            }
+          });
+      }
+    }
+    else {
+      alert("모집 인원이 가득 찼습니다.");
+      window.location.reload();
       }
     }
   };
@@ -192,7 +210,7 @@ const Post = () => {
                   <Img src={male} />
                   <Img src={female} />
                 </div>
-                {post.gender}
+                {post.genderDisplay}
               </div>
               <div className="item">
                 <Img src={people} />

@@ -123,7 +123,7 @@ function ModifyPost() {
   const [peoplenumvalue, setPeopleNumValue] = useState();
   const [datevalue, setDateValue] = useState();
   const [purposevalue, setPurposeValue] = useState(mypost.category);
-  const [gendervalue, setGenderValue] = useState(mypost.gender);
+  const [gendervalue, setGenderValue] = useState(mypost.genderDisplay);
 
   console.log(titlevalue);
   console.log(contentvalue);

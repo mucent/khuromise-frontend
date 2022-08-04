@@ -42,7 +42,7 @@ const Mainpage = ({ isLogin, setIsLogin }) => {
         <Post4 />
         <Search />
         <div className="profile">
-          <Myprofile />
+          <Myprofile isLogin = {isLogin} />
         </div>
       </Container>
     </div>

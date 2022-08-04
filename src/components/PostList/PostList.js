@@ -39,9 +39,10 @@ const PostListBody = styled.div`
   margin: 5px auto;
 `;
 
-const PostList = () => {
+const PostList = (props) => {
   const { category } = useParams();
   const posts = useFetch(`http://localhost:3002/posts?category=${category}`);
+  const { isLogin } = props;
 
   if (posts[0]) {
     if (posts[0].id === 0) {
@@ -70,10 +71,11 @@ const PostList = () => {
                   hour={post.hour}
                   minute={post.minute}
                   place={post.place}
-                  gender={post.gender}
+                  genderDisplay={post.genderDisplay}
                   currentPeople={post.currentPeople}
                   maxPeople={post.maxPeople}
                   writtenTime={post.writtenTime}
+                  isLogin={isLogin}
                 />
               ))}
           </PostListBody>

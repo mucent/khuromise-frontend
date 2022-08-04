@@ -2,7 +2,7 @@ import styled from "styled-components";
 import logo from "./../Header/logo.png";
 import { useState } from "react";
 import fetchLogin from "./fetchLogin";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const LoginTemplate = styled.div`
   width: 300px;
@@ -92,7 +92,7 @@ const Login = () => {
       const LoginUser = await fetchLogin(inputAccount);
       //console.log(LoginUser);
       if (LoginUser !== undefined) {
-        sessionStorage.setItem('LoginUserInfo', LoginUser.userName);
+        sessionStorage.setItem('LoginUserInfo', LoginUser.userId);
         navigate(`/`);
       }
     } catch (error) {
@@ -108,11 +108,13 @@ const Login = () => {
             <input name="inputId" type="text" placeholder="ID" value={inputId} onChange={onChange}></input>
             <input name="inputPw" type="password" placeholder="Password" value={inputPw} onChange={onChange}></input>
           </div>
-          <button className="login_btn" onClick={onClick}>로그인</button>
+          <button className="login_btn" style={{cursor : 'pointer'}} onClick={onClick}>로그인</button>
       </LoginBox>
       <BottomBox>
         <button>아이디/비밀번호 찾기</button>
-        <button>회원가입</button>
+        <Link to="/register">
+          <button style={{cursor : 'pointer'}}>회원가입</button>
+        </Link>
       </BottomBox>
     </LoginTemplate>
   );

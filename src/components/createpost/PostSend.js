@@ -16,6 +16,20 @@ function PostSend({ titlevalue , contentvalue, noonvalue, hourvalue, minutevalue
   const nextId = useContext(NextPostIdContext);
   console.log(nextId);
   const navigate = useNavigate();
+  let gender = '';
+
+  if (gendervalue === "남자만") {
+    gender = 'm'
+  }
+  else if (gendervalue === "여자만") {
+    gender = 'w'
+  }
+  else {
+    gender = 'b'
+  }
+  
+  console.log(gender);
+  console.log(gendervalue);
 
   function onSubmit(e) {
     e.preventDefault();
@@ -34,7 +48,8 @@ function PostSend({ titlevalue , contentvalue, noonvalue, hourvalue, minutevalue
         "hour" : hourvalue,
         "minute" : minutevalue,
         "category" : purposevalue,
-        "gender" : gendervalue,
+        "genderDisplay" : gendervalue,
+        "genderCheck" : gender,
         "currentPeople" : 1,
         "maxPeople" : peoplenumvalue,
         "title" : titlevalue,
