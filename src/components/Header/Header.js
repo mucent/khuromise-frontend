@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import icon from "./icon.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const HeaderBlock = styled.div`
   width: 100%;
@@ -48,10 +48,25 @@ const LogRegButton = styled.button`
   line-height: 30px;
 `;
 
-const Header = () => {
+const Header = (props) => {
+
+  console.log(props.isLogin);
+  const navigate = useNavigate();
+  
   const onClick = () => {
     window.location.load();
   };
+  
+  const onClickEx = () => {
+    if (props.isLogin === false) {
+      navigate(`/login`);
+    }
+    else {
+      sessionStorage.removeItem('LoginUserInfo');
+      props.setIsLogin(false);
+      window.location.reload();
+    }
+  }
 
   return (
     <HeaderBlock>
@@ -60,9 +75,7 @@ const Header = () => {
           <Logo src={icon} />
         </Link>
         <ButtonBox>
-          <Link to="/login" onClick={onClick}>
-            <LogRegButton>로그인</LogRegButton>
-          </Link>
+          <LogRegButton onClick={onClickEx}>{props.isLogin ? "로그아웃" : "로그인"}</LogRegButton>
           <Link to="/register" onClick={onClick}>
             <LogRegButton>회원가입</LogRegButton>
           </Link>

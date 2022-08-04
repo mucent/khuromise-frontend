@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import logo from "./../Header/logo.png";
-import { useState, useContext } from "react";
-import useFetch from "../../hooks/useFetch";
-import { LoginIdContext } from "../../context/Context";
+import { useState } from "react";
+import fetchLogin from "./fetchLogin";
 import { useNavigate } from "react-router-dom";
 
 const LoginTemplate = styled.div`
@@ -71,40 +70,45 @@ const BottomBox = styled.div`
 const Login = () => {
   const navigate = useNavigate();
 
-  // users 정보 호출
-  const fetchinfo = useFetch(`http://localhost:3002/users`);
-  const userInfo = [...fetchinfo];
-  //console.log(userInfo);
+  // 입력한 id, pw 상태 관리
+  const [inputAccount, setInputAccount] = useState({
+    inputId : "",
+    inputPw : ""
+  })
 
-  // 입력값 상태 관리
-  const [inputId, setUserId] = useState("");
-  const [inputPw, setUserPw] = useState("");
+  const { inputId, inputPw } = inputAccount;
 
-  const onIdChange = (e) => {
-   setUserId(e.target.value);
+  const onChange = (e) => {
+    const {name, value} = e.target;
+    setInputAccount({
+      ...inputAccount,
+      [name] : value
+    });
   }
-
-  const onPwChange = (e) => {
-    setUserPw(e.target.value);
-  }
-
-  // nextId 정보 불러오기
-  const nextId = useContext(LoginIdContext);
-  console.log(nextId);
   
-  // 로그인 정보 전달 함수
-  
+  // 로그인 account 정보 불러오기
+  const onClick = async () => {
+    try {
+      const LoginUser = await fetchLogin(inputAccount);
+      //console.log(LoginUser);
+      if (LoginUser !== undefined) {
+        sessionStorage.setItem('LoginUserInfo', LoginUser.userName);
+        navigate(`/`);
+      }
+    } catch (error) {
+      window.alert(error);
+    }
+  };
+
   return (
     <LoginTemplate>
       <Logo src={logo} />
       <LoginBox>
           <div className="input_box">
-            <input className="id" type="text" placeholder="ID" value={inputId} onChange={onIdChange}></input>
-            <input className="pw" type="password" placeholder="Password" value={inputPw} onChange={onPwChange}></input>
+            <input name="inputId" type="text" placeholder="ID" value={inputId} onChange={onChange}></input>
+            <input name="inputPw" type="password" placeholder="Password" value={inputPw} onChange={onChange}></input>
           </div>
-        <form>
-          <button className="login_btn">로그인</button>
-        </form>
+          <button className="login_btn" onClick={onClick}>로그인</button>
       </LoginBox>
       <BottomBox>
         <button>아이디/비밀번호 찾기</button>

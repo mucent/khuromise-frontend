@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Post4 from "./Post4";
 import Search from "./Search";
 import Myprofile from "./Myprofile";
+import { LoginUserContext } from "../../context/Context";
 
 const Container = styled.div`
   width: 100%;
@@ -20,7 +21,21 @@ const Container = styled.div`
   }
 `;
 
-const Mainpage = () => {
+const Mainpage = ({ isLogin, setIsLogin }) => {
+  //const { loginUser } = useContext(LoginUserContext);
+
+  console.log(isLogin);
+  console.log(sessionStorage.getItem('LoginUserInfo'));
+
+  useEffect(() => {
+    if (sessionStorage.getItem('LoginUserInfo') === null) {
+      setIsLogin(false);
+    }
+    else {
+      setIsLogin(true);
+    }
+  });
+  
   return (
     <div>
       <Container>

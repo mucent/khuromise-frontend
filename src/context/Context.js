@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React, { createContext, useState } from 'react';
 import useCurrentId from '../hooks/useCurrentId';
 
 export const NextPostIdContext = createContext();
