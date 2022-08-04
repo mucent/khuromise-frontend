@@ -64,6 +64,7 @@ const Header = (props) => {
     else {
       sessionStorage.removeItem('LoginUserInfo');
       props.setIsLogin(false);
+      navigate(`/`)
       window.location.reload();
     }
   }
