@@ -41,7 +41,8 @@ function PostSend({ titlevalue , contentvalue, noonvalue, hourvalue, minutevalue
       },
       body : JSON.stringify({
         "id" : nextId,
-        "name" : "익명",
+        "writerId" : sessionStorage.getItem('LoginUserInfo'),
+        "userApply" : [sessionStorage.getItem('LoginUserInfo')],
         "writerGender" : "w",
         "date" : datevalue,
         "noon" : noonvalue,

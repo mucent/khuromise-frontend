@@ -18,7 +18,7 @@ function ModSend({ titlevalue , contentvalue, noonvalue, hourvalue, minutevalue,
   const post = useFetch(`http://localhost:3002/posts/${id}`);
   const navigate = useNavigate();
   let gender = '';
-
+  
   if (gendervalue === "남자만") {
     gender = 'm'
   }
@@ -28,11 +28,13 @@ function ModSend({ titlevalue , contentvalue, noonvalue, hourvalue, minutevalue,
   else {
     gender = 'b'
   }
-
+  
   console.log(gender);
   function onSubmit(e) {
     e.preventDefault();
-
+    //const userApply = userApplyInfo.push(sessionStorage.getItem('LoginUserInfo'));
+    //console.log(userApply);
+    
     fetch(`http://localhost:3002/posts/${id}`, {
       method : "PUT",
       headers : {

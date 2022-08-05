@@ -104,7 +104,7 @@ const CreatePostBox = styled.div`
   
 `;
 
-function CreatePost() {
+function CreatePost(props) {
 
   const today = new Date();
   const todayYear = today.getFullYear();

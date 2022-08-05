@@ -136,16 +136,13 @@ const Post = (props) => {
  const findUser = findUsers.find((user)=>user.userId === sessionStorage.getItem('LoginUserInfo')) || {};
  console.log(findUser);
  console.log(post.writerId);
- /* 
- */
-
-const applyClick = () => {
-  if (window.confirm("신청하시겠습니까?")) {
-    if (post.currentPeople < post.maxPeople) {
-      if (post.genderCheck !== findUser.userGender || findUser.userId === post.writerId) {
-        alert("신청이 불가능합니다.");
-      }
-      else {
+ const array = post.userApply || [];
+ 
+ const applyClick = () => {
+   if (window.confirm("신청하시겠습니까?")) {
+     if (post.currentPeople < post.maxPeople) {
+       if (post.genderCheck === "b" || post.genderCheck === findUser.userGender) {
+        const newArray = array.concat([findUser.userId]);
         fetch(`http://localhost:3002/posts/${post.id}`, {
             method: "PUT",
             headers: {
@@ -153,6 +150,7 @@ const applyClick = () => {
             },
             body: JSON.stringify({
               ...post,
+              userApply : newArray,
               currentPeople: currentPeople + 1,
             }),
           }).then((res) => {
@@ -161,6 +159,12 @@ const applyClick = () => {
               window.location.reload();
             }
           });
+      }
+      else if (findUser.userId in post.userApply) {
+        alert("이미 신청되었습니다.");
+      }
+      else {
+        alert("신청이 불가능합니다.");
       }
     }
     else {

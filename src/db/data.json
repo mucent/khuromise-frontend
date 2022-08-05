@@ -30,14 +30,18 @@
     {
       "id": 1,
       "writerId": "id1",
+      "userApply": [
+        "id1",
+        "id2"
+      ],
       "writerGender": "w",
       "date": "2022-08-07",
       "noon": "오후",
       "hour": "04",
       "minute": "00",
       "category": "운동",
-      "genderDisplay": "여자만",
-      "genderCheck": "w",
+      "genderDisplay": "성별무관",
+      "genderCheck": "b",
       "currentPeople": 2,
       "maxPeople": "4",
       "title": "헬린이 운동 좀 알려줘",
@@ -46,14 +50,18 @@
     {
       "id": 2,
       "writerId": "id2",
+      "userApply": [
+        "id2",
+        "id1"
+      ],
       "writerGender": "w",
       "date": "2022-08-06",
       "noon": "오전",
       "hour": "02",
       "minute": "00",
       "category": "게임",
-      "genderDisplay": "여자만",
-      "genderCheck": "w",
+      "genderDisplay": "성별무관",
+      "genderCheck": "b",
       "currentPeople": 2,
       "maxPeople": "10",
       "title": "새벽롤",
