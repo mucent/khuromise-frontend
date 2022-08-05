@@ -140,9 +140,13 @@ const Post = (props) => {
  
  const applyClick = () => {
    if (window.confirm("신청하시겠습니까?")) {
-     if (post.currentPeople < post.maxPeople) {
+     if (array.includes(findUser.userId)) {
+       alert("이미 신청되었습니다.");
+     }
+     else if (post.currentPeople < post.maxPeople) {
        if (post.genderCheck === "b" || post.genderCheck === findUser.userGender) {
-        const newArray = array.concat([findUser.userId]);
+        const userArray = array.concat([findUser.userId]);
+        console.log(userArray);
         fetch(`http://localhost:3002/posts/${post.id}`, {
             method: "PUT",
             headers: {
@@ -150,7 +154,7 @@ const Post = (props) => {
             },
             body: JSON.stringify({
               ...post,
-              userApply : newArray,
+              userApply : userArray,
               currentPeople: currentPeople + 1,
             }),
           }).then((res) => {
@@ -159,13 +163,10 @@ const Post = (props) => {
               window.location.reload();
             }
           });
-      }
-      else if (findUser.userId in post.userApply) {
-        alert("이미 신청되었습니다.");
-      }
-      else {
-        alert("신청이 불가능합니다.");
-      }
+        }
+        else {
+          alert("신청이 불가능합니다.");
+        }
     }
     else {
       alert("모집 인원이 가득 찼습니다.");
@@ -228,14 +229,12 @@ const Post = (props) => {
           </PostBody>
           {/* 작성자만 수정 OR 삭제 가능 */}
           <Buttons>
-            <button
-              onClick={() =>
-                navigate(`/${post.category}/${post.id}/modifypost`)
-              }
-            >
-              수정
-            </button>
-            <button onClick={delClick}>삭제</button>
+            {post.writerId === findUser.userId &&
+              <button
+                onClick={() =>
+                  navigate(`/${post.category}/${post.id}/modifypost`)
+                }>수정</button>}
+            {post.writerId === findUser.userId && <button onClick={delClick}>삭제</button>}
           </Buttons>
         </PostBlock>
       ) : (

@@ -14,6 +14,10 @@ const PostBox = styled.div`
 
 function ModSend({ titlevalue , contentvalue, noonvalue, hourvalue, minutevalue, peoplenumvalue, datevalue, purposevalue, gendervalue }) {
 
+  const users = useFetch(`http://localhost:3002/users`);
+  const findUsers = [...users]
+  const findUser = findUsers.find((user)=>user.userId === sessionStorage.getItem('LoginUserInfo')) || {};
+
   const { id } = useParams();
   const post = useFetch(`http://localhost:3002/posts/${id}`);
   const navigate = useNavigate();
@@ -35,31 +39,36 @@ function ModSend({ titlevalue , contentvalue, noonvalue, hourvalue, minutevalue,
     //const userApply = userApplyInfo.push(sessionStorage.getItem('LoginUserInfo'));
     //console.log(userApply);
     
-    fetch(`http://localhost:3002/posts/${id}`, {
-      method : "PUT",
-      headers : {
-        "Content-Type" : "application/json; charset=UTF-8"
-      },
-      body : JSON.stringify({
-        ...post,
-        date : datevalue,
-        noon : noonvalue,
-        hour : hourvalue,
-        minute : minutevalue,
-        category : purposevalue,
-        genderDisplay : gendervalue,
-        genderCheck : gender,
-        maxPeople : peoplenumvalue,
-        title : titlevalue,
-        content : contentvalue
-      }),
-    })
-    .then(res =>{
-      if (res.ok){
-        alert("수정이 완료되었습니다");
-        navigate(`/${purposevalue}`);
-      }
-    })
+    if (gender !== findUser.userGender && gender !== 'b') {
+      alert("성별을 확인해 주세요.")
+    }
+    else {
+      fetch(`http://localhost:3002/posts/${id}`, {
+        method : "PUT",
+        headers : {
+          "Content-Type" : "application/json; charset=UTF-8"
+        },
+        body : JSON.stringify({
+          ...post,
+          date : datevalue,
+          noon : noonvalue,
+          hour : hourvalue,
+          minute : minutevalue,
+          category : purposevalue,
+          genderDisplay : gendervalue,
+          genderCheck : gender,
+          maxPeople : peoplenumvalue,
+          title : titlevalue,
+          content : contentvalue
+        }),
+      })
+      .then(res =>{
+        if (res.ok){
+          alert("수정이 완료되었습니다");
+          navigate(`/${purposevalue}`);
+        }
+      })
+    }
   }
   
   return(

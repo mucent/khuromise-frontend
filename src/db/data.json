@@ -31,8 +31,7 @@
       "id": 1,
       "writerId": "id1",
       "userApply": [
-        "id1",
-        "id2"
+        "id1"
       ],
       "writerGender": "w",
       "date": "2022-08-07",
@@ -42,7 +41,7 @@
       "category": "운동",
       "genderDisplay": "성별무관",
       "genderCheck": "b",
-      "currentPeople": 2,
+      "currentPeople": 1,
       "maxPeople": "4",
       "title": "헬린이 운동 좀 알려줘",
       "content": "ㅠㅠㅠ 기구 사용법 모르겠어"
@@ -62,7 +61,7 @@
       "category": "게임",
       "genderDisplay": "성별무관",
       "genderCheck": "b",
-      "currentPeople": 2,
+      "currentPeople": 3,
       "maxPeople": "10",
       "title": "새벽롤",
       "content": "내전 ㄲㄲ"

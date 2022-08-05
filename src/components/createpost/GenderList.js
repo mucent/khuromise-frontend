@@ -24,32 +24,35 @@ function GenderList(props) {
     {
       id : 1,
       gendertype : '남자만',
+      gendertypeEng : 'm',
       active : true
     },
     {
       id : 2,
       gendertype : '여자만',
+      gendertypeEng : 'w',
       active : false
     },
     {
       id : 3,
       gendertype : '성별무관',
+      gendertypeEng : 'b',
       active : false
     }])
-  
+
   const onToggle = id => {
-    setGender(
-      currentgender.map(gender => 
-        gender.id === id ? { ...gender, active: true } : { ...gender, active: false }
+      setGender(
+        currentgender.map(gender => 
+          gender.id === id ? { ...gender, active: true } : {...gender, active: false}
         )
-    );
-    function isTrue(gender) {
-      if (gender.id === id) {
-        return true;
+      );
+      function isTrue(gender) {
+        if (gender.id === id) {
+          return true;
+        }
       }
+      props.setGenderValue(currentgender.find(isTrue).gendertype)
     }
-    props.setGenderValue(currentgender.find(isTrue).gendertype)
-  }
   
   function Gender({ gender, onToggle }) {
     return (
