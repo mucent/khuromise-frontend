@@ -3,7 +3,7 @@ import styled from "styled-components";
 import icon from "./icon.png";
 import { Link } from "react-router-dom";
 
-const HeaderBlock = styled.div`
+const HeaderBlock = styled.header`
   width: 100%;
   height: 60px;
   border-bottom: 1px solid #bcbcbc;
