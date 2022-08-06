@@ -3,11 +3,12 @@ import styled from "styled-components";
 import useFetch from "../../hooks/useFetch";
 import emailjs from "emailjs-com";
 import { useNavigate } from "react-router";
+import icon from "./../Header/icon.png";
 
 const RegisterTemplate = styled.div`
-  width: 400px;
+  width: 380px;
   height: auto;
-  margin: 10px auto;
+  margin: 50px auto;
   padding: 40px;
   border: 1px solid #bcbcbc;
   border-radius: 16px;
@@ -87,6 +88,12 @@ const RegisterTemplate = styled.div`
   select {
     margin-right: 1px;
   }
+`;
+
+const Logo = styled.img`
+  width: 200px;
+  height: 90px;
+  margin-bottom: 40px;
 `;
 
 const Register = () => {
@@ -325,6 +332,7 @@ const Register = () => {
 
   return (
     <RegisterTemplate>
+      <Logo src={icon} />
       <table>
         <tbody>
           <tr>

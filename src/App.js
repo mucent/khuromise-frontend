@@ -8,12 +8,15 @@ import TestBar from "./components/TestBar";
 import Post from "./components/Post/Post";
 import Footer from "./components/Footer/Footer";
 import { PostContextProvider } from "./context/PostContext";
-import { ContextProvider, LoginUserContext, IsLoginContext } from "./context/Context";
+import {
+  ContextProvider,
+  LoginUserContext,
+  IsLoginContext,
+} from "./context/Context";
 import Register from "./components/LoginRegister/Register";
 import Mainpage from "./components/Main/Mainpage";
 import ModifyPost from "./components/modifypost/ModifyPost";
 import { useEffect, useContext, useState } from "react";
-
 
 const GlobalStyle = createGlobalStyle`
   :root {
@@ -22,6 +25,7 @@ const GlobalStyle = createGlobalStyle`
   body{
     margin: 0;
     background: white;
+    font-family: "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   }
   a {
     text-decoration: none;
@@ -38,10 +42,9 @@ function App() {
   const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
-    if (sessionStorage.getItem('LoginUserInfo') === null) {
+    if (sessionStorage.getItem("LoginUserInfo") === null) {
       setIsLogin(false);
-    }
-    else {
+    } else {
       setIsLogin(true);
     }
   });
@@ -52,20 +55,36 @@ function App() {
         <BrowserRouter>
           <GlobalStyle />
           <Header isLogin={isLogin} setIsLogin={setIsLogin} />
-          <TestBar isLogin={isLogin}/>
+          <TestBar isLogin={isLogin} />
           <Routes>
-            <Route path="/" exact={true} element={<Mainpage isLogin={isLogin} setIsLogin = {setIsLogin}/>}></Route>
-            <Route path="/login" element={<Login isLogin={isLogin}/>}></Route>
-            <Route path="/register" element={<Register isLogin={isLogin}/>}></Route>
-            <Route path="/:category" element={<PostList isLogin={isLogin}/>}></Route>
-            <Route path="/:category/:id" element={<Post isLogin={isLogin}/>}></Route>
-            <Route path="/createpost" element={<CreatePost isLogin={isLogin}/>}></Route>
+            <Route
+              path="/"
+              exact={true}
+              element={<Mainpage isLogin={isLogin} setIsLogin={setIsLogin} />}
+            ></Route>
+            <Route path="/login" element={<Login isLogin={isLogin} />}></Route>
+            <Route
+              path="/register"
+              element={<Register isLogin={isLogin} />}
+            ></Route>
+            <Route
+              path="/:category"
+              element={<PostList isLogin={isLogin} />}
+            ></Route>
+            <Route
+              path="/:category/:id"
+              element={<Post isLogin={isLogin} />}
+            ></Route>
+            <Route
+              path="/createpost"
+              element={<CreatePost isLogin={isLogin} />}
+            ></Route>
             <Route
               path="/:category/:id/modifypost"
-              element={<ModifyPost isLogin={isLogin}/>}
+              element={<ModifyPost isLogin={isLogin} />}
             ></Route>
           </Routes>
-          <Footer isLogin={isLogin}/>
+          <Footer isLogin={isLogin} />
         </BrowserRouter>
       </ContextProvider>
     </PostContextProvider>

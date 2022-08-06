@@ -24,8 +24,8 @@ const ItemBox = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 150px;
-  height: 50px;
+  width: 110px;
+  height: 45px;
 `;
 
 const ButtonBox = styled.div`
@@ -43,43 +43,40 @@ const LogRegButton = styled.button`
   border: 1px solid black;
   border-radius: 6px;
   font-size: 12px;
-  cursor : pointer;
+  cursor: pointer;
 
   text-align: center;
   line-height: 30px;
 `;
 
 const Header = (props) => {
-
   const { isLogin, setIsLogin } = props;
   const navigate = useNavigate();
-  
+
   const onClick1 = () => {
     window.location.load();
   };
-  
+
   const onClick2 = () => {
     if (isLogin === false) {
       navigate(`/login`);
-    }
-    else {
-      sessionStorage.removeItem('LoginUserInfo');
+    } else {
+      sessionStorage.removeItem("LoginUserInfo");
       setIsLogin(false);
-      navigate(`/`)
+      navigate(`/`);
       window.location.reload();
     }
-  }
+  };
 
   const onClick3 = () => {
     if (isLogin === true) {
-        navigate(`/Mypost`);
-        window.location.reload();
+      navigate(`/Mypost`);
+      window.location.reload();
+    } else {
+      navigate(`/register`);
+      window.location.reload();
     }
-    else {
-        navigate(`/register`);
-        window.location.reload();
-    }
-}
+  };
 
   return (
     <HeaderBlock>
@@ -88,8 +85,12 @@ const Header = (props) => {
           <Logo src={icon} />
         </Link>
         <ButtonBox>
-          <LogRegButton onClick={onClick2}>{isLogin ? "로그아웃" : "로그인"}</LogRegButton>
-          <LogRegButton onClick={onClick3}>{isLogin ? "나의게시글" : "회원가입"}</LogRegButton>
+          <LogRegButton onClick={onClick2}>
+            {isLogin ? "로그아웃" : "로그인"}
+          </LogRegButton>
+          <LogRegButton onClick={onClick3}>
+            {isLogin ? "나의게시글" : "회원가입"}
+          </LogRegButton>
         </ButtonBox>
       </ItemBox>
     </HeaderBlock>
