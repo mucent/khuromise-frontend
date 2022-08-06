@@ -260,13 +260,13 @@ const Register = () => {
       }
       numRef.current = number;
 
-      // emailjs.init("0UtA9SKxpxrBiIEnP");
-      // const templateParams = {
-      //   name: name,
-      //   email: email,
-      //   number: number,
-      // };
-      // emailjs.send("service_i6qxwu6", "template_khk64co", templateParams);
+      emailjs.init("0UtA9SKxpxrBiIEnP");
+      const templateParams = {
+        name: name,
+        email: email,
+        number: number,
+      };
+      emailjs.send("service_i6qxwu6", "template_khk64co", templateParams);
 
       setIsCerti(true);
       alert("인증메일이 성공적으로 전송되었습니다.");
