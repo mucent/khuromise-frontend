@@ -45,7 +45,8 @@ const RegisterTemplate = styled.div`
     font-size: 14px;
     border: 1px solid #bcbcbc;
     border-radius: 6px;
-    background-color: white;
+    background-color: #f9fafb;
+    cursor: pointer;
   }
 
   .genderButton {
@@ -53,6 +54,7 @@ const RegisterTemplate = styled.div`
     height: 30px;
     font-size: 14px;
     border: 1px solid #bcbcbc;
+    cursor: pointer;
   }
 
   .emailInput {
@@ -69,6 +71,7 @@ const RegisterTemplate = styled.div`
 
     font-size: 20px;
     background-color: #f9fafa;
+    cursor: pointer;
   }
 
   .greenText {
@@ -257,13 +260,14 @@ const Register = () => {
       }
       numRef.current = number;
 
-      emailjs.init("0UtA9SKxpxrBiIEnP");
-      const templateParams = {
-        name: name,
-        email: email,
-        number: number,
-      };
-      emailjs.send("service_i6qxwu6", "template_khk64co", templateParams);
+      // emailjs.init("0UtA9SKxpxrBiIEnP");
+      // const templateParams = {
+      //   name: name,
+      //   email: email,
+      //   number: number,
+      // };
+      // emailjs.send("service_i6qxwu6", "template_khk64co", templateParams);
+
       setIsCerti(true);
       alert("인증메일이 성공적으로 전송되었습니다.");
     } else {
@@ -273,7 +277,14 @@ const Register = () => {
 
   const isNum = (e) => {
     const key = e.key;
-    const availList = ["Backspace", "ArrowLeft", "ArrowRight"];
+    const availList = [
+      "Backspace",
+      "ArrowLeft",
+      "ArrowRight",
+      "Meta",
+      "Alt",
+      "Shift",
+    ];
     if ((key >= 0 && key < 10) || availList.includes(key)) {
       return true;
     } else {

@@ -39,14 +39,15 @@ const ButtonBox = styled.div`
 const LogRegButton = styled.button`
   width: 70px;
   height: 30px;
-  margin-right: 5px;
+  margin-left: 5px;
   border: 1px solid black;
   border-radius: 6px;
-  font-size: 12px;
+  background-color: #f9fafb;
+  font-size: 14px;
   cursor: pointer;
 
   text-align: center;
-  line-height: 30px;
+  line-height: 25px;
 `;
 
 const Header = (props) => {

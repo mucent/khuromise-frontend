@@ -52,6 +52,7 @@ const LoginBox = styled.div`
     border: 1px solid #bcbcbc;
     border-radius: 6px;
     margin-bottom: 5px;
+    cursor: pointer;
   }
 
   .id {
@@ -76,6 +77,7 @@ const BottomBox = styled.div`
     border: 1px solid #bcbcbc;
     border-radius: 6px;
     background-color: #eaeaea;
+    cursor: pointer;
   }
 `;
 
