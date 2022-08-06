@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 
-const FooterBlock = styled.div`
+const FooterBlock = styled.footer`
   width: 100%;
   height: 150px;
   border-top: 1px solid #bcbcbc;

@@ -73,7 +73,7 @@
       "userId": "id1",
       "userPw": "pw1",
       "userName": "name1",
-      "userGender": "w",
+      "userGender": "male",
       "userBirthDay": "2022-08-02",
       "userEmail": "email1@khu.ac.kr"
     },
@@ -82,9 +82,27 @@
       "userId": "id2",
       "userPw": "pw2",
       "userName": "name2",
-      "userGender": "m",
+      "userGender": "male",
       "userBirthDay": "2022-08-02",
       "userEmail": "email2@khu.ac.kr"
+    },
+    {
+      "id": 820852,
+      "userId": "asdfafd",
+      "userPw": "asdfasdf",
+      "userName": "asdf",
+      "userGender": "male",
+      "userBirthday": "2016-4-9",
+      "userEmail": "asdf@khu.ac.kr"
+    },
+    {
+      "id": 840385,
+      "userId": "testId2",
+      "userPw": "password1",
+      "userName": "testname",
+      "userGender": "female",
+      "userBirthday": "2006-10-02",
+      "userEmail": "test@khu.ac.kr"
     }
   ]
 }

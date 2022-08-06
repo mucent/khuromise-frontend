@@ -1,13 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import useFetch from "../../hooks/useFetch";
+import emailjs from "emailjs-com";
+import { useNavigate } from "react-router";
 
 const RegisterTemplate = styled.div`
-  width: 500px;
+  width: 400px;
   height: auto;
   margin: 10px auto;
   padding: 40px;
   border: 1px solid #bcbcbc;
+  border-radius: 16px;
 
   display: flex;
   flex-direction: column;
@@ -27,6 +30,7 @@ const RegisterTemplate = styled.div`
     height: 26px;
     margin: 0px;
     border: 1px solid #bcbcbc;
+    border-radius: 6px;
   }
 
   .dateInput {
@@ -39,6 +43,7 @@ const RegisterTemplate = styled.div`
     height: 30px;
     font-size: 14px;
     border: 1px solid #bcbcbc;
+    border-radius: 6px;
     background-color: white;
   }
 
@@ -62,7 +67,7 @@ const RegisterTemplate = styled.div`
     margin-top: 30px;
 
     font-size: 20px;
-    background-color: skyblue;
+    background-color: #f9fafa;
   }
 
   .greenText {
@@ -85,13 +90,19 @@ const RegisterTemplate = styled.div`
 `;
 
 const Register = () => {
+  const navigate = useNavigate();
+
   const [id, setId] = useState(null);
+  const [idShort, setIdShort] = useState(null);
   const [pw, setPw] = useState(null);
   const [_pw, set_Pw] = useState(null);
   const [name, setName] = useState(null);
   const [gender, setGender] = useState(null);
   const [email, setEmail] = useState(null);
-  const [certification, setCertification] = useState(true);
+  const [canEmail, setCanEmail] = useState(null);
+  const [check, setCheck] = useState(null);
+  const [isCerti, setIsCerti] = useState(null);
+  const [certification, setCertification] = useState(null);
 
   const idRef = useRef(null);
   const pwRef = useRef(null);
@@ -101,9 +112,11 @@ const Register = () => {
   const monthRef = useRef(null);
   const dayRef = useRef(null);
   const emailRef = useRef(null);
+  const checkRef = useRef(null);
 
   const idChange = () => {
     setId(String(idRef.current.value));
+    setCanId(null);
   };
   const pwChange = () => {
     setPw(String(pwRef.current.value));
@@ -124,7 +137,11 @@ const Register = () => {
     setDay(String(dayRef.current.value));
   };
   const emailChange = () => {
+    setCanEmail(null);
     setEmail(String(emailRef.current.value) + "@khu.ac.kr");
+  };
+  const checkChange = () => {
+    setCheck(String(checkRef.current.value));
   };
 
   const maleClick = () => {
@@ -142,23 +159,32 @@ const Register = () => {
 
   const idCheckClick = () => {
     if (id !== null) {
-      for (const user of users) {
-        if (user.userId === id) {
-          setCanId(false);
-          setIsEmpty(false);
-          break;
-        } else {
-          setCanId(true);
-          setIsEmpty(false);
+      if (id.length >= 6) {
+        for (const user of users) {
+          if (user.userId === id) {
+            setCanId(false);
+            setIsEmpty(false);
+            setIdShort(false);
+            break;
+          } else {
+            setCanId(true);
+            setIsEmpty(false);
+            setIdShort(false);
+          }
         }
+      } else {
+        setCanId(null);
+        setIsEmpty(false);
+        setIdShort(true);
       }
     } else {
+      setCanId(null);
       setIsEmpty(true);
     }
   };
 
   // 생년월일
-  const startYear = 1900;
+  const startYear = 1980;
   const today = new Date();
   const todayYear = today.getFullYear();
   const todayMonth = today.getMonth() + 1;
@@ -175,12 +201,12 @@ const Register = () => {
     yearList.push(y);
   }
   for (let m = 1; m <= 12; m++) {
-    m < 10 ? monthList.push("0" + m) : monthList.push(m);
+    m < 10 ? monthList.push(m) : monthList.push(m);
   }
   for (const endDay of endDayList) {
     const list = [];
     for (let day = 1; day <= endDay; day++) {
-      day < 10 ? list.push("0" + day) : list.push(day);
+      day < 10 ? list.push(day) : list.push(day);
     }
     dayList.push(list);
   }
@@ -199,8 +225,104 @@ const Register = () => {
     }
   }, [month]);
 
-  // 이메일 인증 구현하기
-  // 최종적으로 조건들 다 맞을 때 회원가입 가능하게 하기 (POST)
+  // 이메일 인증
+  const checkEmail = () => {
+    if (email !== null) {
+      for (const user of users) {
+        if (user.userEmail === email) {
+          setCanEmail(false);
+          break;
+        } else {
+          setCanEmail(true);
+        }
+      }
+    } else {
+      alert("이메일을 입력해주세요.");
+    }
+  };
+
+  const numRef = useRef(null);
+  const sendEmail = () => {
+    if (canEmail) {
+      let number = Math.floor(Math.random() * 1000000) + 100000;
+      if (number > 999999) {
+        number = number - 100000;
+      }
+      numRef.current = number;
+
+      emailjs.init("0UtA9SKxpxrBiIEnP");
+      const templateParams = {
+        name: name,
+        email: email,
+        number: number,
+      };
+      emailjs.send("service_i6qxwu6", "template_khk64co", templateParams);
+      setIsCerti(true);
+      alert("인증메일이 성공적으로 전송되었습니다.");
+    } else {
+      alert("이미 사용중인 이메일입니다.");
+    }
+  };
+
+  const isNum = (e) => {
+    const key = e.key;
+    const availList = ["Backspace", "ArrowLeft", "ArrowRight"];
+    if ((key >= 0 && key < 10) || availList.includes(key)) {
+      return true;
+    } else {
+      e.preventDefault();
+    }
+  };
+
+  const checkNum = () => {
+    if (check !== null) {
+      if (numRef.current == check) {
+        setCertification(true);
+      } else {
+        setCertification(false);
+      }
+    }
+  };
+
+  const clickRegister = () => {
+    if (
+      canId &&
+      pw.length >= 8 &&
+      pw === _pw &&
+      name &&
+      gender &&
+      certification
+    ) {
+      fetch("http://localhost:3002/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+        },
+        body: JSON.stringify({
+          id: numRef.current,
+          userId: id,
+          userPw: pw,
+          userName: name,
+          userGender: gender,
+          userBirthday:
+            String(year) +
+            "-" +
+            String(month < 10 ? "0" + month : month) +
+            "-" +
+            String(day < 10 ? "0" + day : day),
+          userEmail: email,
+        }),
+      }).then((res) => {
+        if (res.ok) {
+          alert("성공적으로 회원가입하셨습니다!");
+          navigate(`/`);
+        }
+      });
+    } else {
+      alert("정보를 모두 작성하지 않았거나 인증이 필요합니다.");
+    }
+  };
+
   return (
     <RegisterTemplate>
       <table>
@@ -221,6 +343,11 @@ const Register = () => {
           <tr>
             <td></td>
             <td>
+              {idShort && (
+                <span className="redText">
+                  아이디는 6글자 이상이어야합니다.
+                </span>
+              )}
               {isEmpty && (
                 <span className="redText">아이디를 입력해주세요.</span>
               )}
@@ -292,9 +419,7 @@ const Register = () => {
                 className="genderButton"
                 onClick={maleClick}
                 style={{
-                  border:
-                    gender === "male" ? "1px solid black" : "1px solid #bcbcbc",
-                  backgroundColor: gender === "male" ? "#bcbcbc" : "white",
+                  backgroundColor: gender === "male" ? "#eaeaea" : "white",
                 }}
               >
                 남자
@@ -303,11 +428,7 @@ const Register = () => {
                 className="genderButton"
                 onClick={femaleClick}
                 style={{
-                  border:
-                    gender === "female"
-                      ? "1px solid black"
-                      : "1px solid #bcbcbc",
-                  backgroundColor: gender === "female" ? "#bcbcbc" : "white",
+                  backgroundColor: gender === "female" ? "#eaeaea" : "white",
                 }}
               >
                 여자
@@ -317,12 +438,6 @@ const Register = () => {
           <tr>
             <td className="head">생년월일</td>
             <td>
-              {/* <input
-                className="dateInput"
-                type="date"
-                ref={birthDayRef}
-                onChange={birthDayChange}
-              /> */}
               <select ref={yearRef} onChange={yearChange} value={year}>
                 {yearList.map((year) => (
                   <option key={year}>{year}</option>
@@ -346,27 +461,85 @@ const Register = () => {
           <tr>
             <td className="head">e-mail</td>
             <td>
-              <input
-                className="emailInput"
-                ref={emailRef}
-                onChange={emailChange}
-                placeholder="e-mail"
-              />
-              <span>@khu.ac.kr</span>
+              {isCerti ? (
+                <div>
+                  <input
+                    className="emailInput"
+                    ref={emailRef}
+                    onChange={emailChange}
+                    placeholder={emailRef.current.value}
+                    disabled
+                  />
+                  <span>@khu.ac.kr</span>
+                </div>
+              ) : (
+                <div>
+                  <input
+                    className="emailInput"
+                    ref={emailRef}
+                    onChange={emailChange}
+                    placeholder="e-mail"
+                  />
+                  <span>@khu.ac.kr</span>
+                </div>
+              )}
             </td>
             <td>
-              <button>인증하기</button>
+              {canEmail ? (
+                isCerti || <button onClick={sendEmail}>전송하기</button>
+              ) : (
+                <button onClick={checkEmail}>중복확인</button>
+              )}
             </td>
           </tr>
-          <tr>
-            <td></td>
-            {certification && (
+
+          {isCerti ? (
+            <tr>
+              <td></td>
+              <td>
+                <input
+                  placeholder="인증번호를 입력해주세요"
+                  onKeyDown={isNum}
+                  ref={checkRef}
+                  onChange={checkChange}
+                />
+              </td>
+              <td>
+                <button onClick={checkNum}>인증하기</button>
+              </td>
+            </tr>
+          ) : (
+            canEmail !== null &&
+            (canEmail ? (
+              <tr>
+                <td></td>
+                <td className="greenText">사용가능한 이메일입니다.</td>
+              </tr>
+            ) : (
+              <tr>
+                <td></td>
+                <td className="redText">이미 사용중인 이메일입니다.</td>
+              </tr>
+            ))
+          )}
+          {certification ? (
+            <tr>
+              <td></td>
               <td className="greenText">인증이 완료되었습니다.</td>
-            )}
-          </tr>
+            </tr>
+          ) : (
+            certification === false && (
+              <tr>
+                <td></td>
+                <td className="redText">인증번호가 일치하지 않습니다.</td>
+              </tr>
+            )
+          )}
         </tbody>
       </table>
-      <button className="registerButton">회원가입</button>
+      <button className="registerButton" onClick={clickRegister}>
+        회원가입
+      </button>
     </RegisterTemplate>
   );
 };
