@@ -7,8 +7,8 @@ import EmptyPage from "../EmptyPage";
 const PostListBlock = styled.div`
   width: 100%;
   height: auto;
-  margin: 10px auto;
-  border: 1px solid #bcbcbc;
+  margin: 20px auto;
+  box-shadow: 0 0 8px 0 #bcbcbc;
   border-radius: 20px;
   max-width: 800px;
   min-width: 520px;

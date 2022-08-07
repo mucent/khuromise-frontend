@@ -11,8 +11,8 @@ import EmptyPage from "../EmptyPage";
 const PostBlock = styled.div`
   width: 100%;
   height: auto;
-  margin: 10px auto;
-  border: 1px solid #bcbcbc;
+  margin: 0 auto;
+  box-shadow: 0 0 8px 0 #bcbcbc;
   border-radius: 20px;
   max-width: 800px;
   min-width: 520px;
@@ -22,20 +22,20 @@ const PostHeader = styled.div`
   width: 95%;
   height: auto;
   border-bottom: 1px solid #bcbcbc;
-  margin: 10px auto;
+  margin: 20px auto;
 `;
 
 const UpperBox = styled.div`
   width: 100%;
   height: 80px;
 
+  margin: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   h1 {
-    margin: 0;
-    margin: 10px 20px;
+    margin: 20px 20px;
     margin-bottom: 0;
     padding: 20px;
     font-size: 30px;
@@ -64,7 +64,7 @@ const UnderBox = styled.div`
   align-items: center;
 
   .item {
-    width: 200px;
+    width: 300px;
     height: 100%;
 
     display: flex;
@@ -83,7 +83,7 @@ const Img = styled.img`
 const PostBody = styled.div`
   width: 95%;
   height: auto;
-  margin: 10px auto;
+  margin: 20px auto;
 
   .map {
     height: 200px;
@@ -102,7 +102,9 @@ const PostBody = styled.div`
 const Buttons = styled.div`
   width: 95%;
   height: 25px;
-  margin: 10px auto;
+  margin: 0 auto;
+  padding: 10px;
+
   text-align: end;
 
   button {
@@ -131,30 +133,34 @@ const Post = (props) => {
 
   // 조건 추가하기 => 성별이 조건에 만족한다면 진행
 
+  const findUsers = [...users];
+  const findUser =
+    findUsers.find(
+      (user) => user.userId === sessionStorage.getItem("LoginUserInfo")
+    ) || {};
+  console.log(findUser);
+  console.log(post.writerId);
+  const array = post.userApply || [];
 
- const findUsers = [...users]
- const findUser = findUsers.find((user)=>user.userId === sessionStorage.getItem('LoginUserInfo')) || {};
- console.log(findUser);
- console.log(post.writerId);
- const array = post.userApply || [];
- 
- const applyClick = () => {
-   if (window.confirm("신청하시겠습니까?")) {
-     if (array.includes(findUser.userId)) {
-       alert("이미 신청되었습니다.");
-     }
-     else if (post.currentPeople < post.maxPeople) {
-       if (post.genderCheck === "b" || post.genderCheck === findUser.userGender) {
-        const userArray = array.concat([findUser.userId]);
-        console.log(userArray);
-        fetch(`http://localhost:3002/posts/${post.id}`, {
+  const applyClick = () => {
+    if (window.confirm("신청하시겠습니까?")) {
+      if (array.includes(findUser.userId)) {
+        alert("이미 신청되었습니다.");
+      } else if (post.currentPeople < post.maxPeople) {
+        if (
+          post.genderCheck === "b" ||
+          post.genderCheck === findUser.userGender
+        ) {
+          const userArray = array.concat([findUser.userId]);
+          console.log(userArray);
+          fetch(`http://localhost:3002/posts/${post.id}`, {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
               ...post,
-              userApply : userArray,
+              userApply: userArray,
               currentPeople: currentPeople + 1,
             }),
           }).then((res) => {
@@ -163,14 +169,12 @@ const Post = (props) => {
               window.location.reload();
             }
           });
-        }
-        else {
+        } else {
           alert("신청이 불가능합니다.");
         }
-    }
-    else {
-      alert("모집 인원이 가득 찼습니다.");
-      window.location.reload();
+      } else {
+        alert("모집 인원이 가득 찼습니다.");
+        window.location.reload();
       }
     }
   };
@@ -226,16 +230,22 @@ const Post = (props) => {
           <PostBody>
             <div className="map"></div>
             <div className="content">{post.content}</div>
+            <Buttons>
+              {/* 작성자만 수정 OR 삭제 가능 */}
+              {post.writerId === findUser.userId && (
+                <button
+                  onClick={() =>
+                    navigate(`/${post.category}/${post.id}/modifypost`)
+                  }
+                >
+                  수정
+                </button>
+              )}
+              {post.writerId === findUser.userId && (
+                <button onClick={delClick}>삭제</button>
+              )}
+            </Buttons>
           </PostBody>
-          {/* 작성자만 수정 OR 삭제 가능 */}
-          <Buttons>
-            {post.writerId === findUser.userId &&
-              <button
-                onClick={() =>
-                  navigate(`/${post.category}/${post.id}/modifypost`)
-                }>수정</button>}
-            {post.writerId === findUser.userId && <button onClick={delClick}>삭제</button>}
-          </Buttons>
         </PostBlock>
       ) : (
         <EmptyPage />

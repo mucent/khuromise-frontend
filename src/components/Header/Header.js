@@ -29,7 +29,7 @@ const Logo = styled.img`
 `;
 
 const ButtonBox = styled.div`
-  width: 150px;
+  width: 200px;
   height: 40px;
   display: flex;
   justify-content: center;
@@ -37,8 +37,8 @@ const ButtonBox = styled.div`
 `;
 
 const LogRegButton = styled.button`
-  width: 70px;
-  height: 30px;
+  width: 80px;
+  height: 35px;
   margin-left: 5px;
   border: 1px solid black;
   border-radius: 6px;

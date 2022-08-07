@@ -10,8 +10,9 @@ const RegisterTemplate = styled.div`
   height: auto;
   margin: 50px auto;
   padding: 40px;
-  border: 1px solid #bcbcbc;
+
   border-radius: 16px;
+  box-shadow: 0 0 8px 0 #bcbcbc;
 
   display: flex;
   flex-direction: column;

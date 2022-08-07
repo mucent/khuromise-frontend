@@ -8,7 +8,7 @@ const LoginTemplate = styled.div`
   width: 300px;
   height: 300px;
   margin: 190px auto;
-  border: 1px solid #bcbcbc;
+  box-shadow: 0 0 8px 0 #bcbcbc;
   border-radius: 16px;
 
   display: flex;
