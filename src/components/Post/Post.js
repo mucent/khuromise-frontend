@@ -11,7 +11,7 @@ import EmptyPage from "../EmptyPage";
 const PostBlock = styled.div`
   width: 100%;
   height: auto;
-  margin: 0 auto;
+  margin: 20px auto;
   box-shadow: 0 0 8px 0 #bcbcbc;
   border-radius: 20px;
   max-width: 800px;
@@ -22,24 +22,22 @@ const PostHeader = styled.div`
   width: 95%;
   height: auto;
   border-bottom: 1px solid #bcbcbc;
-  margin: 20px auto;
+  margin: 0 auto;
+  padding-top: 10px;
 `;
 
 const UpperBox = styled.div`
   width: 100%;
   height: 80px;
 
-  margin: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   h1 {
-    margin: 20px 20px;
-    margin-bottom: 0;
-    padding: 20px;
     font-size: 30px;
-    line-height: 30px;
+    line-height: 40px;
+    margin-left: 40px;
   }
 
   button {

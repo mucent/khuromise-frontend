@@ -23,6 +23,7 @@ const PostListHead = styled.div`
   height: 50px;
   border-bottom: 1px solid #bcbcbc;
   margin: 10px auto;
+  padding-top: 5px;
 
   h1 {
     margin: 0;

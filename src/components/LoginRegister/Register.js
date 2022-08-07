@@ -4,6 +4,7 @@ import useFetch from "../../hooks/useFetch";
 import emailjs from "emailjs-com";
 import { useNavigate } from "react-router";
 import icon from "./../Header/icon.png";
+import { render } from "@testing-library/react";
 
 const RegisterTemplate = styled.div`
   width: 380px;
@@ -83,6 +84,12 @@ const RegisterTemplate = styled.div`
   .redText {
     font-size: 12px;
     color: red;
+  }
+
+  .counter {
+    font-size: 12px;
+    color: red;
+    text-align: right;
   }
 
   .pw {
@@ -166,7 +173,6 @@ const Register = () => {
   //ID 중복확인
   const users = useFetch(`http://localhost:3002/users`);
   const [canId, setCanId] = useState(null);
-  const [isEmpty, setIsEmpty] = useState(null);
 
   const idCheckClick = () => {
     if (id !== null) {
@@ -174,23 +180,20 @@ const Register = () => {
         for (const user of users) {
           if (user.userId === id) {
             setCanId(false);
-            setIsEmpty(false);
             setIdShort(false);
             break;
           } else {
             setCanId(true);
-            setIsEmpty(false);
             setIdShort(false);
           }
         }
       } else {
         setCanId(null);
-        setIsEmpty(false);
         setIdShort(true);
       }
     } else {
       setCanId(null);
-      setIsEmpty(true);
+      alert("아이디를 입력해주세요.");
     }
   };
 
@@ -252,9 +255,30 @@ const Register = () => {
     }
   };
 
+  const [min, setMin] = useState(3);
+  const [sec, setSec] = useState("00");
+  const time = useRef(180);
+  const timerId = useRef(null);
+
+  useEffect(() => {
+    if (time.current < -1) {
+      clearInterval(timerId.current);
+      time.current = 180;
+      setIsCerti(false);
+      alert("유효시간이 지났습니다.\n다시 인증해주세요.");
+    }
+  }, [sec]);
+
   const numRef = useRef(null);
   const sendEmail = () => {
     if (canEmail) {
+      timerId.current = setInterval(() => {
+        setMin(parseInt(time.current / 60));
+        const _sec = time.current % 60;
+        setSec(_sec < 10 ? "0" + _sec : _sec);
+        time.current -= 1;
+      }, 1000);
+
       let number = Math.floor(Math.random() * 1000000) + 100000;
       if (number > 999999) {
         number = number - 100000;
@@ -300,6 +324,8 @@ const Register = () => {
       } else {
         setCertification(false);
       }
+    } else {
+      alert("인증번호를 입력해주세요.");
     }
   };
 
@@ -367,9 +393,6 @@ const Register = () => {
                 <span className="redText">
                   아이디는 6글자 이상이어야합니다.
                 </span>
-              )}
-              {isEmpty && (
-                <span className="redText">아이디를 입력해주세요.</span>
               )}
               {canId !== null &&
                 (canId ? (
@@ -515,7 +538,9 @@ const Register = () => {
 
           {isCerti ? (
             <tr>
-              <td></td>
+              <td className="counter">
+                {min}:{sec}
+              </td>
               <td>
                 <input
                   placeholder="인증번호를 입력해주세요"
