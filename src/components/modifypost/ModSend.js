@@ -12,7 +12,7 @@ const PostBox = styled.div`
   line-height : 29px;
 `;
 
-function ModSend({ titlevalue , contentvalue, noonvalue, hourvalue, minutevalue, peoplenumvalue, datevalue, purposevalue, gendervalue }) {
+function ModSend({ titlevalue , contentvalue, noonvalue, hourvalue, minutevalue, peoplenumvalue, datevalue, purposevalue, gendervalue, positionvalue, placenamevalue }) {
 
   const users = useFetch(`http://localhost:3002/users`);
   const findUsers = [...users]
@@ -59,7 +59,9 @@ function ModSend({ titlevalue , contentvalue, noonvalue, hourvalue, minutevalue,
           genderCheck : gender,
           maxPeople : peoplenumvalue,
           title : titlevalue,
-          content : contentvalue
+          content : contentvalue,
+          position : positionvalue,
+          placeName : placenamevalue
         }),
       })
       .then(res =>{

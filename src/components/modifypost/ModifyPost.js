@@ -122,9 +122,12 @@ function ModifyPost() {
   const [minutevalue, setMinuteValue] = useState();
   const [peoplenumvalue, setPeopleNumValue] = useState();
   const [datevalue, setDateValue] = useState();
-  const [purposevalue, setPurposeValue] = useState(mypost.category);
-  const [gendervalue, setGenderValue] = useState(mypost.genderDisplay);
+  const [purposevalue, setPurposeValue] = useState();
+  const [gendervalue, setGenderValue] = useState();
+  const [positionvalue, setPositionValue] = useState([37.2437815,127.0764067]);
+  const [placenamevalue, setPlacenameValue] = useState('경희대학교 국제캠퍼스');
 
+  /*
   console.log(titlevalue);
   console.log(contentvalue);
   console.log(datevalue);
@@ -134,6 +137,10 @@ function ModifyPost() {
   console.log(peoplenumvalue);
   console.log(purposevalue);
   console.log(gendervalue);
+  console.log(positionvalue);
+  console.log(placenamevalue);
+  */
+
 
   return (
     <CreatePostBox>
@@ -155,7 +162,9 @@ function ModifyPost() {
           <ModGenderList setGenderValue={setGenderValue} mypost = {mypost} />
         </div>
         <div className="LineBox"><Line /></div>
-        <div className="PlaceBox"><ModPlace /></div>
+        <div className="PlaceBox">
+          <ModPlace setPositionValue={setPositionValue} setPlacenameValue={setPlacenameValue} mypost = {mypost} />
+        </div>
         <div className="PostTitleBox">
           <ModTitle setTitleValue={setTitleValue} mypost = {mypost} />
         </div>
@@ -172,7 +181,9 @@ function ModifyPost() {
             peoplenumvalue = {peoplenumvalue}
             datevalue = {datevalue}
             purposevalue = {purposevalue} 
-            gendervalue = {gendervalue} />
+            gendervalue = {gendervalue}
+            positionvalue = {positionvalue}
+            placenamevalue = {placenamevalue} />
         </div>
       </div>
     </CreatePostBox>

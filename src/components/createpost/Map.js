@@ -17,11 +17,11 @@ const SelectedPlaceBox = styled.div`
 
 function Map({ searchPlace, setPositionValue, setPlacenameValue }) {
 
-  const [searchLat, setSearchLat] = useState(36.2437815);
-  const [searchLon, setSearchLon] = useState(127.0764067);
+  const [searchLat, setSearchLat] = useState(37.243775684467);
+  const [searchLon, setSearchLon] = useState(127.077798444509);
   const [searchdata, setSearchdata] = useState([]);
-  const [initialLat, setInitialLat] = useState(36.2437815);
-  const [initialLon, setInitialLon] = useState(127.0764067);
+  const [initialLat, setInitialLat] = useState(37.243775684467);
+  const [initialLon, setInitialLon] = useState(127.077798444509);
 
   useEffect(() => {
     if ('geolocation' in navigator) {

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import useFetch from '../../hooks/useFetch';
+import { useParams } from 'react-router-dom';
 const { kakao } = window;
 
 const PlaceListBox = styled.div`
@@ -15,27 +17,25 @@ const SelectedPlaceBox = styled.div`
   padding : 4px;
 `;
 
-function ModMap({ searchPlace }) {
+function ModMap({ searchPlace, setPositionValue, setPlacenameValue, mypost }) {
 
-  const [searchLat, setSearchLat] = useState(36.2437815);
+  const [searchLat, setSearchLat] = useState(37.2437815);
   const [searchLon, setSearchLon] = useState(127.0764067);
   const [searchdata, setSearchdata] = useState([]);
-  const [initialLat, setInitialLat] = useState(36.2437815);
+  const [initialLat, setInitialLat] = useState(37.2437815);
   const [initialLon, setInitialLon] = useState(127.0764067);
 
+  const savedPosition = mypost.position || [];
+  const savedPlaceName = mypost.placeName;
+  
   useEffect(() => {
-
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
-        setSearchLat(lat);
-        setSearchLon(lon);
-        setInitialLat(lat);
-        setInitialLon(lon);
-      });
-    }
-  },[]);
+    setSearchLat(savedPosition[0]);
+    setSearchLon(savedPosition[1]);
+    setInitialLat(savedPosition[0]);
+    setInitialLon(savedPosition[1]);
+    setPositionValue(savedPosition);
+    setPlacenameValue(savedPlaceName);
+  },[savedPosition[0], savedPosition[1], savedPlaceName]);
     
   useEffect(()=> {
     const container = document.getElementById("Map");
@@ -66,12 +66,14 @@ function ModMap({ searchPlace }) {
         position: new kakao.maps.LatLng(searchLat, searchLon),
       });
     }
-    
+
   },[searchPlace, searchLat, searchLon]);
   
   const onClick = (data) => {
     setSearchLat(data.y);
     setSearchLon(data.x);
+    setPositionValue([data.y, data.x]);
+    setPlacenameValue(data.place_name);
   }
   
   function ShowList({data}) {
@@ -94,7 +96,7 @@ function ModMap({ searchPlace }) {
       ></div>
       <PlaceListBox>
         {searchdata.map((data) => 
-          <SelectedPlaceBox>
+          <SelectedPlaceBox key={data.id}>
             <ShowList data={data} key={data.id}/>
           </SelectedPlaceBox>)}
       </PlaceListBox>
