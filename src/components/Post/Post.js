@@ -7,6 +7,7 @@ import female from "./gender-female.png";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import EmptyPage from "../EmptyPage";
+import Comment from "./Comment";
 
 const PostBlock = styled.div`
   width: 100%;
@@ -121,7 +122,7 @@ const Post = (props) => {
   const { id } = useParams();
   const posts = useFetch(`http://localhost:3002/posts?id=${id}`);
   const users = useFetch(`http://localhost:3002/users`);
-  console.log(users);
+
   const post = { ...posts[0] };
   const date = String(post.date);
   const currentPeople = Number(post.currentPeople);
@@ -136,8 +137,6 @@ const Post = (props) => {
     findUsers.find(
       (user) => user.userId === sessionStorage.getItem("LoginUserInfo")
     ) || {};
-  console.log(findUser);
-  console.log(post.writerId);
   const array = post.userApply || [];
 
   const applyClick = () => {
@@ -197,54 +196,57 @@ const Post = (props) => {
   return (
     <>
       {post.id ? (
-        <PostBlock>
-          <PostHeader>
-            <UpperBox>
-              <h1>{post.title}</h1>
-              <button onClick={applyClick}>신청하기</button>
-            </UpperBox>
-            <UnderBox>
-              <div className="item">
-                <Img src={clock} />
-                {post.date
-                  ? `${date.slice(0, 4)}년 ${date.slice(5, 7)}월
+        <>
+          <PostBlock>
+            <PostHeader>
+              <UpperBox>
+                <h1>{post.title}</h1>
+                <button onClick={applyClick}>신청하기</button>
+              </UpperBox>
+              <UnderBox>
+                <div className="item">
+                  <Img src={clock} />
+                  {post.date
+                    ? `${date.slice(0, 4)}년 ${date.slice(5, 7)}월
                   ${date.slice(8, 10)}일 ${post.noon}
                   ${post.hour}:${post.minute}`
-                  : ""}
-              </div>
-              <div className="item">
-                <div>
-                  <Img src={male} />
-                  <Img src={female} />
+                    : ""}
                 </div>
-                {post.genderDisplay}
-              </div>
-              <div className="item">
-                <Img src={people} />
-                {post.currentPeople} / {post.maxPeople}
-              </div>
-            </UnderBox>
-          </PostHeader>
-          <PostBody>
-            <div className="map"></div>
-            <div className="content">{post.content}</div>
-            <Buttons>
-              {/* 작성자만 수정 OR 삭제 가능 */}
-              {post.writerId === findUser.userId && (
-                <button
-                  onClick={() =>
-                    navigate(`/${post.category}/${post.id}/modifypost`)
-                  }
-                >
-                  수정
-                </button>
-              )}
-              {post.writerId === findUser.userId && (
-                <button onClick={delClick}>삭제</button>
-              )}
-            </Buttons>
-          </PostBody>
-        </PostBlock>
+                <div className="item">
+                  <div>
+                    <Img src={male} />
+                    <Img src={female} />
+                  </div>
+                  {post.genderDisplay}
+                </div>
+                <div className="item">
+                  <Img src={people} />
+                  {post.currentPeople} / {post.maxPeople}
+                </div>
+              </UnderBox>
+            </PostHeader>
+            <PostBody>
+              <div className="map"></div>
+              <div className="content">{post.content}</div>
+              <Buttons>
+                {/* 작성자만 수정 OR 삭제 가능 */}
+                {post.writerId === findUser.userId && (
+                  <button
+                    onClick={() =>
+                      navigate(`/${post.category}/${post.id}/modifypost`)
+                    }
+                  >
+                    수정
+                  </button>
+                )}
+                {post.writerId === findUser.userId && (
+                  <button onClick={delClick}>삭제</button>
+                )}
+              </Buttons>
+            </PostBody>
+          </PostBlock>
+          <Comment id={id} visible={post.userApply.includes(findUser.userId)} />
+        </>
       ) : (
         <EmptyPage />
       )}
