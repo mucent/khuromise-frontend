@@ -76,8 +76,10 @@ const CreatePostBox = styled.div`
 
   .PlaceBox {
     grid-area : PlaceBox;
-    padding : 10px;
     border : 1px solid #bcbcbc;
+    display : flex;
+    justify-content : center;
+    align-items : center;
   }
   
 
@@ -138,6 +140,8 @@ function CreatePost(props) {
   const [datevalue, setDateValue] = useState(todayYear+'-'+exactMonth(todayMonth)+'-'+exactDate(todayDate));
   const [purposevalue, setPurposeValue] = useState('식사');
   const [gendervalue, setGenderValue] = useState('남자만');
+  const [positionvalue, setPositionValue] = useState([37.2437815,127.0764067]);
+  const [placenamevalue, setPlacenameValue] = useState('경희대학교 국제캠퍼스');
 
   /*
   console.log(titlevalue);
@@ -149,7 +153,8 @@ function CreatePost(props) {
   console.log(peoplenumvalue);
   console.log(exactMonth(todayMonth));
   */
-
+  console.log(positionvalue);
+  console.log(placenamevalue);
   return (
     <CreatePostBox>
       <div className="CreatePost">
@@ -169,7 +174,9 @@ function CreatePost(props) {
           <GenderList setGenderValue={setGenderValue} />
         </div>
         <div className="LineBox"><Line /></div>
-        <div className="PlaceBox"><Place /></div>
+        <div className="PlaceBox">
+          <Place setPositionValue={setPositionValue} setPlacenameValue={setPlacenameValue}/>
+        </div>
         <div className="PostTitleBox">
           <PostTitle setTitleValue={setTitleValue}/>
         </div>
@@ -186,7 +193,9 @@ function CreatePost(props) {
             peoplenumvalue = {peoplenumvalue}
             datevalue = {datevalue}
             purposevalue = {purposevalue} 
-            gendervalue = {gendervalue} />
+            gendervalue = {gendervalue} 
+            positionvalue = {positionvalue}
+            placenamevalue = {placenamevalue}/>
         </div>
       </div>
     </CreatePostBox>
