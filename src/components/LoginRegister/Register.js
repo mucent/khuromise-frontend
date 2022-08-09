@@ -4,7 +4,7 @@ import useFetch from "../../hooks/useFetch";
 import emailjs from "emailjs-com";
 import { useNavigate } from "react-router";
 import icon from "./../Header/icon.png";
-import { render } from "@testing-library/react";
+import config from "./config";
 
 const RegisterTemplate = styled.div`
   width: 380px;
@@ -285,13 +285,13 @@ const Register = () => {
       }
       numRef.current = number;
 
-      emailjs.init("0UtA9SKxpxrBiIEnP");
+      emailjs.init(config.id);
       const templateParams = {
         name: name,
         email: email,
         number: number,
       };
-      emailjs.send("service_i6qxwu6", "template_khk64co", templateParams);
+      emailjs.send(config.email, config.template, templateParams);
 
       setIsCerti(true);
       alert("인증메일이 성공적으로 전송되었습니다.");
