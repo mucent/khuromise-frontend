@@ -163,11 +163,11 @@ const Register = () => {
   };
 
   const maleClick = () => {
-    setGender("male");
+    setGender("m");
   };
 
   const femaleClick = () => {
-    setGender("female");
+    setGender("w");
   };
 
   //ID 중복확인
@@ -462,7 +462,7 @@ const Register = () => {
                 className="genderButton"
                 onClick={maleClick}
                 style={{
-                  backgroundColor: gender === "male" ? "#eaeaea" : "white",
+                  backgroundColor: gender === "m" ? "#eaeaea" : "white",
                 }}
               >
                 남자
@@ -471,7 +471,7 @@ const Register = () => {
                 className="genderButton"
                 onClick={femaleClick}
                 style={{
-                  backgroundColor: gender === "female" ? "#eaeaea" : "white",
+                  backgroundColor: gender === "w" ? "#eaeaea" : "white",
                 }}
               >
                 여자
