@@ -44,7 +44,12 @@
       "currentPeople": 1,
       "maxPeople": "4",
       "title": "헬린이 운동 좀 알려줘",
-      "content": "ㅠㅠㅠ 기구 사용법 모르겠어"
+      "content": "ㅠㅠㅠ 기구 사용법 모르겠어",
+      "position": [
+        "37.2437815",
+        "127.0764067"
+      ],
+      "placeName": "경희대학교 국제캠퍼스"
     },
     {
       "id": 2,
@@ -64,7 +69,36 @@
       "currentPeople": 3,
       "maxPeople": "10",
       "title": "새벽롤",
-      "content": "내전 ㄲㄲ"
+      "content": "내전 ㄲㄲ",
+      "position": [
+        "37.2437815",
+        "127.0764067"
+      ],
+      "placeName": "경희대학교 국제캠퍼스"
+    },
+    {
+      "id": 3,
+      "writerId": "id1",
+      "userApply": [
+        "id1"
+      ],
+      "writerGender": "w",
+      "date": "2022-08-12",
+      "noon": "오전",
+      "hour": "1",
+      "minute": "00",
+      "category": "기타",
+      "genderDisplay": "성별무관",
+      "genderCheck": "b",
+      "currentPeople": 1,
+      "maxPeople": "6",
+      "title": "메가박스 영화 볼 사람",
+      "content": "선착순 5명",
+      "position": [
+        "37.2525522369675",
+        "127.071477186346"
+      ],
+      "placeName": "메가박스 영통"
     }
   ],
   "users": [

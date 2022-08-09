@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styled from "styled-components";
 import ModPurposeList from "./ModPurposeList";
 import ModTime from "./ModTime";
-import Place from "./ModPlace";
+import ModPlace from "./ModPlace";
 import ModPeoplenum from "./ModPeoplenum";
 import ModGenderList from "./ModGenderList";
 import ModTitle from "./ModTitle";
@@ -155,7 +155,7 @@ function ModifyPost() {
           <ModGenderList setGenderValue={setGenderValue} mypost = {mypost} />
         </div>
         <div className="LineBox"><Line /></div>
-        <div className="PlaceBox"><Place /></div>
+        <div className="PlaceBox"><ModPlace /></div>
         <div className="PostTitleBox">
           <ModTitle setTitleValue={setTitleValue} mypost = {mypost} />
         </div>
