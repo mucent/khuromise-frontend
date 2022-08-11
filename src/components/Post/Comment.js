@@ -2,6 +2,7 @@ import { useContext, useRef, useState } from "react";
 import styled from "styled-components";
 import { NextCommentIdContext } from "../../context/Context";
 import useFetch from "../../hooks/useFetch";
+import CommentItem from "./CommentItem";
 
 const CommentBlock = styled.div`
   width: 100%;
@@ -61,30 +62,6 @@ const CommentBox = styled.div`
   align-items: center;
 `;
 
-const CommentItem = styled.div`
-  width: 97%;
-  height: auto;
-  padding: 10px;
-  margin-bottom: 10px;
-
-  border: 1px solid #bcbcbc;
-  border-radius: 6px;
-  display: flex;
-  padding: 10px;
-
-  .userId {
-    width: 70px;
-    height: auto;
-    margin-top: 10px;
-  }
-
-  .comment {
-    width: 90%;
-    height: auto;
-    margin: 10px 0;
-  }
-`;
-
 const ErrorBox = styled.div`
   width: 97%;
   height: 40px;
@@ -102,6 +79,7 @@ const ErrorBox = styled.div`
 const Comment = ({ id, visible }) => {
   const users = useFetch(`http://localhost:3002/users`);
   const comments = useFetch(`http://localhost:3002/comments?postId=${id}`);
+
   const nextId = useContext(NextCommentIdContext);
   const findUsers = [...users];
   const findUser =
@@ -124,7 +102,8 @@ const Comment = ({ id, visible }) => {
         body: JSON.stringify({
           id: nextId,
           postId: id,
-          writer: findUser.userId,
+          writerId: findUser.userId,
+          writerName: findUser.userName,
           comment: writingComment,
         }),
       }).then((res) => {
@@ -153,18 +132,9 @@ const Comment = ({ id, visible }) => {
             </button>
           </WriteBox>
           <CommentBox>
-            {comments.map((comment) => {
-              return (
-                <CommentItem
-                  key={comment.id}
-                  id={comment.id}
-                  className="comment"
-                >
-                  <div className="userId">{comment.writer}</div>
-                  <div className="comment">{comment.comment}</div>
-                </CommentItem>
-              );
-            })}
+            {comments.map((comment) => (
+              <CommentItem key={comment.id} comment={comment} />
+            ))}
           </CommentBox>
         </>
       ) : (

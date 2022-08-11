@@ -177,7 +177,7 @@ const Post = (props) => {
   };
 
   // 조건 추가하기 => 글쓴이만 수정 OR 삭제 가능
-  const delClick = () => {
+  const delPost = () => {
     if (window.confirm("정말로 삭제하시겠습니까?")) {
       fetch(`http://localhost:3002/posts/${post.id}`, {
         method: "DELETE",
@@ -240,7 +240,7 @@ const Post = (props) => {
                   </button>
                 )}
                 {post.writerId === findUser.userId && (
-                  <button onClick={delClick}>삭제</button>
+                  <button onClick={delPost}>삭제</button>
                 )}
               </Buttons>
             </PostBody>
