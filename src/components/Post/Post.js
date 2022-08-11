@@ -5,9 +5,10 @@ import people from "./account-group.png";
 import male from "./gender-male.png";
 import female from "./gender-female.png";
 import { useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import EmptyPage from "../EmptyPage";
 import Comment from "./Comment";
+import PostMap from "./PostMap";
 
 const PostBlock = styled.div`
   width: 100%;
@@ -85,8 +86,10 @@ const PostBody = styled.div`
   margin: 20px auto;
 
   .map {
-    height: 200px;
+    height: 400px;
+    width : 400px;
     border: 1px solid #bcbcbc;
+    margin: 0 auto;
     margin-bottom: 10px;
   }
 
@@ -128,7 +131,7 @@ const Post = (props) => {
   const currentPeople = Number(post.currentPeople);
   const [_post, set_Post] = useState(post);
   const navigate = useNavigate();
-  const { isLogin } = props;
+  // const { isLogin } = props;
 
   // 조건 추가하기 => 성별이 조건에 만족한다면 진행
 
@@ -226,7 +229,7 @@ const Post = (props) => {
               </UnderBox>
             </PostHeader>
             <PostBody>
-              <div className="map"></div>
+              <PostMap />
               <div className="content">{post.content}</div>
               <Buttons>
                 {/* 작성자만 수정 OR 삭제 가능 */}

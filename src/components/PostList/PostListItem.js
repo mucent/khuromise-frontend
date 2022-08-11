@@ -90,7 +90,7 @@ const PostListItem = ({
   noon,
   hour,
   minute,
-  place,
+  placeName,
   genderDisplay,
   currentPeople,
   maxPeople,
@@ -114,7 +114,7 @@ const PostListItem = ({
       <LeftBox>
         <Title onClick={onClick}>{title}</Title>
         <Date>{`${_date[0]}년 ${_date[1]}월 ${_date[2]}일 ${noon} ${hour}:${minute}`}</Date>
-        <Place>{place}</Place>
+        <Place>{placeName}</Place>
       </LeftBox>
       <GenderBox>{genderDisplay}</GenderBox>
       <RightBox>

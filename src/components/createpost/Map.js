@@ -38,6 +38,7 @@ function Map({ searchPlace, setPositionValue, setPlacenameValue }) {
     
   useEffect(()=> {
     const container = document.getElementById("Map");
+    
     const options = {
       center: new kakao.maps.LatLng(searchLat, searchLon),
       level: 3

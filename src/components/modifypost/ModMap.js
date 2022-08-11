@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import useFetch from '../../hooks/useFetch';
-import { useParams } from 'react-router-dom';
 const { kakao } = window;
 
 const PlaceListBox = styled.div`
