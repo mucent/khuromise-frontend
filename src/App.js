@@ -8,11 +8,7 @@ import TestBar from "./components/TestBar";
 import Post from "./components/Post/Post";
 import Footer from "./components/Footer/Footer";
 import { PostContextProvider } from "./context/PostContext";
-import {
-  ContextProvider,
-  LoginUserContext,
-  IsLoginContext,
-} from "./context/Context";
+import { ContextProvider } from "./context/Context";
 import Register from "./components/LoginRegister/Register";
 import Mainpage from "./components/Main/Mainpage";
 import ModifyPost from "./components/modifypost/ModifyPost";
@@ -26,6 +22,10 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     background: white;
     font-family: "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+
+    input:focus {
+      outline: none;
+    }
   }
   a {
     text-decoration: none;

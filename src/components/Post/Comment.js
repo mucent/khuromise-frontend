@@ -2,6 +2,7 @@ import { useContext, useRef, useState } from "react";
 import styled from "styled-components";
 import { NextCommentIdContext } from "../../context/Context";
 import useFetch from "../../hooks/useFetch";
+import CommentItem from "./CommentItem";
 
 const CommentBlock = styled.div`
   width: 100%;
@@ -17,7 +18,7 @@ const CommentBlock = styled.div`
   align-items: center;
 `;
 
-const WriteBox = styled.div`
+const WriteForm = styled.form`
   width: 95%;
   height: 80px;
   display: flex;
@@ -61,30 +62,6 @@ const CommentBox = styled.div`
   align-items: center;
 `;
 
-const CommentItem = styled.div`
-  width: 97%;
-  height: auto;
-  padding: 10px;
-  margin-bottom: 10px;
-
-  border: 1px solid #bcbcbc;
-  border-radius: 6px;
-  display: flex;
-  padding: 10px;
-
-  .userId {
-    width: 70px;
-    height: auto;
-    margin-top: 10px;
-  }
-
-  .comment {
-    width: 90%;
-    height: auto;
-    margin: 10px 0;
-  }
-`;
-
 const ErrorBox = styled.div`
   width: 97%;
   height: 40px;
@@ -101,7 +78,7 @@ const ErrorBox = styled.div`
 
 const Comment = ({ id, visible }) => {
   const users = useFetch(`http://localhost:3002/users`);
-  const comments = useFetch(`http://localhost:3002/comments?postId=${id}`);
+
   const nextId = useContext(NextCommentIdContext);
   const findUsers = [...users];
   const findUser =
@@ -109,6 +86,8 @@ const Comment = ({ id, visible }) => {
       (user) => user.userId === sessionStorage.getItem("LoginUserInfo")
     ) || {};
 
+  const writerId = findUser.userId;
+  const writerName = findUser.userName;
   const commentRef = useRef(null);
   const [writingComment, setWritingComment] = useState(null);
   const commentChange = () => {
@@ -124,7 +103,8 @@ const Comment = ({ id, visible }) => {
         body: JSON.stringify({
           id: nextId,
           postId: id,
-          writer: findUser.userId,
+          writerId: writerId,
+          writerName: writerName,
           comment: writingComment,
         }),
       }).then((res) => {
@@ -141,42 +121,35 @@ const Comment = ({ id, visible }) => {
     <CommentBlock>
       {visible ? (
         <>
-          <WriteBox>
+          <WriteForm>
             <input
               className="writeComment"
               placeholder="댓글을 작성해주세요."
+              type="text"
               ref={commentRef}
               onChange={commentChange}
             />
-            <button className="writeSubmit" onClick={commentSubmit}>
-              댓글달기
-            </button>
-          </WriteBox>
+            <input
+              className="writeSubmit"
+              placeholder="댓글달기"
+              type="submit"
+              onClick={commentSubmit}
+            />
+          </WriteForm>
           <CommentBox>
-            {comments.map((comment) => {
-              return (
-                <CommentItem
-                  key={comment.id}
-                  id={comment.id}
-                  className="comment"
-                >
-                  <div className="userId">{comment.writer}</div>
-                  <div className="comment">{comment.comment}</div>
-                </CommentItem>
-              );
-            })}
+            <CommentItem id={id} />
           </CommentBox>
         </>
       ) : (
         <>
-          <WriteBox>
+          <WriteForm>
             <input
               className="errorComment"
               placeholder="먼저 로그인 후 신청하기를 눌러주세요."
               disabled
             />
             <button className="writeSubmit">댓글달기</button>
-          </WriteBox>
+          </WriteForm>
           <CommentBox>
             <ErrorBox>약속에 참가한 사람만 댓글을 볼 수 있습니다.</ErrorBox>
           </CommentBox>

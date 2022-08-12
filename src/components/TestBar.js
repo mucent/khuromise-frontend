@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import useFetch from "../hooks/useFetch";
-import { useContext } from "react";
-import { NextIdContext } from '../context/Context';
 
 const TestBarBlock = styled.div`
   width: 100%;
@@ -24,7 +22,7 @@ const TestBar = () => {
 
   const onClick = () => {
     window.location.reload();
-  }
+  };
 
   return (
     <TestBarBlock>

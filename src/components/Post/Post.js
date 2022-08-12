@@ -122,6 +122,7 @@ const Post = (props) => {
   const { id } = useParams();
   const posts = useFetch(`http://localhost:3002/posts?id=${id}`);
   const users = useFetch(`http://localhost:3002/users`);
+  const comments = useFetch(`http://localhost:3002/comments?postId=${id}`);
 
   const post = { ...posts[0] };
   const date = String(post.date);
@@ -177,12 +178,26 @@ const Post = (props) => {
   };
 
   // 조건 추가하기 => 글쓴이만 수정 OR 삭제 가능
-  const delClick = () => {
+  const delPost = () => {
     if (window.confirm("정말로 삭제하시겠습니까?")) {
       fetch(`http://localhost:3002/posts/${post.id}`, {
         method: "DELETE",
-      }).then((res) => {
-        set_Post({ id: 0 });
+      });
+      comments.forEach((comment) => {
+        fetch(`http://localhost:3002/comments/${comment.id}`, {
+          method: "DELETE",
+        }).then((res) => console.log(comment.id));
+      });
+      users.forEach((user) => {
+        fetch("http://localhost:3002/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json; charset=UTF-8",
+          },
+          body: JSON.stringify({
+            ...user,
+          }),
+        });
       });
       alert("삭제가 완료되었습니다.");
       navigate(`/${post.category}`);
@@ -240,7 +255,7 @@ const Post = (props) => {
                   </button>
                 )}
                 {post.writerId === findUser.userId && (
-                  <button onClick={delClick}>삭제</button>
+                  <button onClick={delPost}>삭제</button>
                 )}
               </Buttons>
             </PostBody>
