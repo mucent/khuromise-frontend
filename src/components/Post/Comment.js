@@ -18,7 +18,7 @@ const CommentBlock = styled.div`
   align-items: center;
 `;
 
-const WriteBox = styled.div`
+const WriteForm = styled.form`
   width: 95%;
   height: 80px;
   display: flex;
@@ -78,7 +78,6 @@ const ErrorBox = styled.div`
 
 const Comment = ({ id, visible }) => {
   const users = useFetch(`http://localhost:3002/users`);
-  const comments = useFetch(`http://localhost:3002/comments?postId=${id}`);
 
   const nextId = useContext(NextCommentIdContext);
   const findUsers = [...users];
@@ -87,6 +86,8 @@ const Comment = ({ id, visible }) => {
       (user) => user.userId === sessionStorage.getItem("LoginUserInfo")
     ) || {};
 
+  const writerId = findUser.userId;
+  const writerName = findUser.userName;
   const commentRef = useRef(null);
   const [writingComment, setWritingComment] = useState(null);
   const commentChange = () => {
@@ -102,8 +103,8 @@ const Comment = ({ id, visible }) => {
         body: JSON.stringify({
           id: nextId,
           postId: id,
-          writerId: findUser.userId,
-          writerName: findUser.userName,
+          writerId: writerId,
+          writerName: writerName,
           comment: writingComment,
         }),
       }).then((res) => {
@@ -120,33 +121,35 @@ const Comment = ({ id, visible }) => {
     <CommentBlock>
       {visible ? (
         <>
-          <WriteBox>
+          <WriteForm>
             <input
               className="writeComment"
               placeholder="댓글을 작성해주세요."
+              type="text"
               ref={commentRef}
               onChange={commentChange}
             />
-            <button className="writeSubmit" onClick={commentSubmit}>
-              댓글달기
-            </button>
-          </WriteBox>
+            <input
+              className="writeSubmit"
+              placeholder="댓글달기"
+              type="submit"
+              onClick={commentSubmit}
+            />
+          </WriteForm>
           <CommentBox>
-            {comments.map((comment) => (
-              <CommentItem key={comment.id} comment={comment} />
-            ))}
+            <CommentItem id={id} />
           </CommentBox>
         </>
       ) : (
         <>
-          <WriteBox>
+          <WriteForm>
             <input
               className="errorComment"
               placeholder="먼저 로그인 후 신청하기를 눌러주세요."
               disabled
             />
             <button className="writeSubmit">댓글달기</button>
-          </WriteBox>
+          </WriteForm>
           <CommentBox>
             <ErrorBox>약속에 참가한 사람만 댓글을 볼 수 있습니다.</ErrorBox>
           </CommentBox>

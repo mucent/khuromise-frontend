@@ -36,10 +36,8 @@ const CommentItemBox = styled.div`
   }
 `;
 
-const CommentItem = ({ comment }) => {
-  const [_comment, set_Comment] = useState(comment);
-  console.log(comment);
-
+const CommentItem = ({ id }) => {
+  const comments = useFetch(`http://localhost:3002/comments?postId=${id}`);
   const users = useFetch(`http://localhost:3002/users`);
   const findUsers = [...users];
   const findUser =
@@ -47,43 +45,47 @@ const CommentItem = ({ comment }) => {
       (user) => user.userId === sessionStorage.getItem("LoginUserInfo")
     ) || {};
 
-  const delComment = () => {
+  if (!comments[0] || comments[0].id === 0) {
+    return null;
+  }
+
+  const delComment = (commentId) => {
     if (window.confirm("정말로 삭제하시겠습니까?")) {
-      fetch(`http://localhost:3002/comments/${comment.id}`, {
+      fetch(`http://localhost:3002/comments/${commentId}`, {
         method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-      }).then((res) => {
-        set_Comment({ id: 0 });
+      });
+      findUsers.forEach((user) => {
+        fetch("http://localhost:3002/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json; charset=UTF-8",
+          },
+          body: JSON.stringify({
+            ...user,
+          }),
+        });
       });
       alert("삭제가 완료되었습니다.");
       window.location.reload();
     }
   };
-  // const delComment = () => {
-  //   if (window.confirm("정말로 삭제하시겠습니까?")) {
-  //     fetch(`http://localhost:3002/comments/${comment.id}`, {
-  //       method: "PUT",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({}),
-  //     });
-  //     alert("삭제가 완료되었습니다.");
-  //     window.location.reload();
-  //   }
-  // };
 
-  if (!comment || comment.id === 0) {
-    return null;
-  }
   return (
-    <CommentItemBox>
-      <div className="userId">{comment.writerName}</div>
-      <div className="comment">{comment.comment}</div>
-      {findUser.userId === comment.writerId && (
-        <button className="delBtn" onClick={delComment}>
-          삭제
-        </button>
-      )}
-    </CommentItemBox>
+    <>
+      {comments.map((comment) => {
+        return (
+          <CommentItemBox key={comment.id}>
+            <div className="userId">{comment.writerName}</div>
+            <div className="comment">{comment.comment}</div>
+            {findUser.userId === comment.writerId && (
+              <button className="delBtn" onClick={() => delComment(comment.id)}>
+                삭제
+              </button>
+            )}
+          </CommentItemBox>
+        );
+      })}
+    </>
   );
 };
 

@@ -122,6 +122,7 @@ const Post = (props) => {
   const { id } = useParams();
   const posts = useFetch(`http://localhost:3002/posts?id=${id}`);
   const users = useFetch(`http://localhost:3002/users`);
+  const comments = useFetch(`http://localhost:3002/comments?postId=${id}`);
 
   const post = { ...posts[0] };
   const date = String(post.date);
@@ -181,8 +182,22 @@ const Post = (props) => {
     if (window.confirm("정말로 삭제하시겠습니까?")) {
       fetch(`http://localhost:3002/posts/${post.id}`, {
         method: "DELETE",
-      }).then((res) => {
-        set_Post({ id: 0 });
+      });
+      comments.forEach((comment) => {
+        fetch(`http://localhost:3002/comments/${comment.id}`, {
+          method: "DELETE",
+        }).then((res) => console.log(comment.id));
+      });
+      findUsers.forEach((user) => {
+        fetch("http://localhost:3002/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json; charset=UTF-8",
+          },
+          body: JSON.stringify({
+            ...user,
+          }),
+        });
       });
       alert("삭제가 완료되었습니다.");
       navigate(`/${post.category}`);
