@@ -4,7 +4,7 @@ import useFetch from "../../hooks/useFetch";
 import emailjs from "emailjs-com";
 import { useNavigate } from "react-router";
 import icon from "./../Header/icon.png";
-import config from "./config";
+import config from "./config.js";
 
 const RegisterTemplate = styled.div`
   width: 380px;
@@ -285,13 +285,13 @@ const Register = () => {
       }
       numRef.current = number;
 
-      emailjs.init(config.id);
+      emailjs.init(config.PUBLIC_KEY);
       const templateParams = {
         name: name,
         email: email,
         number: number,
       };
-      emailjs.send(config.email, config.template, templateParams);
+      emailjs.send(config.SERVICE_ID, config.TEMPLATE_ID, templateParams);
 
       setIsCerti(true);
       alert("인증메일이 성공적으로 전송되었습니다.");
@@ -309,6 +309,7 @@ const Register = () => {
       "Meta",
       "Alt",
       "Shift",
+      "v",
     ];
     if ((key >= 0 && key < 10) || availList.includes(key)) {
       return true;
@@ -543,6 +544,7 @@ const Register = () => {
               </td>
               <td>
                 <input
+                  maxLength="6"
                   placeholder="인증번호를 입력해주세요"
                   onKeyDown={isNum}
                   ref={checkRef}

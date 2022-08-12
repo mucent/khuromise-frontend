@@ -188,7 +188,7 @@ const Post = (props) => {
           method: "DELETE",
         }).then((res) => console.log(comment.id));
       });
-      findUsers.forEach((user) => {
+      users.forEach((user) => {
         fetch("http://localhost:3002/users", {
           method: "POST",
           headers: {

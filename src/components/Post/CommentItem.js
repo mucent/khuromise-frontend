@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
 import useFetch from "../../hooks/useFetch";
-import { render } from "@testing-library/react";
 
 const CommentItemBox = styled.div`
   width: 97%;
@@ -54,7 +52,7 @@ const CommentItem = ({ id }) => {
       fetch(`http://localhost:3002/comments/${commentId}`, {
         method: "DELETE",
       });
-      findUsers.forEach((user) => {
+      users.forEach((user) => {
         fetch("http://localhost:3002/users", {
           method: "POST",
           headers: {
