@@ -5,7 +5,7 @@ import people from "./account-group.png";
 import male from "./gender-male.png";
 import female from "./gender-female.png";
 import { useNavigate, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import EmptyPage from "../EmptyPage";
 import Comment from "./Comment";
 import PostMap from "./PostMap";
@@ -245,7 +245,7 @@ const Post = (props) => {
             </PostHeader>
             <PostBody>
               <PostMap />
-              <div className="content">{post.content}</div>
+              <div className="content" style={{whiteSpace : 'pre'}}>{post.content}</div>
               <Buttons>
                 {/* 작성자만 수정 OR 삭제 가능 */}
                 {post.writerId === findUser.userId && (
