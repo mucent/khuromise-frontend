@@ -48,6 +48,12 @@ function ModMap({ searchPlace, setPositionValue, setPlacenameValue, mypost }) {
       sort : kakao.maps.services.SortBy.DISTANCE
     }
 
+    const markerPosition  = new kakao.maps.LatLng(initialLat, initialLon); 
+    const marker = new kakao.maps.Marker({
+        position: markerPosition
+    });
+    marker.setMap(map);
+
     const ps = new kakao.maps.services.Places();
     ps.keywordSearch(searchPlace, placesSearchCB, searchoptions);
     
