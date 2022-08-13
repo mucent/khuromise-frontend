@@ -105,7 +105,8 @@
       "id": 5,
       "writerId": "asdfasdf",
       "userApply": [
-        "asdfasdf"
+        "asdfasdf",
+        "id1"
       ],
       "writerGender": "w",
       "date": "2022-08-12",
@@ -115,7 +116,7 @@
       "category": "식사",
       "genderDisplay": "성별무관",
       "genderCheck": "b",
-      "currentPeople": 1,
+      "currentPeople": 2,
       "maxPeople": "2",
       "title": "제목없음",
       "content": "내용없음",

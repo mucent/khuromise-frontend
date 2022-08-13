@@ -71,7 +71,7 @@ const Header = (props) => {
 
   const onClick3 = () => {
     if (isLogin === true) {
-      navigate(`/Mypost`);
+      navigate(`/mypage/mypostlist`);
       window.location.reload();
     } else {
       navigate(`/register`);

@@ -2,24 +2,58 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
 
-
 const Profile = styled.div`
-    width: 88%;
-    height: 3rem;
-    border: 1px solid black;
-    padding: 11px;
-    margin: 2px;
+    width: auto;
+    height: 100%;
+    min-height: 200px;
+    box-shadow: 0 0 8px 0 #bcbcbc;
+    border-radius: 16px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 40% 60%;
+    row-gap: 30px;
+    margin-top: 10px;
+    
+
+    .Profileimg {
+        width: 55%;
+        height: 90%;
+        border: 1px solid #bcbcbc;
+        margin-top: 20px;
+        margin-left: 50px;
+    }
+    .Nickname {
+        width : 80%;
+        height: 80%;
+        border-bottom: 2px solid #bcbcbc;
+    }
+
+    .buttonbox1 {
+        width: auto;
+        height: auto;
+        grid-column: 1/ 2;
+        grid-row:2/3;
+        display: flex;
+    }
+    .buttonbox2 {
+        width: auto;
+        height: auto;
+        grid-column: 2/ 3;
+        grid-row:2/3;
+        display: flex;
+        item-align: center;
+    }
 `
 const StyleButton = styled.button`
-    width: 7rem;
-    height: 2.7rem;
-    border: 1px solid black;
+    width: 80%;
+    height: 50%;
+    border: 2px solid #bcbcbc;
     border-radius: 8px;
-    font-align: center;
     background-color: white;
-    margin: 10px;
     cursor: Pointer;
+    margin-left: 17px;
 `
+
 //login 된 my profile 정보 나오게 만들기//
 
 function Myprofile(props) {
@@ -39,7 +73,7 @@ function Myprofile(props) {
     
     const onClick2 = () => {
         if (isLogin === true) {
-            navigate(`/Mypost`);
+            navigate(`/mypage`);
             window.location.reload();
         }
         else {
@@ -51,9 +85,16 @@ function Myprofile(props) {
 
     return(
         <div>
-            <Profile></Profile>
-            <StyleButton onClick={onClick1}>약속하기</StyleButton>
-            <StyleButton onClick={onClick2}>나의게시글</StyleButton>
+            <Profile>
+                <div className='Profileimg'></div>
+                <div className='Nickname'></div>
+                <div className='buttonbox1'>
+                    <StyleButton onClick={onClick1}>약속하기</StyleButton>
+                </div>
+                <div className='buttonbox2'>
+                    <StyleButton onClick={onClick2}>마이페이지</StyleButton>
+                </div>
+            </Profile>
         </div>
     );
 }
