@@ -71,7 +71,7 @@ const PostList = (props) => {
                   noon={post.noon}
                   hour={post.hour}
                   minute={post.minute}
-                  place={post.place}
+                  placeName={post.placeName}
                   genderDisplay={post.genderDisplay}
                   currentPeople={post.currentPeople}
                   maxPeople={post.maxPeople}

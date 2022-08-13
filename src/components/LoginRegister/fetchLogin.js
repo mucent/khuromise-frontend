@@ -3,11 +3,7 @@ const fetchLogin = async({ inputId, inputPw }) => {
   
   if (response.ok) {
     const usersInfo = await response.json();
-    //console.log(usersInfo);
     const userInfo = usersInfo.find((user) => user.userId === inputId)
-    //console.log(userInfo);
-    //console.log(inputId);
-    //console.log(inputPw);
     if (!userInfo) {
       alert("아이디 또는 비밀번호가 일치하지 않습니다.");
     }
