@@ -113,12 +113,6 @@ const Login = () => {
       window.alert(error);
     }
   };
-  
-  const handleonKeyPress = (e)=> {
-    if(e.key=='Enter'){
-      onClick();
-    }
-  }
 
   return (
     <LoginTemplate>
@@ -138,7 +132,6 @@ const Login = () => {
             placeholder="Password"
             value={inputPw}
             onChange={onChange}
-            onKeyPress={handleonKeyPress}
           ></input>
         </div>
         <button
