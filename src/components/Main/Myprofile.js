@@ -66,8 +66,8 @@ function Myprofile(props) {
             window.location.reload();
         }
         else {
-            alert("로그인 후 이용 가능합니다.");
-            navigate(`/login`);
+            navigate(`/register`);
+            window.location.reload();
         }
     }
     
@@ -77,7 +77,6 @@ function Myprofile(props) {
             window.location.reload();
         }
         else {
-            alert("로그인 후 이용 가능합니다.");
             navigate(`/login`);
             window.location.reload();
         }
@@ -86,13 +85,15 @@ function Myprofile(props) {
     return(
         <div>
             <Profile>
-                <div className='Profileimg'></div>
-                <div className='Nickname'></div>
                 <div className='buttonbox1'>
-                    <StyleButton onClick={onClick1}>약속하기</StyleButton>
+                    <StyleButton onClick={onClick1}>
+                        {isLogin ? "약속하기":"회원가입"}
+                    </StyleButton>
                 </div>
                 <div className='buttonbox2'>
-                    <StyleButton onClick={onClick2}>마이페이지</StyleButton>
+                    <StyleButton onClick={onClick2}>
+                        {isLogin ? "마이페이지":"로그인"}
+                    </StyleButton>
                 </div>
             </Profile>
         </div>

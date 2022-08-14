@@ -72,8 +72,8 @@
       "title": "cgv 영화 볼 사람",
       "content": "선착순 5명",
       "position": [
-        "37.26351079792151",
-        "127.03220051035893"
+        "37.2525522369675",
+        "127.071477186346"
       ],
       "placeName": "메가박스 영통"
     },
@@ -125,6 +125,54 @@
         127.0764067
       ],
       "placeName": "경희대학교 국제캠퍼스"
+    },
+    {
+      "id": 6,
+      "writerId": "id1",
+      "userApply": [
+        "id1"
+      ],
+      "writerGender": "w",
+      "date": "2022-08-25",
+      "noon": "오전",
+      "hour": "1",
+      "minute": "00",
+      "category": "게임",
+      "genderDisplay": "성별무관",
+      "genderCheck": "b",
+      "currentPeople": 1,
+      "maxPeople": "5",
+      "title": "ㅇ",
+      "content": "ㅇ",
+      "position": [
+        "37.2479707082863",
+        "127.078163434991"
+      ],
+      "placeName": "아이센스리그PC방 수원경희대점"
+    },
+    {
+      "id": 7,
+      "writerId": "id1",
+      "userApply": [
+        "id1"
+      ],
+      "writerGender": "w",
+      "date": "2022-08-17",
+      "noon": "오후",
+      "hour": "1",
+      "minute": "00",
+      "category": "식사",
+      "genderDisplay": "성별무관",
+      "genderCheck": "b",
+      "currentPeople": 1,
+      "maxPeople": "2",
+      "title": "제목없음",
+      "content": "내용없음",
+      "position": [
+        "37.2479892708963",
+        "127.077338403131"
+      ],
+      "placeName": "부대통령뚝배기"
     }
   ],
   "users": [

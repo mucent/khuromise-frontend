@@ -77,15 +77,9 @@ function Mypage () {
                         <Button2 onClick={onClick}>로그아웃</Button2>
                     </div>
                     <div className="item">
-                        <Buttonstyle onClick={()=>{
-                            navigate('/mypage/mypostlist');
-                            }}>나의 게시글</Buttonstyle>
-                        <Buttonstyle onClick={()=>{
-                            navigate('/mypage/myreply');
-                        }}>나의 댓글</Buttonstyle>
-                        <Buttonstyle onClick={()=>{
-                            navigate('/mypage/mypromise');
-                        }}>약속 목록</Buttonstyle>
+                        <Buttonstyle onClick={()=>{navigate('/mypage/mypostlist');}}>나의 게시글</Buttonstyle>
+                        <Buttonstyle onClick={()=>{navigate('/mypage/myreply');}}>나의 댓글</Buttonstyle>
+                        <Buttonstyle onClick={()=>{navigate('/mypage/mypromise');}}>약속 목록</Buttonstyle>
                     </div>
                     <div className="item"></div>
                 </Mypagebox>

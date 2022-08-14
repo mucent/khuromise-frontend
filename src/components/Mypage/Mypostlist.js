@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { BrowserRouter, Route, Routes, Link, useNavigate } from "react-router-dom";
+import axios from 'axios';
+
 
 const Mypagecontainer = styled.div`
     width: 100%;
@@ -66,6 +68,8 @@ const Mypost3 = styled.div`
     display: inline-flex;
 `
 
+
+
 function Mypostlist () {
     const navigate = useNavigate();
     const onClick =()=>{
@@ -73,6 +77,12 @@ function Mypostlist () {
         navigate(`/`);
         window.location.reload();
     }
+    const getPostById = async id => {
+        const response = await axios.get('http://localhost:3002/posts/${writerid}');
+        return response.data;
+    }    
+
+    
     return (
         <div>
             <Mypagecontainer>
@@ -94,7 +104,7 @@ function Mypostlist () {
                         }}>약속 목록</Buttonstyle>
                     </div>
                     <div className="item">
-                        <Mypost3></Mypost3>
+                        <Mypost3><getPostById/></Mypost3>
                         <Mypost3></Mypost3>
                         <Mypost3></Mypost3>
                     </div>

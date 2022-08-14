@@ -1,11 +1,10 @@
-import React , {Component, useState} from 'react';
+import React , {Component, useState, useEffect} from 'react';
 import styled from 'styled-components';
-import {Link,useParams} from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
-import PostListItem from '../PostList/PostListItem';
+import { useParams, BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { ReactDOM } from 'react';
+import { render } from '@testing-library/react';
 import PostList from '../PostList/PostList';
-import EmptyPage from '../EmptyPage';
-import PurposeList from '../createpost/PurposeList';
 
 const Listbox = styled.div`
   width: 100%;
@@ -13,37 +12,38 @@ const Listbox = styled.div`
   margin : 1px;
   box-shadow: 0 0 8px 0 #bcbcbc;
   border-radius: 16px;
+  display: grid;
 
   .Buttonbox {
     outline: none;
     font-size: 100%;
     height: 15%;
-    width: 100%;
+    width: 30%;
     border-bottom: 2px solid #bcbcbc;
   }
   .List {
-    width: 95%;
+    width: 40%;
     height: auto;
-    border: 1px solid black;
     display: inline-flex;
     margin: 5px 10px;
   }
 `
 
-function Post5() {
-  const url = new URL(`http://localhost:3002/categories`);
-  const param = new URLSearchParams(PostList);
-  param.get("id");
-
-
+function Post5(){
+  const categories = useFetch(`http://localhost:3002/posts`);
   return (
     <Listbox>
-      <div className='Buttonbox'>
-      </div>
+      {categories.map(({id,category, title, placeName})=>(
+        <>
+        <div className='Buttonbox'>
+          <button key={id}>{category}</button>
+        </div>
+        <div className='List'>{title} / {placeName}</div>
+        </>
+      ))}
     </Listbox>
-  )
-
-};
+  );
+}
 
 
 
