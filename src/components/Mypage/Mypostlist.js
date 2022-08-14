@@ -77,10 +77,6 @@ function Mypostlist () {
         navigate(`/`);
         window.location.reload();
     }
-    const getPostById = async id => {
-        const response = await axios.get('http://localhost:3002/posts/${writerid}');
-        return response.data;
-    }    
 
     
     return (
@@ -89,7 +85,7 @@ function Mypostlist () {
                 <Mypagebox>
                     <div className="item">1</div>
                         <div className="item">
-                            <Button2>나의정보수정</Button2>
+                            <Button2>회원탈퇴</Button2>
                             <Button2 onClick={onClick}>로그아웃</Button2>
                     </div>
                     <div className="item">
@@ -104,7 +100,7 @@ function Mypostlist () {
                         }}>약속 목록</Buttonstyle>
                     </div>
                     <div className="item">
-                        <Mypost3><getPostById/></Mypost3>
+                        <Mypost3></Mypost3>
                         <Mypost3></Mypost3>
                         <Mypost3></Mypost3>
                     </div>
