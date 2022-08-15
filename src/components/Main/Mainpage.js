@@ -77,7 +77,7 @@ const Mainpage = ({ isLogin, setIsLogin }) => {
             <Myprofile isLogin = {isLogin} />
           </div>
           <div className="postbox">
-            <Post5 />
+            <Post5 isLogin={isLogin}/>
           </div>
           <div className="blank2"></div>
         </div>
