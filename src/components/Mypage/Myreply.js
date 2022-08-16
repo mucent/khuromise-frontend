@@ -79,7 +79,7 @@ function Myreply () {
                 <Mypagebox>
                     <div className="item">1</div>
                         <div className="item">
-                            <Button2>나의정보수정</Button2>
+                            <Button2>회원탈퇴</Button2>
                             <Button2 onClick={onClick}>로그아웃</Button2>
                     </div>
                     <div className="item">

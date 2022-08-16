@@ -101,4 +101,4 @@ function Myprofile(props) {
 }
 
 
-export default Myprofile
+export default React.memo(Myprofile);
